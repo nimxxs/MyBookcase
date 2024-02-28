@@ -1,9 +1,4 @@
-// document.addEventListener("DOMContentLoaded", (event) => {
-//   // 여기에 DOM 요소를 참조하는 코드를 넣으면 됩니다.
-//   let myElement = document.querySelector(".booklist-all");
-// });
-
-const bookListHTML = ocument.querySelector(".booklist-all");
+let bookListHTML = "";
 const API_KEYdong = `ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3`;
 let booklistAll = [];
 let pageSize = 5;
@@ -42,8 +37,9 @@ const getURL = async () => {
 };
 getURL();
 // render
+let bookListAllHTML = ``;
 const rander = () => {
-  let bookListAllHTML = booklistAll
+  bookListAllHTML = booklistAll
     .map(
       (i) => `
     <li class="booklist-item">
@@ -65,6 +61,7 @@ const rander = () => {
   `
     )
     .join("");
+  let bookListHTML = document.querySelector(".booklist-all");
   bookListHTML.innerHTML = bookListAllHTML;
 };
 // 버튼 클릭시 북리스트 다음페이지로 넘김
@@ -79,4 +76,3 @@ booklistBts.forEach((e) => {
     }
   });
 });
-rander();
