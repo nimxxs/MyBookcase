@@ -2,24 +2,26 @@ const API_KEY = `ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b
 let booklistAll = [];
 let pageSize = 5;
 let pageNo = 1;
+let pageTotalCount = 0;
 const booklistBts = document.querySelectorAll(".booklist-bt");
 // 버튼 클릭시 북리스트 다음페이지로 넘김
 booklistBts.forEach((e) => {
   e.addEventListener("click", () => {
-    if (e.id == "left") {
+    if (e.id == "left" && pageNo > 1) {
       pageNo -= 1;
-      if (pageno <= 1) {
-        pageNo = 1;
-      }
-    } else if (e.id == "right") {
+      console.log(pageNo);
+      getAPI();
+      rander();
+    } else if (e.id == "right" && pageNo < pageTotalCount) {
       pageNo += 1;
-      // if(pageno <= 1){
-      //   pageNo = 1
-      // }
-      // 최종 페이지
+      console.log(pageNo);
+      getAPI();
+      rander();
     }
   });
+  console.log(pageNo);
 });
+// getAPI
 const getAPI = async () => {
   const url = new URL(
     `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
@@ -30,10 +32,13 @@ const getAPI = async () => {
   const response = await fetch(url);
   const data = await response.json();
   booklistAll = data.docs;
+  console.log(data.TOTAL_COUNT);
+  pageTotalCount = data.TOTAL_COUNT;
   rander();
 };
 getAPI();
 
+// render
 const rander = () => {
   let bookListAllHTML = booklistAll
     .map(
