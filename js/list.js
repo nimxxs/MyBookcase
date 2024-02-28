@@ -11,18 +11,18 @@ const getLibrary = async () => {
     console.log("ddd",newsList)
 }
 
-const render=()=>{
+const render = () => {
     const newsHTML = newsList
-    .filter(news => news.TITLE_URL)
-    .map(news=>`<div class="row">
-    <img src=${news.TITLE_URL}>
-    <ol>${news.TITLE}</ol>
-    <ul>${news.AUTHOR}</ul>
-    <ul>${news.PRE_PRICE}</ul>
-</div>`).join('')
-    
-    
+        .filter(news => news.TITLE_URL && news.TITLE_URL !== "") // 이미지가 있는 항목만 필터링
+        .slice(0, 5) // 처음 5개 항목만 사용
+        .map(news => `<div class="row">
+            <img src=${news.TITLE_URL}>
+            <ol>${news.TITLE}</ol>
+            <ul>${news.AUTHOR}</ul>
+            <ul>${news.PRE_PRICE}</ul>
+        </div>`).join('');
 
-    document.getElementById("news-board").innerHTML=newsHTML//어디에 붙일지
+    document.getElementById("news-board").innerHTML = newsHTML;
 }
-getLibrary()
+
+getLibrary();
