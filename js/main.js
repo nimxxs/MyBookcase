@@ -1,4 +1,4 @@
-const API_KEY = `ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3`;
+const API_KEYdong = `ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3`;
 let booklistAll = [];
 let pageSize = 5;
 let pageNo = 1;
@@ -30,7 +30,7 @@ const getAPI = async () => {
 };
 const getURL = async () => {
   url = new URL(
-    `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
+    `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEYdong}&result_style=json`
   );
   getAPI();
 };
