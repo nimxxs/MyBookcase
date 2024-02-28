@@ -3,13 +3,11 @@ let booklistAll = [];
 let pageSize = 5;
 let pageNo = 1;
 let pageTotalCount = 0;
+let url = ``;
 const booklistBts = document.querySelectorAll(".booklist-bt");
 
 // getAPI
 const getAPI = async () => {
-  const url = new URL(
-    `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
-  );
   try {
     url.searchParams.set("page_size", pageSize);
     url.searchParams.set("page_no", pageNo);
@@ -30,7 +28,13 @@ const getAPI = async () => {
     console.log(e.message);
   }
 };
-
+const getURL = async () => {
+  url = new URL(
+    `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
+  );
+  getAPI();
+};
+getURL();
 // render
 const rander = () => {
   let bookListAllHTML = booklistAll
