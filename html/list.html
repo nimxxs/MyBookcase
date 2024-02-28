@@ -7,27 +7,9 @@
     <title>My BookCase List</title>
     <link rel="stylesheet" href="../css/header-fo.css" />
     <link rel="stylesheet" href="../css/sub-title.css" />
-    <link rel="stylesheet" href="../css/list.css" />
+    <link rel="stylesheet" href="../css/list.css" />   
   </head>
   <body>
-    <header class="header">
-      <div class="header-center">
-        <h1 class="logo">
-          <a href="#">
-            <img src="../images/logo.svg" alt="" />
-          </a>
-        </h1>
-        <form id="search-container" action="">
-          <input id="search-input" type="text" />
-          <button class="search-bt">
-            <img src="../images/search-bt.svg" alt="검색버튼" />
-          </button>
-        </form>
-        <a class="mypage-link" href="#">
-          <img src="../images/mypage.svg" alt="" />
-        </a>
-      </div>      
-    </header>
     <section class="sub-title">
         <a href="#">건강</a>
         <a href="#">취미</a>
@@ -45,25 +27,27 @@
         <a href="#">어린이</a>
         <a href="#">수험서</a>
       </section>
-      <section class="list" >
+      <section class="list">
         <div class="list-container">
             <h3>전체리스트</h3>
-            <div class="list-border"></div>
-            <div class="list-next-btn">
-              
-              <div class="list-books" id="news-board">
-                  <div class="row">
-                      <img src="../images/book.jpg">
-                      <ol>조선이 만난 아인슈타인</ol>
-                      <ul>지은이: 민태기 지음</ul>
-                      <ul class="space">12,500원</ul>
-                  </div>                                
-              </div>
-              
+            <div class="list-border"></div>     
+            <div class="list-books" id="news-board">
+              <div class="row">
+                <img src="../images/book.jpg">
+                <ol>조선이 만난 아인슈타인</ol>
+                <ul>지은이: 민태기 지음</ul>
+                <ul class="space">12,500원</ul>
+              </div>                       
             </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                
+              </ul>
+            </nav> 
         </div>
-        
+               
       </section>
+      
     <script src="../js/list.js"></script>
     <script src="https://kit.fontawesome.com/5622f2ba18.js" crossorigin="anonymous"></script>
   </body>
