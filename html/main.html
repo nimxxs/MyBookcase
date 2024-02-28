@@ -36,6 +36,14 @@
       <!-- booklist -->
       <section class="booklist">
         <article class="booklist-article">
+          <div class="booklist-bts">
+            <button class="booklist-bt booklist-bt-left" id="left">
+              <img src="../images/arrow-left.svg" alt="left-bt" />
+            </button>
+            <button class="booklist-bt booklist-bt-right" id="right">
+              <img src="../images/arrow-right.svg" alt="right-bt" />
+            </button>
+          </div>
           <img
             class="bookmark-icon"
             src="../images/icon1.svg"
@@ -44,20 +52,29 @@
           <header class="booklist-header">
             <h2 class="booklist-headline">전체 리스트</h2>
           </header>
-          <ul class="booklist-list">
+          <ul class="booklist-list booklist-all">
             <!--  -->
-            <li class="booklist-item">
+            <!-- <li class="booklist-item">
               <div class="booklist-img-box">
                 <img class="booklist-img" src="" alt="책 표지" />
+                <span class="booklist-sub-title">ddd</span>
               </div>
               <h3 class="booklist-title">조선의 만난 아이슈타인</h3>
               <span class="booklist-author">지은이 : 민태기 지음</span>
-            </li>
+            </li> -->
             <!--  -->
           </ul>
         </article>
         <!-- 오늘의 책 추천 -->
         <article class="booklist-article">
+          <div class="booklist-bts">
+            <button class="booklist-bt booklist-bt-left">
+              <img src="../images/arrow-left.svg" alt="left-bt" />
+            </button>
+            <button class="booklist-bt booklist-bt-right">
+              <img src="../images/arrow-right.svg" alt="right-bt" />
+            </button>
+          </div>
           <img
             class="bookmark-icon"
             src="../images/icon1.svg"
@@ -80,5 +97,6 @@
         </article>
       </section>
     </main>
+    <script src="../js/main.js"></script>
   </body>
 </html>

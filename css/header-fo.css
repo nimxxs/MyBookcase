@@ -26,9 +26,13 @@ body {
 /* logo */
 /* search */
 #search-container {
-  position: relative;
   display: flex;
   align-items: center;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
 }
 #search-input {
   width: 595px;
