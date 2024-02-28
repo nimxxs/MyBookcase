@@ -161,3 +161,23 @@
   left: 30px;
   top: 30px;
 }
+
+.booklist-bts {
+  width: calc(100% - 35px);
+  margin: auto;
+  position: absolute;
+  /* background-color: red; */
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+.booklist-bt {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.booklist-bt:hover {
+  opacity: 0.8;
+}
