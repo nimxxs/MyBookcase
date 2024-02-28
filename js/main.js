@@ -4,20 +4,7 @@ let pageSize = 5;
 let pageNo = 1;
 let pageTotalCount = 0;
 const booklistBts = document.querySelectorAll(".booklist-bt");
-// 버튼 클릭시 북리스트 다음페이지로 넘김
-booklistBts.forEach((e) => {
-  e.addEventListener("click", () => {
-    if (e.id == "left" && pageNo > 1) {
-      pageNo -= 1;
-      getAPI();
-      rander();
-    } else if (e.id == "right" && pageNo < pageTotalCount) {
-      pageNo += 1;
-      getAPI();
-      rander();
-    }
-  });
-});
+
 // getAPI
 const getAPI = async () => {
   const url = new URL(
@@ -43,7 +30,6 @@ const getAPI = async () => {
     console.log(e.message);
   }
 };
-getAPI();
 
 // render
 const rander = () => {
@@ -69,6 +55,20 @@ const rander = () => {
   `
     )
     .join("");
-
   document.querySelector(".booklist-all").innerHTML = bookListAllHTML;
 };
+// 버튼 클릭시 북리스트 다음페이지로 넘김
+booklistBts.forEach((e) => {
+  e.addEventListener("click", () => {
+    if (e.id == "left" && pageNo > 1) {
+      pageNo -= 1;
+      getAPI();
+      rander();
+    } else if (e.id == "right" && pageNo < pageTotalCount) {
+      pageNo += 1;
+      getAPI();
+      rander();
+    }
+  });
+});
+getAPI();
