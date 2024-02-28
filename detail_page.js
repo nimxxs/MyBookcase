@@ -7,6 +7,8 @@ let bookInfo = []
 
 let targetBookDetail = async()=>{
     ISBN = "9791196777050"
+    //ISBN = "8984993727"
+    //ISBN = "9788941241256"
     url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=1&page_size=10&isbn=${ISBN}`)
     const response = await fetch(url)
     const data = await response.json()
@@ -14,6 +16,11 @@ let targetBookDetail = async()=>{
     console.log("ISBN check", bookInfo.EA_ISBN)  
     console.log("data.docs[0]", bookInfo)
     
+    url2 = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&detailSearch=true&isbnOp=isbn&isbnCode=${ISBN}`)
+    const response2 = await fetch(url2)
+    const data2 = await response2.json()
+    console.log("data2", data2)
+
     loadTopSection()
     
 }
@@ -37,6 +44,7 @@ let loadTopSection = ()=>{
 // open new window for detailed info
 function popWindow() {
     let params = `
+        popup=no,
         scrollbars=yes,
         resizable=yes,
         status=no,
@@ -59,6 +67,10 @@ targetBookDetail()
 //this will post a message to the parent
 let wishFunction = ()=>{
     window.opener.postMessage("wish button clicked", "*")
+}
+
+let toLibFunction = ()=>{
+    window.open("https://www.naver.com","","")
 }
 
 // This event handler will listen for messages from the child

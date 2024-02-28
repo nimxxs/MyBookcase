@@ -41,7 +41,10 @@
 }
 
 .book-details{
+    background-color: bisque;
     margin: 1em;
+    width: 600px
+
 }
 
 /* BOTTOM */
