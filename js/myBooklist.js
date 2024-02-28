@@ -113,12 +113,41 @@ function xmlToJson(xml) {
     return obj;
 }
 
+// 이미지 url도 넘겨받을때
+// const render = () => {
+//     const bookHTML = matchBookList.map((book) => {
+//         // ISBNList에서 해당 도서의 ISBN에 해당하는 URL을 찾습니다.
+//         const isbnItem = ISBNList.find(item => item.isbn === book.EA_ISBN);
+//         // ISBN에 해당하는 URL이 존재한다면 이미지 소스로 설정합니다.
+//         const imageURL = isbnItem ? isbnItem.url : '';
+
+//         return `
+//         <div class="book">
+//             <div class="book_firstDiv">
+//                 <input type="checkbox" onclick = "toggle('${book.EA_ISBN})">
+//                 <input type="checkbox" id="read">
+//             </div>
+//             <div class="book_midDiv">
+//                 <img src="${imageURL}" alt="책 이미지 위치">
+//                 <div class="bookInfo">
+//                     <div id="title">${book.TITLE}</div>
+//                     <div id="codeName">${book.AUTHOR}</div>
+//                 </div>
+//             </div>
+//             <div class="book_lastDiv">
+//                 <button onclick = "deleteBook('${book.EA_ISBN}')">
+//                     <img src="../images/trash.svg">
+//                 </button>
+//             </div>
+//         </div>
+//         `
+//     }).join("")
+//     document.querySelector(".booksArea").innerHTML = bookHTML
+// }
+
+// isbn만 넘겨 받을 때 (객체 형태 { })
 const render = () => {
     const bookHTML = matchBookList.map((book) => {
-        // ISBNList에서 해당 도서의 ISBN에 해당하는 URL을 찾습니다.
-        const isbnItem = ISBNList.find(item => item.isbn === book.EA_ISBN);
-        // ISBN에 해당하는 URL이 존재한다면 이미지 소스로 설정합니다.
-        const imageURL = isbnItem ? isbnItem.url : '';
 
         return `
         <div class="book">
@@ -127,7 +156,7 @@ const render = () => {
                 <input type="checkbox" id="read">
             </div>
             <div class="book_midDiv">
-                <img src="${imageURL}" alt="책 이미지 위치">
+                <img src="${book.TITLE_URL}" alt="책 이미지 위치">
                 <div class="bookInfo">
                     <div id="title">${book.TITLE}</div>
                     <div id="codeName">${book.AUTHOR}</div>
@@ -144,6 +173,35 @@ const render = () => {
     document.querySelector(".booksArea").innerHTML = bookHTML
 }
 
+// isbn만 넘겨 받을 때 (배열 형태 [])
+// const render = () => {
+//     const bookHTML = matchBookList.map((book) => {
+
+//         return `
+//         <div class="book">
+//             <div class="book_firstDiv">
+//                 <input type="checkbox" onclick = "toggle('${book.EA_ISBN})">
+//                 <input type="checkbox" id="read">
+//             </div>
+//             <div class="book_midDiv">
+//                 <img src="${book.TITLE_URL}" alt="책 이미지 위치">
+//                 <div class="bookInfo">
+//                     <div id="title">${book.TITLE}</div>
+//                     <div id="codeName">${book.AUTHOR}</div>
+//                 </div>
+//             </div>
+//             <div class="book_lastDiv">
+//                 <button onclick = "deleteBook('${book.EA_ISBN}')">
+//                     <img src="../images/trash.svg">
+//                 </button>
+//             </div>
+//         </div>
+//         `
+//     }).join("")
+//     document.querySelector(".booksArea").innerHTML = bookHTML
+// }
+
+// 객체( {} ) 형태로 넘겨 받을 때
 async function matchISBN() {
     if (!Array.isArray(ISBNList)) {
         console.error('ISBNList is not an array');
@@ -164,6 +222,28 @@ async function matchISBN() {
 
     render()
 }
+
+// 배열( [] ) 형태로 넘겨 받을 때
+// async function matchISBN() {
+//     if (!Array.isArray(ISBNList)) {
+//         console.error('ISBNList is not an array');
+//         return;
+//     }
+
+//     for (let i of ISBNList) {
+//         ISBNUrl.searchParams.set('isbn', i)
+//         const response = await fetch(ISBNUrl.href)
+//         const matchData = await response.json()
+//         matchArray.push(matchData)
+//     }
+//     console.log("matchArray: ", matchArray)
+
+//     matchBookList = matchArray.flatMap(item => item.docs || []);
+
+//     console.log("matchBookList: ", matchBookList)
+
+//     render()
+// }
 
 matchISBN()
 
