@@ -26,7 +26,7 @@ const render = () => {
                 <ul>${news.PRE_PRICE}</ul>
             </div>`).join('');
 
-    document.getElementById("news-board").innerHTML = newsHTML;
+  document.getElementById("news-board").innerHTML = newsHTML;
 };
 
 const paginationRender = () => {

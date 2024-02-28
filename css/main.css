@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.main {
+  width: 100vw;
+  background-color: #f5f5f7;
+  /* height: 6000px; */
+  padding-bottom: 100px;
+}
+/* category */
+.category {
+  height: 45px;
+  width: 100vw;
+  background-color: #f5f5f7d6;
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  box-shadow: 0 2px 0 #00000016;
+  position: sticky;
+  top: 100px;
+  z-index: 10;
+}
+.category-list {
+  max-width: 1325px;
+
+  margin: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  align-items: center;
+}
+.category-item {
+  padding: 0 15px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  color: #6e6e73;
+  transition: color 0.3s ease;
+}
+.category-item:nth-child(n + 2)::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #bfbfbf;
+  inset: 0;
+  right: auto;
+  margin: auto;
+}
+.category-item:hover {
+  text-decoration: underline;
+  color: #1d1d1f;
+}
+/* qoute-randomizer */
+.quote-randomizer {
+  width: fit-content;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.quote-randomizer-phrase {
+  font-size: 30px;
+  text-align: center;
+  color: #6e6e73;
+  line-height: 1.2;
+  position: relative;
+  transition-property: 1000px;
+}
+.quote-randomizer-phrase::after {
+  content: '"';
+  position: absolute;
+  bottom: -12px;
+  right: -32px;
+  transform-style: preserve-3d;
+  transform: rotate3d(0, 0, 1, 180deg);
+}
+.quote-randomizer-phrase::before {
+  content: '"';
+  position: absolute;
+  top: -12px;
+  left: -32px;
+}
+.quote-randomizer-phrase span {
+  font-size: 22px;
+}
+/*  booklist */
+.booklist {
+  width: 1325px;
+  /* background-color: orange; */
+  gap: 27px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.booklist-article {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 45px 85px;
+  box-sizing: border-box;
+  position: relative;
+}
+.booklist-header {
+  border-bottom: 1px solid #999;
+}
+.booklist-headline {
+  font-size: 22px;
+  color: #6e6e73;
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+.booklist-headline::after {
+  content: ">";
+  font-weight: normal;
+  margin-left: 8px;
+  text-decoration: none;
+  transition: margin 0.3s ease;
+  font-size: 18px;
+}
+.booklist-headline:hover::after {
+  margin-left: 10px;
+}
+.booklist-list {
+  width: 100%;
+  display: flex;
+  gap: 76px;
+}
+.booklist-item {
+  width: 170px;
+}
+.booklist-img-box {
+  width: 100%;
+  height: 270px;
+  display: flex;
+  align-items: end;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+}
+.booklist-sub-title {
+  font-size: 18px;
+  position: absolute;
+  inset: 0;
+  bottom: auto;
+  top: 50px;
+  margin: auto;
+  color: #fff;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 0 25px;
+  box-sizing: border-box;
+  opacity: 0.9;
+  white-space: normal;
+  word-break: keep-all;
+}
+.booklist-sub-author {
+  font-size: 14px;
+  position: absolute;
+  inset: 0;
+  top: auto;
+  bottom: 50px;
+  margin: auto;
+  color: #8e5437;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 0 25px;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+.booklist-img {
+  width: 100%;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+.booklist-item:hover .booklist-img {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+.booklist-title {
+  font-size: 16px;
+  color: #1d1d1f;
+  margin-bottom: 2px;
+  font-weight: normal;
+}
+.booklist-author {
+  font-size: 13px;
+  color: #6e6e73;
+}
+.bookmark-icon {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}
+
+.booklist-bts {
+  width: calc(100% - 35px);
+  margin: auto;
+  position: absolute;
+  /* background-color: red; */
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+.booklist-bt {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.booklist-bt:hover {
+  opacity: 0.8;
+}
