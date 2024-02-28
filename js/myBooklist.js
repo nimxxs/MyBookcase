@@ -173,7 +173,7 @@ const render = () => {
     document.querySelector(".booksArea").innerHTML = bookHTML
 }
 
-// isbn만 넘겨 받을 때 (배열 형태 [])
+// isbn만 넘겨 받을 때 (배열 형태 [] )
 // const render = () => {
 //     const bookHTML = matchBookList.map((book) => {
 
