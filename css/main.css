@@ -19,7 +19,7 @@
   -webkit-backdrop-filter: blur(20px) saturate(1.8);
   box-shadow: 0 2px 0 #00000016;
   position: sticky;
-  top: 0;
+  top: 100px;
   z-index: 10;
 }
 .category-list {
