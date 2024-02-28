@@ -123,7 +123,7 @@ const render = () => {
         return `
         <div class="book">
             <div class="book_firstDiv">
-                <input type="checkbox" id="buy">
+                <input type="checkbox" onclick = "toggle('${book.EA_ISBN})">
                 <input type="checkbox" id="read">
             </div>
             <div class="book_midDiv">
@@ -134,7 +134,7 @@ const render = () => {
                 </div>
             </div>
             <div class="book_lastDiv">
-                <button>
+                <button onclick = "deleteBook('${book.EA_ISBN}')">
                     <img src="../images/trash.svg">
                 </button>
             </div>
@@ -152,12 +152,9 @@ async function matchISBN() {
 
     for (let i of ISBNList) {
         ISBNUrl.searchParams.set('isbn', i.isbn)
-        console.log("ISBNUrl.href: ", ISBNUrl.href)
         const response = await fetch(ISBNUrl.href)
         const matchData = await response.json()
         matchArray.push(matchData)
-
-        console.log("매칭된 데이터: ", matchData)
     }
     console.log("matchArray: ", matchArray)
 
@@ -169,3 +166,19 @@ async function matchISBN() {
 }
 
 matchISBN()
+
+// todolist 효과주기
+
+function deleteBook(isbn) {
+    // matchBookList에서 해당 도서의 인덱스를 찾습니다.
+    const index = matchBookList.findIndex(book => book.EA_ISBN === isbn);
+    if (index !== -1) {
+        // 해당 도서를 배열에서 제거합니다.
+        matchBookList.splice(index, 1);
+        // 변경된 matchBookList로 UI를 다시 렌더링합니다.
+        render();
+    }
+}
+
+
+
