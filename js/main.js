@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", (event) => {
+  // 여기에 DOM 요소를 참조하는 코드를 넣으면 됩니다.
+  let myElement = document.querySelector(".booklist-all");
+});
+
 const API_KEYdong = `ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3`;
 let booklistAll = [];
 let pageSize = 5;
