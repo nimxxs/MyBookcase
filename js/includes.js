@@ -1,31 +1,60 @@
-// [참고] https://www.w3schools.com/howto/howto_html_include.asp
+// // [참고] https://www.w3schools.com/howto/howto_html_include.asp
 
-function includeHTML(callback = function() {}) {
-    let z, i, elmnt, file, xhr;
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-      elmnt = z[i];
-      file = elmnt.getAttribute("include-html");
-      if (file) {
-        xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (this.readyState == 4) {
-            if (this.status == 200) {
-              elmnt.innerHTML = this.responseText;
-            }
-            if (this.status == 404) {
-              elmnt.innerHTML = "Page not found.";
-            }
-            elmnt.removeAttribute("include-html");
-            includeHTML(callback); 
+// function includeHTML(callback = function () {}) {
+//   let z, i, elmnt, file, xhr;
+//   z = document.getElementsByTagName("*");
+//   for (i = 0; i < z.length; i++) {
+//     elmnt = z[i];
+//     file = elmnt.getAttribute("include-html");
+//     if (file) {
+//       xhr = new XMLHttpRequest();
+//       xhr.onreadystatechange = function () {
+//         if (this.readyState == 4) {
+//           if (this.status == 200) {
+//             elmnt.innerHTML = this.responseText;
+//           }
+//           if (this.status == 404) {
+//             elmnt.innerHTML = "Page not found.";
+//           }
+//           elmnt.removeAttribute("include-html");
+//           includeHTML(callback);
+//         }
+//       };
+//       xhr.open("GET", file, true);
+//       xhr.send();
+//       return;
+//     }
+//   }
+//   setTimeout(function () {
+//     callback();
+//   }, 0);
+// }
+
+// console.log(22);
+function includeHTML(callback) {
+  var z, i, elmnt, file, xhttp;
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    file = elmnt.getAttribute("include-html");
+    if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
           }
-        };
-        xhr.open("GET", file, true);
-        xhr.send();
-        return;
-      }
+          if (this.status == 404) {
+            elmnt.innerHTML = "Page not found.";
+          }
+          elmnt.removeAttribute("include-html");
+          includeHTML(callback);
+        }
+      };
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      return;
     }
-    setTimeout(function() {
-      callback();
-    }, 0);
+  }
+  setTimeout(() => callback(), 0);
 }
