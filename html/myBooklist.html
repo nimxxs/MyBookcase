@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBookList</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/myBooklist.css">
+</head>
+
+<body>
+    <header include-html="../index/header.html"></header>
+    <div class="container">
+        <div class="booksArea">
+            <div class="book">
+                <div class="book_firstDiv">
+                    <input type="checkbox" id="buy">
+                    <input type="checkbox" id="read">
+                </div>
+                <div class="book_midDiv">
+                    <img src="../images/four.jpg" alt="책 이미지 위치">
+                    <div class="bookInfo">
+                        <div id="title">책 이름</div>
+                        <div id="codeName">분야</div>
+                    </div>
+                </div>
+                <div class="book_lastDiv">
+                    <button>
+                        <img src="../images/trash.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="../images/four.jpg" alt="책 이미지 위치">
+                <div class="bookInfo">
+                    <div id="title">책 이름</div>
+                    <div id="codeName">분야</div>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="../images/four.jpg" src="" alt="책 이미지 위치">
+                <div class="bookInfo">
+                    <div id="title">책 이름</div>
+                    <div id="codeName">분야</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <header include-html="../index/footer.html"></header> -->
+    <!-- <script src="../js/search.js"></script>/ -->
+    <script src="../js/includes.js"></script>
+    <script>includeHTML();</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../js/myBooklist.js"></script>
+</body>
+
+</html>

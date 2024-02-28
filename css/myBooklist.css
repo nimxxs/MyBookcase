@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    margin-bottom: 1em;
+}
+
+.container {
+    /* border: solid 1px blue; */
+}
+
+.booksArea {
+    /* border: solid 1px red; */
+}
+
+.book {
+    /* border: solid 1px green; */
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 2px #7e5539;
+}
+
+.book_firstDiv {
+    width: 15%;
+    /* border: solid 1px purple; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.book_firstDiv input[type="checkbox"] {
+    width: 1.7em;
+    height: 1.7em;
+    margin: 0 10px;
+}
+
+.book_midDiv {
+    width: 70%;
+    /* border: solid 1px red; */
+    display: flex;
+    align-items: center;
+}
+
+.book_lastDiv {
+    width: 10%;
+    /* border: solid 1px purple; */
+}
+
+.book_lastDiv button {
+    background: none;
+    border: none;
+    width: 1.7em;
+}
+
+.book_lastDiv button img {
+    width: 100%;
+    border: none;
+}
+
+.book img {
+    width: 40%;
+    max-width: 150px;
+    margin-right: 2em;
+    border: solid 1px black;
+}
+
+.bookInfo {
+    font-size: 20px;
+    font-weight: 600;
+}
