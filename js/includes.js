@@ -12,6 +12,7 @@ function includeHTML(callback = function() {}) {
           if (this.readyState == 4) {
             if (this.status == 200) {
               elmnt.innerHTML = this.responseText;
+              callback(); //바꾼거
             }
             if (this.status == 404) {
               elmnt.innerHTML = "Page not found.";
