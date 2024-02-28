@@ -3,10 +3,21 @@ let booklistAll = [];
 let pageSize = 5;
 let pageNo = 1;
 const booklistBts = document.querySelectorAll(".booklist-bt");
-
+// 버튼 클릭시 북리스트 다음페이지로 넘김
 booklistBts.forEach((e) => {
   e.addEventListener("click", () => {
-    console.log(e.id);
+    if (e.id == "left") {
+      pageNo -= 1;
+      if (pageno <= 1) {
+        pageNo = 1;
+      }
+    } else if (e.id == "right") {
+      pageNo += 1;
+      // if(pageno <= 1){
+      //   pageNo = 1
+      // }
+      // 최종 페이지
+    }
   });
 });
 const getAPI = async () => {
