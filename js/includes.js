@@ -32,6 +32,7 @@
 
 // console.log(22);
 function includeHTML(callback) {
+  callback = callback || function () {}; // callback이 undefined일 경우, 빈 함수를 할당
   var z, i, elmnt, file, xhttp;
   z = document.getElementsByTagName("*");
   for (i = 0; i < z.length; i++) {
@@ -48,7 +49,7 @@ function includeHTML(callback) {
             elmnt.innerHTML = "Page not found.";
           }
           elmnt.removeAttribute("include-html");
-          includeHTML(callback);
+          includeHTML(callback); // 콜백 함수를 인자로 전달
         }
       };
       xhttp.open("GET", file, true);
