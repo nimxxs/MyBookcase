@@ -1,12 +1,25 @@
 const API_KEY = `bbaa351bbf88c6e2f61f5d9f2e71fbdf67c4e01b279c7fe537b1c97a2417e585`;
 
+// Function to parse query string and return value for specified key
+function getQueryParam(key) {
+    let queryParams = new URLSearchParams(window.location.search);
+    return queryParams.get(key);
+}
+
+// Use the function to get the ISBN value from the query string
+let ISBN = getQueryParam('isbn');
+
+// Now, you can use the ISBN value as needed
+console.log("ISBN from parent", ISBN);
+
+
 let url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&detailSearch=true&isbnOp=isbn&isbnCode=8984993727`)
 let url2 = ""
-let ISBN = ""
+//let ISBN = ""
 let bookInfo = []
 
 let targetBookDetail = async()=>{
-    ISBN = "9791196777050"
+    //ISBN = "9791196777050"
     //ISBN = "8984993727"
     //ISBN = "9788941241256"
     url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=1&page_size=10&isbn=${ISBN}`)
@@ -66,15 +79,20 @@ targetBookDetail()
 
 //this will post a message to the parent
 let wishFunction = ()=>{
-    window.opener.postMessage("wish button clicked", "*")
+    let wishISBN = ISBN;
+    let conditionValue = true;
+
+    // Package both values into an object
+    let messageObject = {
+        isbn: wishISBN,
+        wishCondition: conditionValue
+    }
+
+    // Send the object to the parent window
+    window.opener.postMessage(messageObject, "*")
 }
 
 let toLibFunction = ()=>{
     window.open("https://www.naver.com","","")
 }
 
-// This event handler will listen for messages from the child
-window.addEventListener("message", (e)=>{
-    //e.data hold the message from the child
-    console.log(e.data)
-})

@@ -1,3 +1,6 @@
+let ISBN = "9791196777050"
+let handleWishButton = false
+
 // open new window for detailed info
 function popWindow() {
     let params = `
@@ -12,13 +15,22 @@ function popWindow() {
         left=(window.screen.width / 2) - (width/2),
         top=(window.screen.height / 4)
         `;
-    window.open("detail_page.html", "a", params); 
-}
+    // Append the ISBN to the URL as a query parameter
+    let detailPageURL = `detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    window.open(detailPageURL, "a", params); 
+    console.log("Sent to child window", ISBN)
+    }
+
 
 // This event handler will listen for messages from the child
 window.addEventListener("message", (e)=>{
     //e.data hold the message from the child
-    console.log(e.data)
+    // Check if the received message is the expected object
+    if (e.data && e.data.isbn && e.data.wishCondition){
+        console.log("Received from child window:", e.data)
+    }
+
+
 })
 
 // this is a test
