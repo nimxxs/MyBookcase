@@ -5,13 +5,13 @@ const getLibrary = async () => {
     // console.log("url", url)
     const response = await fetch(url);
     const data = await response.json();
-    console.log("url2", data)
+    // console.log("url2", data)
 }
 getLibrary()
 
 const recommend = async () => {
   const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`);
-  // console.log("reco", url);
+//   console.log("reco", url);
   const response = await fetch(url);
   const textData = await response.text();
 
@@ -21,7 +21,7 @@ const recommend = async () => {
 
   // JSON으로 변환
   const jsonResult = xmlToJson(xmlDoc);
-  console.log("reco2", jsonResult);
+//   console.log("reco2", jsonResult);
 }
 recommend();
 
