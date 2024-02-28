@@ -69,10 +69,11 @@ booklistBts.forEach((e) => {
   e.addEventListener("click", () => {
     if (e.id == "left" && pageNo > 1) {
       pageNo -= 1;
-      rander();
+      getAPI();
     } else if (e.id == "right" && pageNo < pageTotalCount) {
       pageNo += 1;
-      rander();
+      getAPI();
     }
+    console.log(pageNo);
   });
 });
