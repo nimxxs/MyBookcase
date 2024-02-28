@@ -9,32 +9,39 @@ booklistBts.forEach((e) => {
   e.addEventListener("click", () => {
     if (e.id == "left" && pageNo > 1) {
       pageNo -= 1;
-      console.log(pageNo);
       getAPI();
       rander();
     } else if (e.id == "right" && pageNo < pageTotalCount) {
       pageNo += 1;
-      console.log(pageNo);
       getAPI();
       rander();
     }
   });
-  console.log(pageNo);
 });
 // getAPI
 const getAPI = async () => {
   const url = new URL(
     `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
   );
-  url.searchParams.set("page_size", pageSize);
-  url.searchParams.set("page_no", pageNo);
+  try {
+    url.searchParams.set("page_size", pageSize);
+    url.searchParams.set("page_no", pageNo);
 
-  const response = await fetch(url);
-  const data = await response.json();
-  booklistAll = data.docs;
-  console.log(data.TOTAL_COUNT);
-  pageTotalCount = data.TOTAL_COUNT;
-  rander();
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(response);
+
+    if (response.status == 200) {
+      booklistAll = data.docs;
+      pageTotalCount = data.TOTAL_COUNT;
+      rander();
+    } else {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 getAPI();
 
