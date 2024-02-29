@@ -12,23 +12,7 @@ const getLibrary = async () => {
 };
 getLibrary();
 
-const recommend = async () => {
-  const url = new URL(
-    `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`
-  );
-  //   console.log("reco", url);
-  const response = await fetch(url);
-  const textData = await response.text();
-
-  // XML을 JSON으로 변환
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(textData, "text/xml");
-
-  // JSON으로 변환
-  const jsonResult = xmlToJson(xmlDoc);
-  //   console.log("reco2", jsonResult);
-};
-recommend();
+image.png;
 
 // XML을 JSON으로 변환하는 함수
 function xmlToJson(xml) {
@@ -69,4 +53,3 @@ function xmlToJson(xml) {
   }
   return obj;
 }
-console.log(22);
