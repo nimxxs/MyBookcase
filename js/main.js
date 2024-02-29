@@ -4,6 +4,7 @@ includeHTML(function () {
   let todyBookList = [];
   let pageSize = 6;
   let pageNo = 1;
+  let TpageNo = 1;
   let pageTotalCount = 0;
   let url = ``;
   let Turl = ``;
@@ -11,6 +12,8 @@ includeHTML(function () {
   let booklistBts = document.querySelectorAll(".booklist-bt");
   let booklistSlider = document.querySelector(".booklist-slider");
   let booklistToday = document.querySelector(".booklist-today");
+  let TpageSize = 6;
+  let TpageTotalCount = 0;
   // xml
 
   // getAPI
@@ -42,9 +45,10 @@ includeHTML(function () {
   // 사서추천 API
   const recommend = async () => {
     const url = new URL(
-      `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEYdong}`
+      `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEYdong}&startRowNumApi=1&endRowNumApi=30`
     );
-    // console.log("reco", url);
+    // url.searchParams.set("endRowNumApi", TpageSize);
+    // url.searchParams.set("startRowNumApi", TpageTotalCount);
     const Tresponse = await fetch(url);
     const textData = await Tresponse.text();
 
@@ -54,11 +58,10 @@ includeHTML(function () {
 
     // JSON으로 변환
     const jsonResult = xmlToJson(xmlDoc);
-    console.log("reco2", jsonResult);
     todyBookList = jsonResult.channel.list;
-    // .item;
-    // 이제 이 값을 for문으로 돌려서 값 추가 해주면됨
     console.log(todyBookList);
+    TpageTotalCount = parseInt(jsonResult.channel.totalCount["#text"]);
+
     Trander();
   };
   recommend();
@@ -160,29 +163,47 @@ includeHTML(function () {
               } 지음</span>
           </li>
         `
-        // return console.log(i.item.mokchFilePath["#text"]);
       )
       .join("");
 
     booklistToday.innerHTML = TbookListAllHTML;
   };
   // 버튼 클릭시 북리스트 다음페이지로 넘김
-  // let moverSlide = 0;
-  // let booklistItem = document.querySelector(".booklist-item");
-  // let moverSlideNum = booklistItem.offsetWidth + 77;
-  // booklistBts.forEach((e) => {
-  //   e.addEventListener("click", (i) => {
-  //     if (e.id == "left" && pageSize > 6) {
-  //       pageSize -= 1;
-  //       getAPI();
-  //       booklistSlider.style.transform = `translateX(${(moverSlide +=
-  //         moverSlideNum)}px)`;
-  //     } else if (e.id == "right" && pageSize < pageTotalCount) {
-  //       pageSize += 1;
-  //       getAPI();
-  //       booklistSlider.style.transform = `translateX(${(moverSlide -=
-  //         moverSlideNum)}px)`;
-  //     }
-  //   });
-  // });
+
+  let slideNum = 170 + 77;
+  const booklistSliderAll = document.querySelector(".booklist-sliderAll");
+  const booklistSliderToday = document.querySelector(".booklist-sliderToday");
+  let moverSlide = 0;
+  let TmoverSlide = 0;
+
+  booklistBts.forEach((e) => {
+    e.addEventListener("click", () => {
+      if (e.id == "left" && pageSize > 6) {
+        pageSize -= 1;
+        getAPI();
+        booklistSliderAll.style.transform = `translateX(${(moverSlide +=
+          slideNum)}px)`;
+      } else if (e.id == "right" && pageSize < pageTotalCount) {
+        pageSize += 1;
+        getAPI();
+        booklistSliderAll.style.transform = `translateX(${(moverSlide -=
+          slideNum)}px)`;
+      }
+
+      // T
+      if (e.id == "tleft" && TpageSize > 6) {
+        TpageSize -= 1;
+        // TpageNo -= 1;
+        recommend();
+        booklistSliderToday.style.transform = `translateX(${(TmoverSlide +=
+          slideNum)}px)`;
+      } else if (e.id == "tright" && TpageSize <= 30) {
+        TpageSize += 1;
+        // TpageNo += 1;
+        recommend();
+        booklistSliderToday.style.transform = `translateX(${(TmoverSlide -=
+          slideNum)}px)`;
+      }
+    });
+  });
 });
