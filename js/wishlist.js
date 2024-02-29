@@ -7,7 +7,8 @@ const groupSize = 5;
 
 const getLibrary = async () => {
     const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}&start_publish_date=20220101&end_publish_date=20220501`); //isbn
-    //const url = new URL(`https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&result_style=json&startRowNumApi=1&endRowNumApi=10&start_date=20200101&end_date=20200131&drcode=11`); //사서추천
+    //const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&pageSize=${pageSize}&pageNum=10`); //소장자료
+    
     const response = await fetch(url);    
     const data = await response.json();
     newsList = data.docs;
