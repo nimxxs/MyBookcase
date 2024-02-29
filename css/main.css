@@ -20,7 +20,7 @@
   box-shadow: 0 2px 0 #00000016;
   position: sticky;
   top: 100px;
-  z-index: 10;
+  z-index: 100;
 }
 .category-list {
   max-width: 1325px;
@@ -124,12 +124,21 @@
   margin-left: 10px;
 }
 .booklist-list {
-  width: 100%;
-  display: flex;
-  gap: 76px;
+  width: calc(1325px - (85px * 2));
+  overflow: hidden;
 }
+
+.booklist-slider {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  gap: 77px;
+  transition: all 0.5s cubic-bezier(0.15, 0, 0.2, 1);
+}
+
 .booklist-item {
   width: 170px;
+  cursor: pointer;
 }
 .booklist-img-box {
   width: 100%;
@@ -176,10 +185,11 @@
   width: 100%;
   transition: all 0.3s ease;
   border-radius: 3px;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
 }
 .booklist-item:hover .booklist-img {
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
-  transform: scale(1.01);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
 }
 .booklist-title {
   font-size: 16px;
@@ -212,6 +222,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 99;
 }
 .booklist-bt:hover {
   opacity: 0.8;
