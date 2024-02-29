@@ -71,20 +71,22 @@ includeHTML(function () {
   let moverSlideNum = booklistItem.offsetWidth + 77;
   booklistBts.forEach((e) => {
     e.addEventListener("click", (i) => {
-      if (e.id == "left" && pageSize > 10) {
+      if (e.id == "left" && pageSize > 6) {
         pageSize -= 1;
         getAPI();
+        console.log(pageSize);
         booklistSlider.style.transform = `translateX(${(moverSlide +=
-          bookList.offsetWidth - 85 * 2 + 80)}px)`;
+          moverSlideNum)}px)`;
       } else if (e.id == "right" && pageSize < pageTotalCount) {
         pageSize += 1;
         getAPI();
         booklistSlider.style.transform = `translateX(${(moverSlide -=
           moverSlideNum)}px)`;
+        console.log(pageSize);
       }
     });
   });
-  console.log(bookList.offsetWidth);
+
   // 돔 연결
 
   // document.addEventListener("DOMContentLoaded", (event) => {
