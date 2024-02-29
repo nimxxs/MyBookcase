@@ -1,12 +1,18 @@
 ul {
     list-style: none; /* 모든 ul 요소의 점 제거 */
+    margin: 0;
+    padding: 0;
+}
+ol {
+    margin: 0;
+    padding: 0;
 }
 .list{
     background-color: #f5f5f7;
     padding: 3%;
 }
 .list-container{
-    width: 80%;
+    width: 90%;
     margin: 0 5%;
     background-color: #fff;
     border-radius: 5px;
@@ -28,7 +34,6 @@ ul {
     justify-content: space-between;
 }
 .row{
-    width: 100%;
     margin-bottom: 20px;
 }
 .list-books img{
@@ -46,11 +51,11 @@ ul {
     font-size: small;
     color: #828282;
 }
-.space{
-    padding-bottom: 50px;
-}
+
 .pagination{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .page-item {
     display: inline-block;
