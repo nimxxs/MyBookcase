@@ -79,17 +79,36 @@ targetBookDetail()
 
 //this will post a message to the parent
 let wishFunction = ()=>{
+     // 이전에 저장된 데이터 읽어오기
+    let storedData = localStorage.getItem('wishData');
+    let existingData = storedData ? JSON.parse(storedData) : [];
+
+    // 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
+    if (!Array.isArray(existingData)) {
+        existingData = [];
+    }
+    
+    
     let wishISBN = ISBN;
     let conditionValue = true;
 
     // Package both values into an object
-    let messageObject = {
+    let newMessageObject = {
         isbn: wishISBN,
         wishCondition: conditionValue
     }
 
+    existingData.push(newMessageObject);
+
+
     // Send the object to the parent window
-    window.opener.postMessage(messageObject, "*")
+    window.opener.postMessage(newMessageObject, "*")
+
+    // 누적된 데이터를 다시 저장
+    localStorage.setItem('wishData', JSON.stringify(existingData));
+
+    console.log(localStorage.setItem)
+    console.log("send");
 }
 
 let toLibFunction = ()=>{

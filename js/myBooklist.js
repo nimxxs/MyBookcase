@@ -198,5 +198,18 @@ window.addEventListener("message", (e)=>{
     }
 })
 
+// 로컬 스토리지에서 데이터 읽어오기
+let storedData = localStorage.getItem('wishData');
+if (storedData) {
+  let allData = JSON.parse(storedData);
+
+  // 데이터를 JSON 문자열로 출력
+  console.log("Received data:", allData);
+
+  ISBNList = allData
+} else {
+  console.log("No data received.");
+}
+
 matchISBN()
 
