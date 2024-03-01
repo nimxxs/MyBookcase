@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="css/search.css" />
   </head>
   <body>
+    <div class="modal hidden">
+      <div class="modal_overlay"></div>
+      <div class="modal_content">
+        <div class="modal_gird" id="modal_gird">
+           
+        </div>
+        <nav class="pagination_content">
+          <ul class="pagination" id="pagination">
+  
+          </ul>
+        </nav>
+      </div>
+      <button id="closeButton">X</button>
+    </div>
     <!-- <button id="modalButton">Open Modal</button>
     <div class="modal hidden">
       <div class="modal_overlay"></div>
@@ -51,8 +65,7 @@
     <header include-html="../index/header.html"></header>
     <main include-html="../html/main.html"></main>
     <footer include-html="../index/footer.html"></footer>
-    <script src="js/apiKey.js"></script>
-    <script src="js/search.js"></script>
+    <!-- <script src="js/apiKey.js"></script> -->
     <script src="js/includes.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
