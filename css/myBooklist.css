@@ -41,6 +41,12 @@ header {
 
 .booksArea {
     /* border: solid 1px red; */
+    text-align: center;
+}
+
+#loading_text {
+    font-size: 3em;
+    height: 60vh;
 }
 
 .book {
@@ -156,7 +162,7 @@ header {
 
 .read {
     border-radius: 30px;
-    background-color: rgba(250, 237, 205, 0.4);
+    background-color: rgba(250, 237, 205, 0.6);
 }
 
 @media (max-width: 420px) {
