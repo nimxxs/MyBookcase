@@ -1,6 +1,6 @@
 .category{
     background-color: #fafafa;
-    display: flex;
+    display: flex;    
     justify-content: center;    
     padding: 0.8% 15%;
     /* border-bottom: 1px solid #e9e9eb; */
@@ -18,4 +18,9 @@
     color: #323233;
     font-weight: 700;
     border-bottom: 1px solid #c2c2c2;
+}
+@media (max-width: 768px) {
+    .category {
+        padding: 0.8% 5%;
+    }
 }

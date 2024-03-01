@@ -1,4 +1,4 @@
-const API_KEY = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
+const API_KEY = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
 
 let isbnList = [];
 let totalResults = 0;

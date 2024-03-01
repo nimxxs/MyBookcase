@@ -3,11 +3,11 @@ let newsList=[];
 let totalResults = 0;
 let page = 1;
 const pageSize = 300;
-const groupSize = 5; 
+const groupSize = 5;
+const category = 0;
 
 const getLibrary = async () => {
-    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}&start_publish_date=20220101&end_publish_date=20220501`); //isbn
-    //const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&pageSize=${pageSize}&pageNum=10`); //소장자료
+    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`); //isbn    
     
     const response = await fetch(url);    
     const data = await response.json();
