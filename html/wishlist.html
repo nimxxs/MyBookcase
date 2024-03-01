@@ -11,81 +11,44 @@
     <link rel="stylesheet" href="../css/wishlist.css" />       
   </head>
   <body>
-    <header class="header">
-      <div class="header-center">
-        <h1 class="logo">
-          <a href="#">
-            <img src="../images/logo.svg" alt="" />
-          </a>
-        </h1>
-        <form id="search-container" action="">
-          <input id="search-input" type="text" />
-          <button class="search-bt">
-            <img src="../images/search-bt.svg" alt="검색버튼" />
-          </button>
-        </form>
-        <a class="mypage-link" href="#">
-          <img src="../images/mypage.svg" alt="" />
-        </a>
-      </div>
-    </header>
-    <section class="sub-title">
-        <a href="#">건강</a>
-        <a href="#">취미</a>
-        <a href="#">경제경영</a>
-        <a href="#">과학</a>
-        <a href="#">사회과학</a>
-        <a href="#">소설</a>
-        <a href="#">에세이</a>
-        <a href="#">여행</a>
-        <a href="#">역사</a>
-        <a href="#">인문학</a>
-        <a href="#">자기계발</a>
-        <a href="#">요리</a>
-        <a href="#">외국어</a>
-        <a href="#">어린이</a>
-        <a href="#">수험서</a>
-      </section>
-      <section class="list">
-        <div class="list-container">
-            <h3>위시리스트</h3>
-            <div class="list-border"></div>     
-            <div class="list-books">
-              <div id="news-board">
-                <section>
-                  <div><img src="../images/book.jpg"></div>
-                  <div>
-                    <ol>조선이 만난 아인슈타인</ol>
-                    <ul>지은이: 민태기 지음</ul>
-                    <ul>출판사: 윌북</ul>
-                    <ul>발행년 : 2023</ul>
-                    <div class="price-style">12,500원</div>
-                  </div>        
-                </section>
-                <div class="list-contents-border"></div>
-              </div>
+    <header include-html="../index/header.html"></header>    
+    <section include-html="../index/category.html"></section>
+    
+    <section class="list">
+      <div class="list-container">
+          <h3>위시리스트</h3>
+          <div class="list-border"></div>     
+          <div class="list-books">
+            <div id="news-board">
+              <section>
+                <div><img src="../images/book.jpg"></div>
+                <div>
+                  <ol>조선이 만난 아인슈타인</ol>
+                  <ul>지은이: 민태기 지음</ul>
+                  <ul>출판사: 윌북</ul>
+                  <ul>발행년 : 2023</ul>
+                  <div class="price-style">12,500원</div>
+                </div>        
+              </section>
+              <div class="list-contents-border"></div>
             </div>
-            
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                
-              </ul>
-            </nav> 
-        </div>               
-      </section>
-      <footer class="footer">
-        <div class="footer-center">
-          <small class="copyright">
-            본 페이지는 상업적 목적이 아닌 프로젝트로 제작되었습니다. <br />
-            <span>&copy;2024, 6th-javascript, Inc. 또는 계열사</span></small>
-          <p class="teams">
-            P.O : 최소진 / S.M : 최수민 / 팀원 : 정예진, 이동천, 안종성
-          </p>
-        </div>
-      </footer>
+          </div>
+          
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              
+            </ul>
+          </nav> 
+      </div>               
+    </section>
+
+    <footer include-html="../index/footer.html"></footer> 
       
-    <script src="../js/wishlist.js"></script>
-    <script src="https://kit.fontawesome.com/5622f2ba18.js" crossorigin="anonymous"></script>
+    <script src="../js/wishlist.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../js/includes.js"></script>
+    <script>
+      includeHTML();
+    </script>
   </body>
 </html>

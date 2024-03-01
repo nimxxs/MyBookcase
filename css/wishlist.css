@@ -56,10 +56,10 @@ ol {
 }
 .list-books ol{
     font-weight: 700;
-    font-size: clamp(1.0rem,1.8vw, 1.8rem);
+    font-size: clamp(1.0rem,1.4vw, 1.4rem);
 }
 .list-books ul{
-    font-size: clamp(0.8rem,1.2vw, 1.2rem);
+    font-size: clamp(0.8rem,1.0vw, 1.0rem);
     color: #828282;
 }
 
@@ -88,6 +88,7 @@ ol {
 .price-style{
     font-weight: 700;
     margin-top: 10px;
+    color: rgb(86, 82, 82);
 }
 .day-style{
     font-weight: 700;
