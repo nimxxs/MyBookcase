@@ -31,28 +31,10 @@ const render = () => {
   document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-// const render = () => {
-//     const filteredNewsList = isbnList.filter(news => news.TITLE_URL && news.TITLE_URL !== ""); // 이미지가 있는 항목만 필터링
-    
-//     const newsHTML = filteredNewsList.slice(0, 20) // 이미지가 있는 항목 중에서 최대 20개까지만 출력
-//         .map(news => `
-//             <div class="row">
-//                 <img src=${news.TITLE_URL}>
-//                 <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
-//                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
-//                 <ul>${news.PRE_PRICE}</ul>
-//             </div>`).join('');
-            
-//   document.getElementById("news-board").innerHTML = newsHTML;
-// };
-
 const paginationRender = () => {
     const totalPages = Math.ceil(totalResults / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
-
     const lastPage = pageGroup * groupSize;
-    
-    
     const firstPage = lastPage - (groupSize - 1)<=0? 1:lastPage - (groupSize-1);
 
     let paginationHTML = '';
@@ -71,13 +53,32 @@ const moveToPage=(pageNum)=>{
 
 //카테고리 함수
 const getCategory = async (category) => {
-    // category를 URL로 인코딩
     const encodedCategory = encodeURIComponent(category);
-    // URL 생성
     const url = `https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${encodedCategory}`;
-    // 새 창에서 URL 열기
-    window.open(url, '_blank');
-    console.log("카테고리")
+
+    // XML 데이터 가져오기
+    const response = await fetch(url);
+    const xmlString = await response.text();
+
+    // DOMParser 객체 생성
+    const parser = new DOMParser();
+
+    // XML 문자열을 파싱하여 Document 객체로 변환
+    const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+    // <title_info> 엘리먼트를 선택하여 제목 정보 추출
+    const titleInfoElement = xmlDoc.querySelector("title_info");
+    const titleInfo = titleInfoElement.textContent;
+
+    const newsHTML = isbnList
+        .map(news => `
+            <div class="row">
+                <img src=${news.TITLE_URL}>
+                <ol>${titleInfo}</ol>
+            </div>`).join('');
+            
+    document.getElementById("news-board").innerHTML = newsHTML;
 };
+
 
 getLibrary();
