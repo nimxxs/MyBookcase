@@ -13,6 +13,14 @@
 <body>
     <header include-html="../index/header.html"></header>
     <div class="container">
+        <div class="booklist_explain">
+            <div id="first">
+                <div>구매완료</div>
+                <div>읽음</div>
+            </div>
+            <div> 상품</div>
+            <div> 삭제</div>
+        </div>
         <div class="booksArea">
             <div class="book">
                 <div class="book_firstDiv">
@@ -23,7 +31,7 @@
                     <img src="../images/four.jpg" alt="책 이미지 위치">
                     <div class="bookInfo">
                         <div id="title">책 이름</div>
-                        <div id="codeName">분야</div>
+                        <div id="codeName">작가</div>
                     </div>
                 </div>
                 <div class="book_lastDiv">
@@ -32,27 +40,29 @@
                     </button>
                 </div>
             </div>
-
             <div class="book">
-                <img src="../images/four.jpg" alt="책 이미지 위치">
-                <div class="bookInfo">
-                    <div id="title">책 이름</div>
-                    <div id="codeName">분야</div>
+                <div class="book_firstDiv">
+                    <input type="checkbox" id="buy">
+                    <input type="checkbox" id="read">
                 </div>
-            </div>
-
-            <div class="book">
-                <img src="../images/four.jpg" src="" alt="책 이미지 위치">
-                <div class="bookInfo">
-                    <div id="title">책 이름</div>
-                    <div id="codeName">분야</div>
+                <div class="book_midDiv">
+                    <img src="../images/four.jpg" alt="책 이미지 위치">
+                    <div class="bookInfo">
+                        <div id="title">책 이름</div>
+                        <div id="codeName">작가</div>
+                    </div>
+                </div>
+                <div class="book_lastDiv">
+                    <button>
+                        <img src="../images/trash.svg">
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
 
-
+    <footer include-html="../index/footer.html"></footer>
     <!-- <header include-html="../index/footer.html"></header> -->
     <!-- <script src="../js/search.js"></script>/ -->
     <script src="../js/includes.js"></script>
