@@ -31,28 +31,10 @@ const render = () => {
   document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-// const render = () => {
-//     const filteredNewsList = isbnList.filter(news => news.TITLE_URL && news.TITLE_URL !== ""); // 이미지가 있는 항목만 필터링
-    
-//     const newsHTML = filteredNewsList.slice(0, 20) // 이미지가 있는 항목 중에서 최대 20개까지만 출력
-//         .map(news => `
-//             <div class="row">
-//                 <img src=${news.TITLE_URL}>
-//                 <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
-//                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
-//                 <ul>${news.PRE_PRICE}</ul>
-//             </div>`).join('');
-            
-//   document.getElementById("news-board").innerHTML = newsHTML;
-// };
-
 const paginationRender = () => {
     const totalPages = Math.ceil(totalResults / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
-
     const lastPage = pageGroup * groupSize;
-    
-    
     const firstPage = lastPage - (groupSize - 1)<=0? 1:lastPage - (groupSize-1);
 
     let paginationHTML = '';
@@ -69,28 +51,16 @@ const moveToPage=(pageNum)=>{
     getLibrary();
 }
 
-// 클릭된 카테고리에 해당하는 책 목록을 가져오는 함수
-const getBooksByCategory = async (category) => {
-    const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${category}`);
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        // API에서 받은 데이터를 적절히 가공하여 출력
-        const booksHTML = data.map(book => `
-            <div class="row">
-                <img src="${book.imageUrl}">
-                <ol>${book.title}</ol>
-                <ul>${book.author}</ul>
-                <ul>${book.price}</ul>
-            </div>`).join('');
-
-        document.getElementById("news-board").innerHTML = booksHTML;
-    } catch (error) {
-        console.error('Error fetching books:', error);
-    }
-    getLibrary();getBooksByCategory
+//카테고리 함수
+const getCategory = async (category) => {
+    // category를 URL로 인코딩
+    const encodedCategory = encodeURIComponent(category);
+    // URL 생성
+    const url = `https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${encodedCategory}`;
+    // 새 창에서 URL 열기
+    window.open(url, '_blank');
+    console.log("카테고리")
 };
+
 
 getLibrary();
