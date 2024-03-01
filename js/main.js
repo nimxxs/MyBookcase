@@ -206,4 +206,31 @@ includeHTML(function () {
       }
     });
   });
+  //
+
+  // quoteBt.addEventListener("click", getSay);
+  let quote = document.querySelector(".quote-randomizer-phrase");
+  let quoteBt = document.querySelector(".quote-bt");
+  let quotID = 0;
+
+  const getSay = async () => {
+    let Sdata, randomeSay, randomeSayID;
+
+    do {
+      const Surl = new URL(`https://api.adviceslip.com/advice`);
+      let Sresponse = await fetch(Surl);
+      Sdata = await Sresponse.json();
+      randomeSay = Sdata.slip["advice"];
+      randomeSayID = Sdata.slip["id"];
+    } while (randomeSayID === quotID);
+
+    quotID = randomeSayID;
+    quote.textContent = randomeSay;
+
+    console.log(randomeSayID);
+    console.log(randomeSay);
+  };
+
+  getSay();
+  quoteBt.addEventListener("click", getSay);
 });

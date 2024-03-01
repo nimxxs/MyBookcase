@@ -82,16 +82,19 @@ body {
 }
 
 .copyright {
-  font-size: 14px;
-  margin-bottom: 12px;
   line-height: 1.4;
+  color: #dadada;
+  margin-top: 10px;
 }
 
 .copyright span {
+  font-size: 12px;
+
   color: #dadada;
 }
 
-.teams {
-  font-size: 12px;
+.ar {
+  font-size: 14px;
+  margin-top: 12px;
   color: #dadada;
 }
