@@ -126,14 +126,14 @@ const moveToPage = (pageNum) => {
 const preToPage =  () => {
     if (page > 1) {
         page --;
-        searchBook();
+        searchBook(searchInput.value);
     }
 }
 const nextToPage = () => {
     const totalPages = Math.ceil(totalResult / pageSize);
     if (page < totalPages) {
         page ++;
-        searchBook();
+        searchBook(searchInput.value);
     }
 }
 paginationRender();
