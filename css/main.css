@@ -67,12 +67,14 @@
 .quote-title-box {
   display: flex;
   width: fit-content;
+  position: relative;
 }
 .quote-title {
   font-size: 28px;
   color: #4b4b4b;
   margin-right: 10px;
-  font-weight: 400;
+  font-weight: 900;
+  color: #5f5f5f;
 }
 .quote-bt {
   background: none;
@@ -81,6 +83,11 @@
   transition: transform 0.3s ease;
   display: grid;
   place-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -10px;
+  margin: auto;
 }
 .quote-bt:hover {
   transform: scale(0.9);
@@ -93,8 +100,9 @@
   text-align: center;
   font-size: 18px;
   margin-top: 8px;
-  color: #6e6e73;
+  color: #a4a4a4;
   position: relative;
+  /* font-weight: bold; */
 }
 .quote-randomizer-phrase::after {
   content: '"';
