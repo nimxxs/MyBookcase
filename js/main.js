@@ -168,8 +168,8 @@ includeHTML(function () {
 
     booklistToday.innerHTML = TbookListAllHTML;
   };
-  // 버튼 클릭시 북리스트 다음페이지로 넘김
 
+  // 버튼 클릭시 북리스트 다음페이지로 넘김
   let slideNum = 170 + 77;
   const booklistSliderAll = document.querySelector(".booklist-sliderAll");
   const booklistSliderToday = document.querySelector(".booklist-sliderToday");
@@ -205,5 +205,31 @@ includeHTML(function () {
           slideNum)}px)`;
       }
     });
+  });
+  //
+
+  let quote = document.querySelector(".quote-randomizer-phrase");
+  let quoteBt = document.querySelector(".quote-bt");
+  let quotID = 0;
+
+  const getSay = async () => {
+    let Sdata, randomeSay, randomeSayID;
+
+    do {
+      const Surl = new URL(`https://api.adviceslip.com/advice`);
+      let Sresponse = await fetch(Surl);
+      Sdata = await Sresponse.json();
+      randomeSay = Sdata.slip["advice"];
+      randomeSayID = Sdata.slip["id"];
+    } while (randomeSayID === quotID);
+
+    quotID = randomeSayID;
+    quote.textContent = randomeSay;
+  };
+
+  getSay();
+  quoteBt.addEventListener("click", () => {
+    quote.textContent = "오늘의 명언 찾는중.......";
+    getSay();
   });
 });
