@@ -1,41 +1,81 @@
-.modal-container {
-    margin:0 auto;
-    display: flex;
-    justify-content: center;
-}
-.search-section {
-    background-color: burlywood;
-    width: 1200px;
-    height: 700px;
-    display: flex;
-    justify-content: center;
-}
-
 .modal {
     position: fixed;
-    top: 0;
+    top: 100px;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
     display: flex;
     justify-content: center;
+    z-index: 300;
 }
 .modal_overlay {
     position: absolute;
-    background-color: rgba(0,0,0,0.6);
     width: 100%;
     height: 100%;
+    background-color: rgba(95, 95, 95, 0.342);
+    z-index: 400;
 }
 .modal_content {
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     position: relative;
     padding: 50px 100px;
-    text-align: center;
     width: 50%;
-    top: 100px;
+    height: 700px; 
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.19), 0 6px 6px rgba(255, 255, 255, 0.23);
+    z-index: 500;
+    overflow: auto;
+}
+.modal_gird {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    margin-left: 50px;
+    gap: 20px;
+}
+.modal_image {
+    justify-self: center;
+}
+.modal_book {
+    display: flex;
 }
 .hidden {
     display: none;
+}
+.modal_image {
+    width: 150px;
+    height: 180px;
+    background-color: rgba(155, 95, 46, 0.486);
+    aspect-ratio: 5/6; /* 이미지 비율 고정 */
+}
+.modal_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.modal_info {
+    margin-left: 40px;
+}
+.modal_info * {
+    margin-bottom: 15px;
+}
+#closeButton {
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+.page_item {
+    padding: 20px 10px;
+}
+.page_item:active {
+    color: brown;
 }

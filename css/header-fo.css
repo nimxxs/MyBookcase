@@ -6,7 +6,7 @@
 
 /* header */
 body {
-  margin-top: 110px;
+  margin-top: 100px;
 }
 
 .header {
@@ -15,16 +15,18 @@ body {
   background-color: #7e5539;
   position: fixed;
   top: 0;
-  /* z-index: 10; */
+  z-index: 101;
 }
 
 .header-center {
-  width: 1325px;
+  max-width: 1325px;
+  width: 100%;
   height: 100%;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: padding 0.3s ease;
 }
 
 /* logo */
@@ -37,17 +39,20 @@ body {
   margin: auto;
   width: fit-content;
   height: fit-content;
+  max-width: 595px;
+  width: 100%;
 }
 
 #search-input {
-  width: 595px;
+  max-width: 595px;
+  width: 100%;
   height: 34px;
   background-color: #ffffff6c;
   border-radius: 5px;
   border: none;
   padding-left: 40px;
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 14px;
   color: #fff;
   transition: background-color 0.3s ease;
   outline: none;
@@ -70,7 +75,7 @@ body {
 }
 
 .footer-center {
-  width: 1325px;
+  max-width: 1325px;
   height: 100%;
   margin: auto;
   color: #fff;
@@ -82,16 +87,50 @@ body {
 }
 
 .copyright {
-  font-size: 14px;
-  margin-bottom: 12px;
   line-height: 1.4;
+  color: #dadada;
+  margin-top: 10px;
 }
 
 .copyright span {
+  font-size: 12px;
+
   color: #dadada;
 }
 
-.teams {
-  font-size: 12px;
+.ar {
+  font-size: 14px;
+  margin-top: 12px;
   color: #dadada;
+}
+input::placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 1325px) {
+  .header-center {
+    background-color: #2e764e;
+  }
+  .header-center {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  #search-container {
+    width: calc(100% - 320px);
+  }
+  /* log */
+  .logo {
+    width: clamp(120px, 13vw, 170px);
+    /* width: 80px; */
+  }
+  .logo img {
+    width: 100%;
+  }
+  .mypage-link {
+    width: clamp(35px, 10px + 4vw, 80px);
+  }
+  .mypage-link img {
+    width: 100%;
+  }
 }
