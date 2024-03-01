@@ -168,8 +168,8 @@ includeHTML(function () {
 
     booklistToday.innerHTML = TbookListAllHTML;
   };
-  // 버튼 클릭시 북리스트 다음페이지로 넘김
 
+  // 버튼 클릭시 북리스트 다음페이지로 넘김
   let slideNum = 170 + 77;
   const booklistSliderAll = document.querySelector(".booklist-sliderAll");
   const booklistSliderToday = document.querySelector(".booklist-sliderToday");
@@ -208,7 +208,6 @@ includeHTML(function () {
   });
   //
 
-  // quoteBt.addEventListener("click", getSay);
   let quote = document.querySelector(".quote-randomizer-phrase");
   let quoteBt = document.querySelector(".quote-bt");
   let quotID = 0;
@@ -226,11 +225,11 @@ includeHTML(function () {
 
     quotID = randomeSayID;
     quote.textContent = randomeSay;
-
-    console.log(randomeSayID);
-    console.log(randomeSay);
   };
 
   getSay();
-  quoteBt.addEventListener("click", getSay);
+  quoteBt.addEventListener("click", () => {
+    quote.textContent = "오늘의 명언 찾는중.......";
+    getSay();
+  });
 });
