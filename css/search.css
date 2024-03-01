@@ -44,7 +44,7 @@
 .modal_image {
     width: 150px;
     height: 180px;
-    background-color: aquamarine;
+    background-color: rgba(155, 95, 46, 0.486);
     aspect-ratio: 5/6; /* 이미지 비율 고정 */
 }
 .modal_image img {
@@ -74,5 +74,8 @@
     cursor: pointer;
 }
 .page_item {
-    padding: 0 10px;
+    padding: 20px 10px;
+}
+.page_item:active {
+    color: brown;
 }
