@@ -21,8 +21,6 @@ let ISBNList = [
 // 사서 추천도서
 // https://nl.go.kr/NL/search/openApi/saseoApi.do?key=[발급된 인증키]
 
-// const API_KEY = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212'
-
 // const recommend = async () => {
 //     const response = await fetch(RecommendUrl)
 //     const responseData = await response.text()
