@@ -22,13 +22,20 @@ function initSearch() {
         searchInput.style.border = "2px solid #fff";
         searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
         searchInput.style.backgroundColor = "#ffffff40";
+        searchInput.value = "";
       });
     searchInput.addEventListener("blur", () => {
         searchInput.style.border = "none";
         searchInput.style.boxShadow = "none";
         searchInput.style.backgroundColor = "#ffffff6c";
-        searchInput.value = "";
+        // searchInput.value = "";
     });
+
+    const handleSearch = () => {
+        const currentSearchText = searchInput.value;
+        searchBook(currentSearchText);
+    }
+
     // 모달창 띄우기
     searchContainer.addEventListener("submit", (event) => {
         event.preventDefault(); // 폼 제출 막기
@@ -36,7 +43,7 @@ function initSearch() {
     searchInput.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             modal.classList.remove("hidden");
-            searchBook();
+            handleSearch();
         }
     })
     closeButton.addEventListener("click", () => {
@@ -52,8 +59,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // 전역스코프
-// modalRender (검색 api)
+// 소장자료 검색 api
 let searchList = [];
+let totalResult = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
+
+// modalRender (검색 api)
 const modalRender = () => {
     const modalHTML = searchList
     .map(searchItem => 
@@ -67,29 +80,8 @@ const modalRender = () => {
         
         document.getElementById('modal_gird').innerHTML = modalHTML;
 }
-// modalRender()
-
-// 소장자료 검색 api
-const searchBook = async () => {
-    // 한글 인코딩을 위한 함수 -> encodeURIComponent
-    const searchText = encodeURIComponent(searchInput.value);
-    console.log("searchInput",searchInput.value)
-    console.log("searchText",searchText)
-    const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${searchText}&pageNum=${page}&pageSize=${pageSize}`)
-    const response = await fetch(url);
-    const data = await response.json();
-    searchList = data.result;
-    totalResult = data.total;
-    console.log("search", searchList);
-    modalRender();
-    paginationRender();
-}
 
 // 페이지네이션
-let totalResult = 0;
-let page = 1;
-const pageSize = 10;
-const groupSize = 5;
 const paginationRender = () => {
     const totalPages = Math.ceil(totalResult / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
@@ -107,11 +99,12 @@ const paginationRender = () => {
         </a>
     </li>`;
 
-            for (let i = firstPage; i <= lastPage; i++) {
+    for (let i = firstPage; i <= lastPage; i++) {
         paginationHTML +=
-            `<li class="page_item ${i === page ? "active" : ""}" onclick="moveToPage(${i})">
-                <a class="page-link">${i}</a>
-                </li>`;}
+        `<li class="page_item ${i === page ? "active" : ""}" onclick="moveToPage(${i})">
+            <a class="page-link">${i}</a>
+        </li>`;
+    }
 
     // 다음 버튼 추가
     paginationHTML += `<li class="page_item nextToPage">
@@ -127,7 +120,7 @@ const paginationRender = () => {
 const moveToPage = (pageNum) => {
     console.log("moveToPage", pageNum);
     page = pageNum;
-    searchBook();
+    searchBook(searchInput.value);
 }
 // 이전 페이지, 다음 페이지
 const preToPage =  () => {
@@ -144,6 +137,27 @@ const nextToPage = () => {
     }
 }
 paginationRender();
+
+const searchBook = async (searchText) => {
+    // 한글 인코딩을 위한 함수 -> encodeURIComponent
+    const encodedText = encodeURIComponent(searchText);
+    console.log("searchText",encodedText)
+    const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`)
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("data", data);
+    searchList = data.result;
+    totalResult = data.total;
+    console.log("search", searchList);
+    console.log("total", totalResult);
+    modalRender();
+    paginationRender();
+}
+searchBook(searchInput.value)
+
+
+
+
 
 
 // searchBook()
