@@ -53,13 +53,31 @@ const moveToPage=(pageNum)=>{
 
 //카테고리 함수
 const getCategory = async (category) => {
-    // category를 URL로 인코딩
     const encodedCategory = encodeURIComponent(category);
-    // URL 생성
     const url = `https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${encodedCategory}`;
-    // 새 창에서 URL 열기
-    window.open(url, '_blank');
-    console.log("카테고리")
+
+    // XML 데이터 가져오기
+    const response = await fetch(url);
+    const xmlString = await response.text();
+
+    // DOMParser 객체 생성
+    const parser = new DOMParser();
+
+    // XML 문자열을 파싱하여 Document 객체로 변환
+    const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+    // <title_info> 엘리먼트를 선택하여 제목 정보 추출
+    const titleInfoElement = xmlDoc.querySelector("title_info");
+    const titleInfo = titleInfoElement.textContent;
+
+    const newsHTML = isbnList
+        .map(news => `
+            <div class="row">
+                <img src=${news.TITLE_URL}>
+                <ol>${titleInfo}</ol>
+            </div>`).join('');
+            
+    document.getElementById("news-board").innerHTML = newsHTML;
 };
 
 
