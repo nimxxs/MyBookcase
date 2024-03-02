@@ -189,17 +189,17 @@
   position: relative;
 }
 .booklist-sub-title {
-  font-size: 18px;
+  font-size: 17px;
   position: absolute;
   inset: 0;
   bottom: auto;
   top: 50px;
   margin: auto;
   color: #fff;
-  width: fit-content;
+  width: 170px;
   height: fit-content;
   text-align: center;
-  padding: 0 25px;
+  padding: 0 10px;
   box-sizing: border-box;
   opacity: 0.9;
   white-space: normal;

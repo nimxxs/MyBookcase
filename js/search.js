@@ -7,55 +7,55 @@
 //      -> includes.js에서 initSearch가 매개변수 callback으로 작동함.
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
-const API_KEY = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212'
+const API_KEY =
+  "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");
 const modal_overlay = modal.querySelector(".modal_overlay");
 
 function initSearch() {
-    searchInput = document.querySelector("#search-input");
-    let searchContainer = document.querySelector("#search-container");
+  searchInput = document.querySelector("#search-input");
+  let searchContainer = document.querySelector("#search-container");
 
-    // 검색창 스타일
-    searchInput.addEventListener("click", () => {
-        searchInput.style.border = "2px solid #fff";
-        searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
-        searchInput.style.backgroundColor = "#ffffff40";
-        searchInput.value = "";
-      });
-    searchInput.addEventListener("blur", () => {
-        searchInput.style.border = "none";
-        searchInput.style.boxShadow = "none";
-        searchInput.style.backgroundColor = "#ffffff6c";
-        // searchInput.value = "";
-    });
+  // 검색창 스타일
+  searchInput.addEventListener("click", () => {
+    searchInput.style.border = "2px solid #fff";
+    searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
+    searchInput.style.backgroundColor = "#ffffff40";
+    searchInput.value = "";
+  });
+  searchInput.addEventListener("blur", () => {
+    searchInput.style.border = "none";
+    searchInput.style.boxShadow = "none";
+    searchInput.style.backgroundColor = "#ffffff6c";
+    searchInput.value = "";
+  });
 
-    const handleSearch = () => {
-        const currentSearchText = searchInput.value;
-        searchBook(currentSearchText);
+  const handleSearch = () => {
+    const currentSearchText = searchInput.value;
+    searchBook(currentSearchText);
+  };
+
+  // 모달창 띄우기
+  searchContainer.addEventListener("submit", (event) => {
+    event.preventDefault(); // 폼 제출 막기
+  });
+  searchInput.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      modal.classList.remove("hidden");
+      handleSearch();
     }
-
-    // 모달창 띄우기
-    searchContainer.addEventListener("submit", (event) => {
-        event.preventDefault(); // 폼 제출 막기
-    })
-    searchInput.addEventListener("keyup", (event) => {
-        if (event.key === "Enter") {
-            modal.classList.remove("hidden");
-            handleSearch();
-        }
-    })
-    closeButton.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    })
-    modal_overlay.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    })
-
+  });
+  closeButton.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+  modal_overlay.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 }
-document.addEventListener("DOMContentLoaded", function() {
-    includeHTML(initSearch);
+document.addEventListener("DOMContentLoaded", function () {
+  includeHTML(initSearch);
 });
 
 // 전역스코프
@@ -68,32 +68,66 @@ const groupSize = 5;
 
 // modalRender (검색 api)
 const modalRender = () => {
-    const modalHTML = searchList
-    .map(searchItem => 
-        `<div class="modal_image">
-            <img src="${searchItem.imageUrl}" alt="이미지"></img>
-        </div>
-        <div class="modal_info">
-            <h3>${searchItem.titleInfo}</h3>
-            <p>${searchItem.authorInfo	}</p>
-        </div>`).join('');
-        
-        document.getElementById('modal_gird').innerHTML = modalHTML;
-}
+  const modalHTML = searchList
+    .map(
+      (searchItem) =>
+        `<article class="modal-item">
+            <div class="modal_image">
+                <img src="${"../images/bookskin.png"}" alt="이미지"></img>
+            </div>
+            <div class="modal_info">
+                <h3 class="modal-title">${searchItem.titleInfo}</h3>
+                <p>저작자 : ${searchItem.authorInfo}</p>
+                <p class="modal-descripiton" >
+                 출판사 : ${
+                   // 출판사
+                   searchItem.pubInfo
+                 }  
+                 발행년도 :
+                 ${
+                   // 발행년도
+                   searchItem.pubYearInfo
+                 }  
+                </p>
+                <p>
+                분류기호 :
+                ${
+                  // 분류기호
+                  searchItem.kdcCode1s
+                }    
+                -
+                ${
+                  // 분류기호
+                  searchItem.kdcName1s
+                }    
+            
+                </p>
+                
+      
+
+            </div>
+        </article>
+       `
+    )
+    .join("");
+
+  document.getElementById("modal_gird").innerHTML = modalHTML;
+};
 
 // 페이지네이션
 const paginationRender = () => {
-    const totalPages = Math.ceil(totalResult / pageSize);
-    const pageGroup = Math.ceil(page / groupSize);
-    let lastPage = pageGroup * groupSize;
-    if (lastPage > totalPages) {
-        lastPage = totalPages;
-    }
-    let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
-    
-    let paginationHTML = ``
-    // 이전 버튼 추가
-    paginationHTML += `<li class="page_item preToPage">
+  const totalPages = Math.ceil(totalResult / pageSize);
+  const pageGroup = Math.ceil(page / groupSize);
+  let lastPage = pageGroup * groupSize;
+  if (lastPage > totalPages) {
+    lastPage = totalPages;
+  }
+  let firstPage =
+    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+
+  let paginationHTML = ``;
+  // 이전 버튼 추가
+  paginationHTML += `<li class="page_item preToPage">
          <a class="page-link" aria-label="Previous">
             <span aria-hidden="true">«</span>
         </a>
@@ -104,61 +138,58 @@ const paginationRender = () => {
         `<li class="page_item" onclick="moveToPage(${i})">
             <a class="page-link">${i}</a>
         </li>`;
-    }
+  }
 
-    // 다음 버튼 추가
-    paginationHTML += `<li class="page_item nextToPage">
+  // 다음 버튼 추가
+  paginationHTML += `<li class="page_item nextToPage">
         <a class="page-link" aria-label="Next">
             <span aria-hidden="true">»</span>
         </a>
     </li>`;
-    
-    document.querySelector(".pagination").innerHTML = paginationHTML;
-    document.querySelector(".preToPage").addEventListener("click", preToPage);
-    document.querySelector(".nextToPage").addEventListener("click", nextToPage);
-}
+
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+  document.querySelector(".preToPage").addEventListener("click", preToPage);
+  document.querySelector(".nextToPage").addEventListener("click", nextToPage);
+};
 const moveToPage = (pageNum) => {
-    console.log("moveToPage", pageNum);
-    page = pageNum;
-    searchBook(searchInput.value);
-}
+  console.log("moveToPage", pageNum);
+  page = pageNum;
+  searchBook(searchInput.value);
+};
 // 이전 페이지, 다음 페이지
-const preToPage =  () => {
-    if (page > 1) {
-        page --;
-        searchBook(searchInput.value);
-    }
-}
+const preToPage = () => {
+  if (page > 1) {
+    page--;
+    searchBook(searchInput.value);
+  }
+};
 const nextToPage = () => {
-    const totalPages = Math.ceil(totalResult / pageSize);
-    if (page < totalPages) {
-        page ++;
-        searchBook(searchInput.value);
-    }
-}
+  const totalPages = Math.ceil(totalResult / pageSize);
+  if (page < totalPages) {
+    page++;
+    searchBook(searchInput.value);
+  }
+};
 paginationRender();
 
 const searchBook = async (searchText) => {
-    // 한글 인코딩을 위한 함수 -> encodeURIComponent
-    const encodedText = encodeURIComponent(searchText);
-    console.log("searchText",encodedText)
-    const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`)
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log("data", data);
-    searchList = data.result;
-    totalResult = data.total;
-    console.log("search", searchList);
-    console.log("total", totalResult);
-    modalRender();
-    paginationRender();
-}
-searchBook(searchInput.value)
-
-
-
-
-
+  // 한글 인코딩을 위한 함수 -> encodeURIComponent
+  const encodedText = encodeURIComponent(searchText);
+  console.log("searchText", encodedText);
+  const url = new URL(
+    `https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`
+  );
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log("data", data);
+  searchList = data.result;
+  totalResult = data.total;
+  console.log("search", searchList);
+  console.log("total", totalResult);
+  modalRender();
+  paginationRender();
+};
+searchBook(searchInput.value);
 
 // searchBook()
 
@@ -240,7 +271,7 @@ searchBook(searchInput.value)
 // const modalRender = () => {
 //     const modalHTML = isbnList
 //     // .filter(isbnItem => isbnItem.TITLE_URL && isbnItem.TITLE_URL !== "") // 이미지가 있는 항목만 필터링
-//     .map(isbnItem => 
+//     .map(isbnItem =>
 //         `<div class="modal_image">
 //             <img src="${isbnItem.TITLE_URL}" alt="이미지"></img>
 //         </div>
