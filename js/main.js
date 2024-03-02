@@ -59,7 +59,7 @@ includeHTML(function () {
     // JSON으로 변환
     const jsonResult = xmlToJson(xmlDoc);
     todyBookList = jsonResult.channel.list;
-    console.log("todyBookList", todyBookList);
+    // console.log("todyBookList", todyBookList);
     TpageTotalCount = parseInt(jsonResult.channel.totalCount["#text"]);
 
     Trander();
