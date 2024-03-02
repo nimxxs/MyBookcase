@@ -189,36 +189,34 @@
   position: relative;
 }
 .booklist-sub-title {
-  font-size: 17px;
+  font-size: 16px;
   position: absolute;
   inset: 0;
   bottom: auto;
   top: 50px;
   margin: auto;
-  color: #fff;
-  width: 170px;
+  color: #cfc0b0;
+  width: 130px;
   height: fit-content;
   text-align: center;
-  padding: 0 10px;
   box-sizing: border-box;
   opacity: 0.9;
-  white-space: normal;
-  word-break: keep-all;
+  /* white-space: normal;
+  word-break: keep-all; */
 }
 .booklist-sub-author {
   font-size: 14px;
   position: absolute;
   inset: 0;
   top: auto;
-  bottom: 50px;
+  bottom: 22px;
   margin: auto;
-  color: #8e5437;
+  color: #56565b;
   width: fit-content;
   height: fit-content;
   text-align: center;
   padding: 0 25px;
   box-sizing: border-box;
-  opacity: 0.8;
 }
 .booklist-img {
   width: 100%;
