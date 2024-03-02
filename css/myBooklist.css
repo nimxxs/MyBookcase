@@ -7,18 +7,19 @@
 header {
   margin-bottom: 3em;
 }
+
 body {
   box-sizing: border-box;
 }
 
 .booklist_explain {
   width: 103%;
-  transform: translateX(-3%);
+  transform: translateX(-1.5%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1em;
-  padding: 10px 0;
+  padding: 10px 10px 10px 0;
   border-bottom: double 5px #7e5539;
   margin-bottom: 10px;
 
@@ -26,15 +27,36 @@ body {
 }
 
 .booklist_explain #first {
-  width: 19%;
+  width: 18%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  font-size: 0.8em;
+}
+
+#line {
+  border: solid 2px #7e5539;
+}
+
+#mid {
+  text-align: center;
+  width: 67%;
+}
+
+#last {
+  width: 13%;
+  text-align: center;
 }
 
 .booklist_explain #first div:first-child {
   /* border: solid 1px red; */
-  padding-right: 1px;
-  border-right: #7e5539 solid 3px;
+  /* padding-right: 2px; */
+  /* border-right: #7e5539 solid 3px; */
+  margin: 0 10px;
+}
+
+.booklist_explain #first div:last-child {
+  /* padding-left: 2px; */
+  margin: 0 10px;
 }
 
 .container {
@@ -44,11 +66,12 @@ body {
 .booksArea {
   /* border: solid 1px red; */
   text-align: center;
+  min-height: 61.5vh;
 }
 
 #loading_text {
   font-size: 3em;
-  height: 60vh;
+  height: 61.5vh;
 }
 
 .book {
@@ -68,7 +91,6 @@ body {
 
 .book_firstDiv {
   width: 15%;
-  /* border: solid 1px purple; */
   display: flex;
   justify-content: end;
   align-items: center;
@@ -82,14 +104,12 @@ body {
 
 .book_midDiv {
   width: 70%;
-  /* border: solid 1px red; */
   display: flex;
   align-items: center;
 }
 
 .book_lastDiv {
   width: 10%;
-  /* border: solid 1px purple; */
 }
 
 .book_lastDiv button {
@@ -113,7 +133,12 @@ body {
 .bookInfo {
   width: 58%;
   font-size: 1.2em;
-  font-weight: 400;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bookInfo #title {
+  margin-bottom: 2em;
 }
 
 .purchased {
@@ -139,14 +164,14 @@ body {
   /* border: solid 1px blue; */
   transform: translateY(1.3em);
   color: white;
-  width: 15%;
+  width: 20%;
   max-width: 135px;
   text-align: center;
   font-size: 0.8em;
 }
 
 .bookimg_title {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   /* border: solid 1px red; */
 }
 
@@ -167,8 +192,50 @@ body {
   background-color: rgba(250, 237, 205, 0.6);
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
+  .bookInfo {
+    font-size: 0.5em;
+  }
+
+  #noBookImg {
+    margin-right: 1em;
+  }
+
   .bookimg_author {
     display: none;
+  }
+
+  .booklist_explain {
+    font-size: 0.9em;
+  }
+
+  .booklist_explain #first div:first-child,
+  .booklist_explain #first div:last-child {
+    padding: 0;
+    margin: 0;
+  }
+
+  .booklist_explain #first div:last-child {
+    margin-left: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bookInfo {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .booklist_explain #first div:first-child {
+    padding: 0;
+    margin-right: 0;
+  }
+
+  .booklist_explain #first div:last-child {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
   }
 }
