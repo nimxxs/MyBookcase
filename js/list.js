@@ -1,33 +1,99 @@
-const API_KEY_ISBN = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
-const API_KEY_SEARCH = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212';
-//git test
+const API_KEY = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
+
 let isbnList = [];
-let searchList = [];
 let totalResults = 0;
-let totalResult = 0;
 let page = 1;
 const pageSize = 10;
 const groupSize = 5;
-let searchInput;
-const closeButton = document.getElementById("closeButton");
-const modal = document.querySelector(".modal");
-const modal_overlay = modal.querySelector(".modal_overlay");
 
 document.addEventListener("DOMContentLoaded", function() {
     includeHTML(initSearch);
-    getLibrary();
+    getLibrary();    
 });
 
-async function getLibrary() {
-    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY_ISBN}&result_style=json&page_no=${page}&page_size=${pageSize}`);
-
-    const response = await fetch(url);
+async function getLibrary(searchText) {
+    const encodedText = encodeURIComponent(searchText);
+    
+    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`);//isbn
+        
+    const response = await fetch(url);    
     const data = await response.json();
+
     isbnList = data.docs;
+    console.log(isbnList)
     totalResults = data.TOTAL_COUNT; 
+    
     render();
     listPaginationRender();
 }
+
+// const getURL = async () => {
+//     url = new URL(
+//       `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
+//     );
+//     getAPI();
+//   };
+//   getURL();
+
+// 사서추천 API
+//   const recommend = async () => {
+//     const url = new URL(
+//       `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=30`
+//     );
+//     // url.searchParams.set("endRowNumApi", TpageSize);
+//     // url.searchParams.set("startRowNumApi", TpageTotalCount);
+//     const Tresponse = await fetch(url);
+//     const textData = await Tresponse.text();
+
+//     // XML을 JSON으로 변환
+//     const parser = new DOMParser();
+//     const xmlDoc = parser.parseFromString(textData, "text/xml");
+
+//     // JSON으로 변환
+//     const jsonResult = xmlToJson(xmlDoc);
+//     todyBookList = jsonResult.channel.list;
+//     console.log(todyBookList);
+//     TpageTotalCount = parseInt(jsonResult.channel.totalCount["#text"]);
+
+//     Trander();
+//   };
+//   recommend();
+
+// 사서 추천 render
+// const Trander = () => {
+//     let TbookListAllHTML = ``;
+//     TbookListAllHTML = todyBookList
+//       .map(
+//         (i) =>
+//           `
+//           <li class="booklist-item">
+//               <div class="booklist-img-box">
+//                   <img class="booklist-img" src="${
+//                     i.item.recomfilepath["#text"] || "../images/bookskin.png"
+//                   }" alt="책 표지" />
+                  
+//                   <span class="booklist-sub-title">${
+//                     i.item.mokchFilePath["#text"] == ""
+//                       ? i.item.recomtitle[".text"]
+//                       : ""
+//                   }</span>
+//                   <span class="booklist-sub-author"> ${
+//                     i.item.mokchFilePath["#text"] == ""
+//                       ? i.item.recomauthor["#text"]
+//                       : ""
+//                   }</span>
+//               </div>
+//               <h3 class="booklist-title">${i.item.recomtitle["#text"]}</h3>
+//               <span class="booklist-author">${
+//                 i.item.recomauthor["#text"]
+//               } 지음</span>
+//           </li>
+//         `
+//       )
+//       .join("");
+
+//     booklistToday.innerHTML = TbookListAllHTML;
+//   };
 
 const render = () => {
     const newsHTML = isbnList
@@ -173,98 +239,6 @@ function paginationRender() {
     document.querySelector(".nextToPage").addEventListener("click", nextToPage);
 }
 
-async function searchBook(searchText) {
-    const encodedText = encodeURIComponent(searchText);
-    const url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY_SEARCH}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`);
-    const response = await fetch(url);
-    const data = await response.json();
-    searchList = data.result;
-    totalResult = data.total;
-    modalRender();
-    paginationRender();
-}
 
-// const API_KEY = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
 
-// let isbnList = [];
-// let totalResults = 0;
-// let page = 1;
-// const pageSize = 10;
-// const groupSize = 5;
 
-// const getLibrary = async () => {
-//     const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`);
-
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     isbnList = data.docs;
-//     totalResults = data.TOTAL_COUNT; // TOTAL_COUNT 필드 값을 totalResults로 사용
-//     render();
-//     listPaginationRender();
-//     console.log("totalResults:", totalResults); // totalResults 출력
-// };
-
-// const render = () => {
-//     const newsHTML = isbnList
-//         .map(news => `
-//             <div class="row">
-//                 <img src=${news.TITLE_URL}>
-//                 <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
-//                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
-//                 <ul>${news.PRE_PRICE}</ul>
-//             </div>`).join('');
-
-//     document.getElementById("news-board").innerHTML = newsHTML;
-// };
-
-// const listPaginationRender = () => {
-//     const totalPages = Math.ceil(totalResults / pageSize);
-//     const pageGroup = Math.ceil(page / groupSize);
-//     let lastPage = pageGroup * groupSize;
-//     if (lastPage > totalPages) {
-//         lastPage = totalPages;
-//     }
-//     const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
-
-//     let listPaginationHTML = `
-//         <li class="listPage-item" onclick="moveToPage(1)"><a class="listPage-link">&lt;&lt;</a></li>
-//         <li class="listPage-item" onclick="preToPage()"><a class="listPage-link">&lt;</a></li>`;
-
-//     for (let i = firstPage; i <= lastPage; i++) {
-//         listPaginationHTML += `<li class="listPage-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="listPage-link">${i}</a></li>`;
-//     }
-
-//     listPaginationHTML += `
-//         <li class="listPage-item" onclick="nextToPage()"><a class="listPage-link">&gt;</a></li>
-//         <li class="listPage-item" onclick="moveToPage(${totalPages})"><a class="listPage-link">&gt;&gt;</a></li>`;
-
-//     document.querySelector(".listPagination").innerHTML = listPaginationHTML;
-// };
-
-// const moveToPage = (pageNum) => {
-//     page = pageNum;
-//     getLibrary();
-// };
-
-// const preToPage = () => {
-//     if (page > 1) {
-//         page--;
-//         getLibrary();
-//     }
-// };
-
-// const nextToPage = () => {
-//     const totalPages = Math.ceil(totalResults / pageSize);
-//     if (page < totalPages) {
-//         page++;
-//         getLibrary();
-//     }
-// };
-
-// const getCategory = async (category) => {
-//     const encodedCategory = encodeURIComponent(category);
-//     const url = `https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${encodedCategory}`;
-//     window.open(url, '_blank');
-// };
-
-// getLibrary();
