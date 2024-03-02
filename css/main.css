@@ -58,7 +58,7 @@
   width: fit-content;
   margin: auto;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,10 +70,12 @@
 }
 .quote-title {
   font-size: 28px;
+  font-size: 40px;
   color: #4b4b4b;
   margin-right: 10px;
   font-weight: 900;
-  color: #5f5f5f;
+  color: #1d1d1f;
+  margin-bottom: 10px;
 }
 .quote-bt {
   background: none;
@@ -84,22 +86,26 @@
   place-items: center;
   position: absolute;
   top: 0;
-  bottom: 0;
-  right: -10px;
+  bottom: 12px;
+  right: -18px;
   margin: auto;
+  height: 20px;
 }
+.quote-bt img {
+  width: 16px;
+}
+
 .quote-bt:hover {
-  transform: scale(0.9);
+  transform: rotate(180deg);
 }
 .quote-bt:active {
   opacity: 0.8;
 }
 .quote-randomizer-phrase {
-  font-size: 30px;
   text-align: center;
-  font-size: 18px;
   margin-top: 8px;
   color: #a4a4a4;
+  font-size: 22px;
   position: relative;
 }
 .quote-randomizer-phrase::after {
@@ -189,36 +195,34 @@
   position: relative;
 }
 .booklist-sub-title {
-  font-size: 17px;
+  font-size: 16px;
   position: absolute;
   inset: 0;
   bottom: auto;
   top: 50px;
   margin: auto;
-  color: #fff;
-  width: 170px;
+  color: #cfc0b0;
+  width: 130px;
   height: fit-content;
   text-align: center;
-  padding: 0 10px;
   box-sizing: border-box;
   opacity: 0.9;
-  white-space: normal;
-  word-break: keep-all;
+  /* white-space: normal;
+  word-break: keep-all; */
 }
 .booklist-sub-author {
   font-size: 14px;
   position: absolute;
   inset: 0;
   top: auto;
-  bottom: 50px;
+  bottom: 22px;
   margin: auto;
-  color: #8e5437;
+  color: #56565b;
   width: fit-content;
   height: fit-content;
   text-align: center;
   padding: 0 25px;
   box-sizing: border-box;
-  opacity: 0.8;
 }
 .booklist-img {
   width: 100%;
@@ -290,6 +294,34 @@
 .booklist-first:hover span {
   text-decoration: underline;
 }
+/* intro */
+.intro {
+  height: 250px;
+  /* perspective: 2000px; */
+  background: linear-gradient(to bottom, #ffffff, #00000000);
+  /* background-color: orange; */
+}
+.intro-img-box {
+  margin: auto;
+  width: fit-content;
+  animation-name: intro;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.intro-img {
+  width: 1400px;
+}
+@keyframes intro {
+  0% {
+    transform: translate3d(0, -220px, 30px) scale(1);
+  }
+  100% {
+    transform: translate3d(0, 0px, 30px) scale(1);
+  }
+}
+
 @media screen and (max-width: 1325px) {
   /* .main {
     background-color: rgb(212, 230, 185);
