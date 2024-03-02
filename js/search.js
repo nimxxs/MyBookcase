@@ -31,30 +31,38 @@ function initSearch() {
     // searchInput.value = "";
   });
 
-  // 
-  const handleSearch = async () => {
-    const currentSearchText = searchInput.value;
-    console.log("currentSearchText",currentSearchText)
-    await searchBook(currentSearchText);
-    const foundBook = recoList.filter(searchText => 
-        searchText.item.recomauthor["#text"].includes(currentSearchText) ||
-        searchText.item.recomtitle["#text"].includes(currentSearchText) ||
-        searchText.item.recompublisher["#text"].includes(currentSearchText) 
-        );
-    console.log("foundBook", foundBook);
-    modalRender(foundBook)
-
-  };
+//   const handleSearch = async () => {
+//     const currentSearchText = searchInput.value;
+//     console.log("currentSearchText",currentSearchText)
+//     await searchBook(currentSearchText);
+//     const foundBook = recoList.filter(searchText => 
+//         searchText.item.recomauthor["#text"].includes(currentSearchText) ||
+//         searchText.item.recomtitle["#text"].includes(currentSearchText) ||
+//         searchText.item.recompublisher["#text"].includes(currentSearchText) 
+//         );
+//     console.log("foundBook", foundBook);
+//     modalRender(foundBook)
+//   };
 
   // 모달창 띄우기
   searchContainer.addEventListener("submit", (event) => {
     event.preventDefault(); // 폼 제출 막기
   });
-  searchInput.addEventListener("keyup", (event) => {
+  searchInput.addEventListener("keyup", async (event) => {
     if (event.key === "Enter") {
-      modal.classList.remove("hidden");
-      handleSearch();
+        const foundBook = await handleSearch();
+        if (foundBook.length === 0) {
+            modal.classList.add("hidden");
+            alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
+        } else {
+            modal.classList.remove("hidden");
+        }
     }
+        //     modalRender(foundBook);
+    // if (event.key === "Enter") {
+    //   modal.classList.remove("hidden");
+    //   handleSearch();
+    // }
   });
   closeButton.addEventListener("click", () => {
     modal.classList.add("hidden");
@@ -68,16 +76,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 전역스코프
-let totalResult = 0;
-let page = 1;
-const pageSize = 10;
-const groupSize = 5;
+// let totalResult = 0;
+let page = 1; // 1페이지 2페이지 3페이지..
+const pageSize = 10; // 1페이지에 게시글 수
+const groupSize = 5; // 총 페이지에서 몇 페이지씩 그룹을 묶을건지
 
 // modalRender (사서추천 api)
 const modalRender = (recoList) => {
-  const modalHTML = recoList
+    // 시작 인덱스
+    const startPage = (page - 1) * pageSize;
+    // 끝 인덱스
+    const endPage = startPage + pageSize;
+    // 현재 페이지
+    const currentPageList = recoList.slice(startPage, endPage);
+    console.log("startPage", startPage, endPage)
+    console.log("currentPageList", currentPageList)
+    console.log("currentPageList[0]", currentPageList[0])
+    console.log("currentPageList[9]", currentPageList[9])
+
+    const modalHTML = currentPageList
     .map(
-      (recoItem) =>
+    (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
                 <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
@@ -89,8 +108,8 @@ const modalRender = (recoList) => {
             </div>
         </article>`
     )
-    .join("");;
-  document.getElementById("modal_gird").innerHTML = modalHTML;
+    .join("");
+    document.getElementById("modal_gird").innerHTML = modalHTML;
 };
 
 // modalRender (isbn api)
@@ -109,6 +128,30 @@ const modalRender = (recoList) => {
 
 //     document.getElementById('modal_gird').innerHTML = modalHTML;
 // }
+
+// searchBook (사서추천 api)
+let recoList = [];
+let totalPages;
+const searchBook = async (searchText) => {
+    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`);
+    const response = await fetch(url);
+    const textData = await response.text();
+
+    // XML을 JSON으로 변환
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(textData, "text/xml");
+
+    // JSON으로 변환
+    const jsonResult = xmlToJson(xmlDoc);
+    totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
+    console.log("totalPages", totalPages);
+
+    recoList = jsonResult.channel.list;
+    // console.log("recoList", recoList);
+
+    modalRender(recoList);
+    paginationRender();
+}
 
 // modalRender (검색 api)
 // const modalRender = () => {
@@ -155,14 +198,15 @@ const modalRender = (recoList) => {
 
 // 페이지네이션
 const paginationRender = () => {
-  const totalPages = Math.ceil(totalResult / pageSize);
+//   const totalPages = Math.ceil(recoList.length / pageSize);
   const pageGroup = Math.ceil(page / groupSize);
+  console.log("pageGroup", pageGroup);
   let lastPage = pageGroup * groupSize;
   if (lastPage > totalPages) {
     lastPage = totalPages;
   }
-  let firstPage =
-    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  console.log("firstPage", firstPage, lastPage)
 
   let paginationHTML = ``;
   // 이전 버튼 추가
@@ -193,51 +237,38 @@ const paginationRender = () => {
 const moveToPage = (pageNum) => {
   console.log("moveToPage", pageNum);
   page = pageNum;
-  searchBook(searchInput.value);
+  handleSearch()
 };
 // 이전 페이지, 다음 페이지
 const preToPage = () => {
   if (page > 1) {
     page--;
-    searchBook(searchInput.value);
+    handleSearch()
   }
 };
 const nextToPage = () => {
-  const totalPages = Math.ceil(totalResult / pageSize);
+  const totalPages = Math.ceil(totalPages);
   if (page < totalPages) {
     page++;
-    searchBook(searchInput.value);
+    handleSearch()
   }
 };
 paginationRender();
 
-// searchBook (사서추천 api)
-let recoList = [];
-const searchBook = async (searchText) => {
-    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`);
-    const response = await fetch(url);
-    const textData = await response.text();
-
-    // XML을 JSON으로 변환
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(textData, "text/xml");
-
-    // JSON으로 변환
-    const jsonResult = xmlToJson(xmlDoc);
-    // console.log("jsonResult", jsonResult);
-
-    recoList = jsonResult.channel.list;
-    console.log("recoList", recoList);
-
-    // 검색
-    // const bookTitle = searchInput.value;
-    // const foundBook = recoList.find(book => book.item.recomtitle["#text"] === searchText);
-    // console.log("foundBook", foundBook);
-
-    modalRender(recoList);
-    paginationRender();
-}
-searchBook(currentSearchText);
+// searchBook(currentSearchText);
+const handleSearch = async () => {
+    const currentSearchText = searchInput.value;
+    console.log("currentSearchText",currentSearchText)
+    await searchBook(currentSearchText);
+    const foundBook = recoList.filter(searchText => 
+        searchText.item.recomauthor["#text"].includes(currentSearchText) ||
+        searchText.item.recomtitle["#text"].includes(currentSearchText) ||
+        searchText.item.recompublisher["#text"].includes(currentSearchText) 
+        );
+    console.log("foundBook", foundBook);
+    modalRender(foundBook);
+    return foundBook;
+};
 
 // XML을 JSON으로 변환하는 함수
 function xmlToJson(xml) {
