@@ -72,10 +72,15 @@
   padding: 30px;
   box-sizing: border-box;
 }
-.modal_info * {
-  margin-bottom: 15px;
-  /* background-color: orange; */
+.modal-descripiton {
+  color: #6e6e73;
+  font-size: 16px;
 }
+.modal-title {
+  font-size: 20px;
+  color: #1d1d1f;
+}
+
 #closeButton {
   width: 30px;
   height: 30px;

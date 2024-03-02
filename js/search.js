@@ -76,8 +76,35 @@ const modalRender = () => {
                 <img src="${"../images/bookskin.png"}" alt="이미지"></img>
             </div>
             <div class="modal_info">
-                <h3>${searchItem.titleInfo}</h3>
-                <p>${searchItem.authorInfo}</p>
+                <h3 class="modal-title">${searchItem.titleInfo}</h3>
+                <p>저작자 : ${searchItem.authorInfo}</p>
+                <p class="modal-descripiton" >
+                 출판사 : ${
+                   // 출판사
+                   searchItem.pubInfo
+                 }  
+                 발행년도 :
+                 ${
+                   // 발행년도
+                   searchItem.pubYearInfo
+                 }  
+                </p>
+                <p>
+                분류기호 :
+                ${
+                  // 분류기호
+                  searchItem.kdcCode1s
+                }    
+                -
+                ${
+                  // 분류기호
+                  searchItem.kdcName1s
+                }    
+            
+                </p>
+                
+      
+
             </div>
         </article>
        `
