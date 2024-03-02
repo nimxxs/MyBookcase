@@ -1,13 +1,13 @@
-const API_KEY = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
+const API_KEY = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
 
 let isbnList = [];
+let firstList = [];
 let totalResults = 0;
 let page = 1;
 const pageSize = 10;
 const groupSize = 5;
 
 document.addEventListener("DOMContentLoaded", function() {
-    includeHTML(initSearch);
     getLibrary();    
 });
 
@@ -15,85 +15,25 @@ async function getLibrary(searchText) {
     const encodedText = encodeURIComponent(searchText);
     
     const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`);//isbn
-        
     const response = await fetch(url);    
     const data = await response.json();
 
+    const url2 = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&pageNum=${page}&pageSize=${pageSize}&kwd=건강`)
+    const response2 = await fetch(url2)
+    const data2 = await response2.json()
+    console.log("data2", data2)
+
     isbnList = data.docs;
-    console.log(isbnList)
+    console.log("isbnList",isbnList)
     totalResults = data.TOTAL_COUNT; 
+
+    firstList = data2.item;
+    console.log("firstList",firstList)
+    totalResults2 = data.totalCount; 
     
     render();
     listPaginationRender();
 }
-
-// const getURL = async () => {
-//     url = new URL(
-//       `https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json`
-//     );
-//     getAPI();
-//   };
-//   getURL();
-
-// 사서추천 API
-//   const recommend = async () => {
-//     const url = new URL(
-//       `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=30`
-//     );
-//     // url.searchParams.set("endRowNumApi", TpageSize);
-//     // url.searchParams.set("startRowNumApi", TpageTotalCount);
-//     const Tresponse = await fetch(url);
-//     const textData = await Tresponse.text();
-
-//     // XML을 JSON으로 변환
-//     const parser = new DOMParser();
-//     const xmlDoc = parser.parseFromString(textData, "text/xml");
-
-//     // JSON으로 변환
-//     const jsonResult = xmlToJson(xmlDoc);
-//     todyBookList = jsonResult.channel.list;
-//     console.log(todyBookList);
-//     TpageTotalCount = parseInt(jsonResult.channel.totalCount["#text"]);
-
-//     Trander();
-//   };
-//   recommend();
-
-// 사서 추천 render
-// const Trander = () => {
-//     let TbookListAllHTML = ``;
-//     TbookListAllHTML = todyBookList
-//       .map(
-//         (i) =>
-//           `
-//           <li class="booklist-item">
-//               <div class="booklist-img-box">
-//                   <img class="booklist-img" src="${
-//                     i.item.recomfilepath["#text"] || "../images/bookskin.png"
-//                   }" alt="책 표지" />
-                  
-//                   <span class="booklist-sub-title">${
-//                     i.item.mokchFilePath["#text"] == ""
-//                       ? i.item.recomtitle[".text"]
-//                       : ""
-//                   }</span>
-//                   <span class="booklist-sub-author"> ${
-//                     i.item.mokchFilePath["#text"] == ""
-//                       ? i.item.recomauthor["#text"]
-//                       : ""
-//                   }</span>
-//               </div>
-//               <h3 class="booklist-title">${i.item.recomtitle["#text"]}</h3>
-//               <span class="booklist-author">${
-//                 i.item.recomauthor["#text"]
-//               } 지음</span>
-//           </li>
-//         `
-//       )
-//       .join("");
-
-//     booklistToday.innerHTML = TbookListAllHTML;
-//   };
 
 const render = () => {
     const newsHTML = isbnList
@@ -105,6 +45,21 @@ const render = () => {
                 <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
                 <ul>${news.PRE_PRICE}</ul>
+            </div>`).join('');
+
+    document.getElementById("news-board").innerHTML = newsHTML;
+};
+
+const render2 = () => {
+    const newsHTML = firstList
+        .map(news => `
+            <div class="row">
+                <div class="booklist-img-box">
+                    <img class="booklist-img" src="${news.imageUrl || "../images/bookskin.png"}" alt="책 표지" />
+                </div>
+                <ol>${news.titleInfo.length > 20 ? news.titleInfo.slice(0, 20) + '...' : news.titleInfo}</ol>
+                <ul>${news.authorInfo.length > 20 ? news.authorInfo.slice(0, 20) + '...' : news.authorInfo}</ul>
+                <ul>${news.kdcName1s}</ul>
             </div>`).join('');
 
     document.getElementById("news-board").innerHTML = newsHTML;
@@ -152,57 +107,6 @@ function nextToPage() {
         page++;
         getLibrary();
     }
-}
-
-function initSearch() {
-    searchInput = document.querySelector("#search-input");
-    let searchContainer = document.querySelector("#search-container");
-
-    searchInput.addEventListener("click", () => {
-        searchInput.style.border = "2px solid #fff";
-        searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
-        searchInput.style.backgroundColor = "#ffffff40";
-        searchInput.value = "";
-    });
-    searchInput.addEventListener("blur", () => {
-        searchInput.style.border = "none";
-        searchInput.style.boxShadow = "none";
-        searchInput.style.backgroundColor = "#ffffff6c";
-    });
-
-    const handleSearch = () => {
-        const currentSearchText = searchInput.value;
-        searchBook(currentSearchText);
-    }
-
-    searchContainer.addEventListener("submit", (event) => {
-        event.preventDefault();
-    })
-    searchInput.addEventListener("keyup", (event) => {
-        if (event.key === "Enter") {
-            modal.classList.remove("hidden");
-            handleSearch();
-        }
-    })
-    closeButton.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    })
-    modal_overlay.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    })
-}
-
-function modalRender() {
-    const modalHTML = searchList.map(searchItem => 
-        `<div class="modal_image">
-            <img src="${searchItem.imageUrl}" alt="이미지"></img>
-        </div>
-        <div class="modal_info">
-            <h3>${searchItem.titleInfo}</h3>
-            <p>${searchItem.authorInfo}</p>
-        </div>`).join('');
-
-    document.getElementById('modal_gird').innerHTML = modalHTML;
 }
 
 function paginationRender() {
