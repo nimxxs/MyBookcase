@@ -77,29 +77,40 @@ const modalRender = () => {
             </div>
             <div class="modal_info">
                 <h3 class="modal-title">${searchItem.titleInfo}</h3>
-                <p>저작자 : ${searchItem.authorInfo}</p>
+                <p class="juja">저작자 : <span class="ahffk">${
+                  searchItem.authorInfo
+                }</span></p>
                 <p class="modal-descripiton" >
-                 출판사 : ${
+                 출판사 : 
+                 <span class="ahffk">  ${
                    // 출판사
+
                    searchItem.pubInfo
-                 }
-                 발행년도 :
+                 }</span>
+               
+                 - 발행년도 : <span class="ahffk">
                  ${
                    // 발행년도
                    searchItem.pubYearInfo
                  }
+                 </span>
+                 
                 </p>
-                <p>
+                <p class="giho">
                 분류기호 :
+              
                 ${
                   // 분류기호
                   searchItem.kdcCode1s
                 }
+
+               
                 -
                 ${
                   // 분류기호
                   searchItem.kdcName1s
                 }
+               
                 </p>
             </div>
         </article>
