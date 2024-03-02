@@ -10,33 +10,45 @@
 }
 .modal_overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: #f5f5f7;
   z-index: 400;
+  display: grid;
+  place-items: center;
   /* backdrop-filter: blur(20px) saturate(1.8);
   -webkit-backdrop-filter: blur(20px) saturate(1.8); */
 }
+.modal-header {
+  /* background-color: orange; */
+  margin-top: -15px;
+}
+.modal-body {
+  overflow: auto;
+  height: 100%;
+  /* background-color: orange; */
+}
+
 .modal_content {
   position: relative;
-  padding: 50px 0;
-  width: 1325px;
-  height: 700px;
-  /* height: 100%; */
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.19),
-    0 6px 6px rgba(255, 255, 255, 0.23);
+  max-width: 1325px;
+  box-sizing: border-box;
+  width: 100%;
   z-index: 500;
-  overflow: auto;
-  /* background-color: red; */
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 64px;
+  padding-bottom: 100px;
+  height: 80%;
+  box-sizing: border-box;
+  /* background-color: olive; */
+  margin-top: 5vh;
 }
 .modal_gird {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #fff;
-  padding: 64px;
   box-sizing: border-box;
-  border-radius: 18px;
   max-width: 1325px;
   width: 100%;
 }
@@ -71,6 +83,8 @@
   width: 100%;
   padding: 30px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 .modal-descripiton {
   color: #6e6e73;
@@ -79,21 +93,42 @@
 .modal-title {
   font-size: 20px;
   color: #1d1d1f;
+  margin-bottom: 10px;
 }
+.juja {
+  color: #6e6e73;
+  margin-bottom: 3px;
+}
+.modal-descripiton {
+  margin-bottom: 12px;
+}
+.giho {
+  color: #525151;
 
+  flex-grow: 1;
+  display: flex;
+  align-items: end;
+}
+.ahffk {
+  color: #1d1d1f;
+}
 #closeButton {
-  width: 30px;
-  height: 30px;
-  /* aspect-ratio: 1/1; */
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #454545;
-  z-index: 999;
-  cursor: pointer;
+  font-size: 22px;
+  background: none;
   border: none;
-  border-radius: 100px;
-  background-color: #eaeaea;
+  color: #6e6e73;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+#closeButton::before {
+  content: "<";
+  font-size: 16px;
+  margin-right: 6px;
+}
+#closeButton:hover span {
+  text-decoration: underline;
 }
 
 /* 페이지네이션 */
@@ -101,10 +136,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  cursor: pointer;
 }
 .page_item {
   padding: 20px 10px;
+  cursor: pointer;
 }
 .page_item:hover,
 .page_item:active,

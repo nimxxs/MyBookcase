@@ -83,9 +83,48 @@ const modalRender = (recoList) => {
                 <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
             </div>
             <div class="modal_info">
+<<<<<<< HEAD
+                <h3 class="modal-title">${searchItem.titleInfo}</h3>
+                <p class="juja">저작자 : <span class="ahffk">${
+                  searchItem.authorInfo
+                }</span></p>
+                <p class="modal-descripiton" >
+                 출판사 : 
+                 <span class="ahffk">  ${
+                   // 출판사
+
+                   searchItem.pubInfo
+                 }</span>
+               
+                 - 발행년도 : <span class="ahffk">
+                 ${
+                   // 발행년도
+                   searchItem.pubYearInfo
+                 }
+                 </span>
+                 
+                </p>
+                <p class="giho">
+                분류기호 :
+              
+                ${
+                  // 분류기호
+                  searchItem.kdcCode1s
+                }
+
+               
+                -
+                ${
+                  // 분류기호
+                  searchItem.kdcName1s
+                }
+               
+                </p>
+=======
                 <h3 class="modal-title">${recoItem.item.recomtitle["#text"]}</h3>
                 <p>지은이 : ${recoItem.item.recomauthor["#text"]}</p>
                 <p>출판사 : ${recoItem.item.recompublisher["#text"]}</p>
+>>>>>>> origin/develop
             </div>
         </article>`
     )
