@@ -102,8 +102,6 @@ const modalRender = () => {
                 }    
             
                 </p>
-                
-      
 
             </div>
         </article>
