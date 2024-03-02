@@ -7,8 +7,7 @@
 //      -> includes.js에서 initSearch가 매개변수 callback으로 작동함.
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
-const API_KEY =
-  "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
+const API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");
@@ -32,9 +31,19 @@ function initSearch() {
     // searchInput.value = "";
   });
 
-  const handleSearch = () => {
+  // 
+  const handleSearch = async () => {
     const currentSearchText = searchInput.value;
-    searchBook(currentSearchText);
+    console.log("currentSearchText",currentSearchText)
+    await searchBook(currentSearchText);
+    const foundBook = recoList.filter(searchText => 
+        searchText.item.recomauthor["#text"].includes(currentSearchText) ||
+        searchText.item.recomtitle["#text"].includes(currentSearchText) ||
+        searchText.item.recompublisher["#text"].includes(currentSearchText) 
+        );
+    console.log("foundBook", foundBook);
+    modalRender(foundBook)
+
   };
 
   // 모달창 띄우기
@@ -59,55 +68,90 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 전역스코프
-// 소장자료 검색 api
-let searchList = [];
 let totalResult = 0;
 let page = 1;
 const pageSize = 10;
 const groupSize = 5;
 
-// modalRender (검색 api)
-const modalRender = () => {
-  const modalHTML = searchList
+// modalRender (사서추천 api)
+const modalRender = (recoList) => {
+  const modalHTML = recoList
     .map(
-      (searchItem) =>
+      (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
-                <img src="${"../images/bookskin.png"}" alt="이미지"></img>
+                <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
             </div>
             <div class="modal_info">
-                <h3 class="modal-title">${searchItem.titleInfo}</h3>
-                <p>저작자 : ${searchItem.authorInfo}</p>
-                <p class="modal-descripiton" >
-                 출판사 : ${
-                   // 출판사
-                   searchItem.pubInfo
-                 }
-                 발행년도 :
-                 ${
-                   // 발행년도
-                   searchItem.pubYearInfo
-                 }
-                </p>
-                <p>
-                분류기호 :
-                ${
-                  // 분류기호
-                  searchItem.kdcCode1s
-                }
-                -
-                ${
-                  // 분류기호
-                  searchItem.kdcName1s
-                }
-                </p>
+                <h3 class="modal-title">${recoItem.item.recomtitle["#text"]}</h3>
+                <p>지은이 : ${recoItem.item.recomauthor["#text"]}</p>
+                <p>출판사 : ${recoItem.item.recompublisher["#text"]}</p>
             </div>
-        </article>
-       `
+        </article>`
     )
-    .join("");
+    .join("");;
   document.getElementById("modal_gird").innerHTML = modalHTML;
 };
+
+// modalRender (isbn api)
+// const modalRender = () => {
+//     const modalHTML = isbnList
+//     .map(isbnItem =>
+//         `<div class="modal_image">
+//             <img src="${isbnItem.TITLE_URL}" alt="이미지"></img>
+//         </div>
+//         <div class="modal_info">
+//             <h3>${isbnItem.SERIES_TITLE ? isbnItem.SERIES_TITLE : isbnItem.TITLE}</h3>
+//             <p>${isbnItem.AUTHOR}</p>
+//             <p>가격 : ${isbnItem.PRE_PRICE}</p>
+//             <p>줄거리 : ${isbnItem.BOOK_INTRODUCTION_URL}</p>
+//         </div>`).join('');
+
+//     document.getElementById('modal_gird').innerHTML = modalHTML;
+// }
+
+// modalRender (검색 api)
+// const modalRender = () => {
+//   const modalHTML = searchList
+//     .map(
+//       (searchItem) =>
+//         `<article class="modal-item">
+//             <div class="modal_image">
+//                 <img src="${"../images/bookskin.png"}" alt="이미지"></img>
+//             </div>
+//             <div class="modal_info">
+//                 <h3 class="modal-title">${searchItem.titleInfo}</h3>
+//                 <p>저작자 : ${searchItem.authorInfo}</p>
+//                 <p class="modal-descripiton" >
+//                  출판사 : ${
+//                    // 출판사
+//                    searchItem.pubInfo
+//                  }
+//                  발행년도 :
+//                  ${
+//                    // 발행년도
+//                    searchItem.pubYearInfo
+//                  }
+//                 </p>
+//                 <p>
+//                 분류기호 :
+//                 ${
+//                   // 분류기호
+//                   searchItem.kdcCode1s
+//                 }
+//                 -
+//                 ${
+//                   // 분류기호
+//                   searchItem.kdcName1s
+//                 }
+//                 </p>
+//             </div>
+//         </article>
+//        `
+//     )
+//     .join("");
+//   document.getElementById("modal_gird").innerHTML = modalHTML;
+// };
 
 // 페이지네이션
 const paginationRender = () => {
@@ -128,10 +172,9 @@ const paginationRender = () => {
         </a>
     </li>`;
 
-  for (let i = firstPage; i <= lastPage; i++) {
-    paginationHTML += `<li class="page_item ${
-      i === page ? "active" : ""
-    }" onclick="moveToPage(${i})">
+    for (let i = firstPage; i <= lastPage; i++) {
+        paginationHTML +=
+        `<li class="page_item" onclick="moveToPage(${i})">
             <a class="page-link">${i}</a>
         </li>`;
   }
@@ -168,115 +211,106 @@ const nextToPage = () => {
 };
 paginationRender();
 
+// searchBook (사서추천 api)
+let recoList = [];
 const searchBook = async (searchText) => {
-  // 한글 인코딩을 위한 함수 -> encodeURIComponent
-  const encodedText = encodeURIComponent(searchText);
-  console.log("searchText", encodedText);
-  const url = new URL(
-    `https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`
-  );
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("data", data);
-  searchList = data.result;
-  totalResult = data.total;
-  console.log("search", searchList);
-  console.log("total", totalResult);
-  modalRender();
-  paginationRender();
-};
-searchBook(searchInput.value);
+    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`);
+    const response = await fetch(url);
+    const textData = await response.text();
 
-// searchBook()
+    // XML을 JSON으로 변환
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(textData, "text/xml");
 
-// isbn api
+    // JSON으로 변환
+    const jsonResult = xmlToJson(xmlDoc);
+    // console.log("jsonResult", jsonResult);
+
+    recoList = jsonResult.channel.list;
+    console.log("recoList", recoList);
+
+    // 검색
+    // const bookTitle = searchInput.value;
+    // const foundBook = recoList.find(book => book.item.recomtitle["#text"] === searchText);
+    // console.log("foundBook", foundBook);
+
+    modalRender(recoList);
+    paginationRender();
+}
+searchBook(currentSearchText);
+
+// XML을 JSON으로 변환하는 함수
+function xmlToJson(xml) {
+// Create the return object
+var obj = {};
+if (xml.nodeType == 1) { // element node
+    // do attributes
+    if (xml.attributes.length > 0) {
+        obj["@attributes"] = {};
+        for (var j = 0; j < xml.attributes.length; j++) {
+            var attribute = xml.attributes.item(j);
+            obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+        }
+    }
+} else if (xml.nodeType == 3) { // text node
+    obj = xml.nodeValue;
+}
+// do children
+if (xml.hasChildNodes()) {
+    for (var i = 0; i < xml.childNodes.length; i++) {
+        var item = xml.childNodes.item(i);
+        var nodeName = item.nodeName;
+        if (typeof obj[nodeName] == "undefined") {
+            obj[nodeName] = xmlToJson(item);
+        } else {
+            if (typeof obj[nodeName].push == "undefined") {
+                var old = obj[nodeName];
+                obj[nodeName] = [];
+                obj[nodeName].push(old);
+            }
+            obj[nodeName].push(xmlToJson(item));
+        }
+    }
+}
+return obj;
+}
+
+// searchBook (isbn api)
 // let isbnList = [];
 // const isbn = async () => {
 //     const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`)
 //     const response = await fetch(url);
 //     const data = await response.json();
+//     console.log("data", data);
 //     isbnList = data.docs;
 //     // totalResult = data.TOTAL_COUNT;
 //     console.log("isbn", isbnList);
+
+//     const bookTitle = "성인행동치료 사례집";
+//     const foundBook = isbnList.find(book => book.TITLE === bookTitle);
+//     console.log("foundBook",foundBook); 
+
 //     modalRender();
 //     paginationRender();
 // }
-// isbn()
+// isbn(searchInput.value);
 
-// 사서추천 api
-
-// let recoList = [];
-// const recommend = async () => {
-//     const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`);
-//     const response = await fetch(url);
-//     const textData = await response.text();
-
-//     // XML을 JSON으로 변환
-//     const parser = new DOMParser();
-//     const xmlDoc = parser.parseFromString(textData, "text/xml");
-
-//     // JSON으로 변환
-//     const jsonResult = xmlToJson(xmlDoc);
-//     recoList = jsonResult.channel.list
-//     console.log("reco", recoList);
-
-//     modalRender()
-// }
-
-// recommend();
-
-// XML을 JSON으로 변환하는 함수
-// function xmlToJson(xml) {
-// // Create the return object
-// var obj = {};
-
-// if (xml.nodeType == 1) { // element node
-//     // do attributes
-//     if (xml.attributes.length > 0) {
-//         obj["@attributes"] = {};
-//         for (var j = 0; j < xml.attributes.length; j++) {
-//             var attribute = xml.attributes.item(j);
-//             obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-//         }
-//     }
-// } else if (xml.nodeType == 3) { // text node
-//     obj = xml.nodeValue;
-// }
-
-// // do children
-// if (xml.hasChildNodes()) {
-//     for (var i = 0; i < xml.childNodes.length; i++) {
-//         var item = xml.childNodes.item(i);
-//         var nodeName = item.nodeName;
-//         if (typeof obj[nodeName] == "undefined") {
-//             obj[nodeName] = xmlToJson(item);
-//         } else {
-//             if (typeof obj[nodeName].push == "undefined") {
-//                 var old = obj[nodeName];
-//                 obj[nodeName] = [];
-//                 obj[nodeName].push(old);
-//             }
-//             obj[nodeName].push(xmlToJson(item));
-//         }
-//     }
-// }
-// return obj;
-// }
-
-// modalRender (isbn api)
-// const modalRender = () => {
-//     const modalHTML = isbnList
-//     // .filter(isbnItem => isbnItem.TITLE_URL && isbnItem.TITLE_URL !== "") // 이미지가 있는 항목만 필터링
-//     .map(isbnItem =>
-//         `<div class="modal_image">
-//             <img src="${isbnItem.TITLE_URL}" alt="이미지"></img>
-//         </div>
-//         <div class="modal_info">
-//             <h3>${isbnItem.SERIES_TITLE ? isbnItem.SERIES_TITLE : isbnItem.TITLE}</h3>
-//             <p>${isbnItem.AUTHOR}</p>
-//             <p>가격 : ${isbnItem.PRE_PRICE}</p>
-//             <p>줄거리 : ${isbnItem.BOOK_INTRODUCTION_URL}</p>
-//         </div>`).join('');
-
-//     document.getElementById('modal_gird').innerHTML = modalHTML;
-// }
+// searchBook (검색 api)
+// const searchBook = async (searchText) => {
+//   // 한글 인코딩을 위한 함수 -> encodeURIComponent
+//   const encodedText = encodeURIComponent(searchText);
+//   console.log("searchText", encodedText);
+//   const url = new URL(
+//     `https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`
+//   );
+//   const response = await fetch(url);
+//   const data = await response.json();
+//   console.log("data", data);
+//   searchList = data.result;
+//   totalResult = data.total;
+//   console.log("search", searchList);
+//   console.log("total", totalResult);
+//   modalRender();
+//   paginationRender();
+// };
+// searchBook(searchInput.value);
