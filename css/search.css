@@ -141,8 +141,10 @@
   padding: 20px 10px;
   cursor: pointer;
 }
-.page_item:active {
-  color: brown;
+.page_item:hover,
+.page_item:active,
+.page_item:visited {
+  background-color: rgb(255, 237, 72);
 }
 
 ::-webkit-scrollbar {
