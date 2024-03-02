@@ -10,28 +10,30 @@ let bookList = [];
 let matchArray = [];
 let matchBookList = [];
 
-let ISBNList = [
-    {
-        isbn: "9791185035154",
-        url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1267",
-    },
-    {
-        isbn: "9788961961844",
-        url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1259",
-    },
-    {
-        isbn: "9791167373618",
-        url: "https://www.nl.go.kr/afile/previewThumbnail/24013052262qnXFI",
-    },
-    {
-        isbn: "9788983717054",
-        url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1278",
-    },
-    {
-        isbn: "9788996586043",
-        url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1056",
-    },
-];
+// let ISBNList = [
+//     {
+//         isbn: "9791185035154",
+//         url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1267",
+//     },
+//     {
+//         isbn: "9788961961844",
+//         url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1259",
+//     },
+//     {
+//         isbn: "9791167373618",
+//         url: "https://www.nl.go.kr/afile/previewThumbnail/24013052262qnXFI",
+//     },
+//     {
+//         isbn: "9788983717054",
+//         url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1278",
+//     },
+//     {
+//         isbn: "9788996586043",
+//         url: "https://www.nl.go.kr/afile/previewThumbnail/NLR-1056",
+//     },
+// ];
+
+let ISBNList = []
 
 // let ISBNList = ["9791185035154", "9788961961844", "9791167373618", '9788983717054', '9788996586043']
 
@@ -232,8 +234,8 @@ async function matchISBN() {
     render();
 }
 
-matchISBN();
 
+// 구매완료 효과
 function purchased(isbnNum) {
     const bookInfo_title = document.querySelector(`.bookInfo_${isbnNum} #title`)
     const bookInfo_author = document.querySelector(`.bookInfo_${isbnNum} #author`)
@@ -244,6 +246,7 @@ function purchased(isbnNum) {
     purchased_ment.classList.toggle("purchased_ment", checkbox.checked)
 }
 
+// 다읽음 효과
 function read(isbnNum) {
     const book = document.querySelector(`#book_${isbnNum}`)
     const checkbox = document.getElementById(`read_${isbnNum}`);
@@ -251,6 +254,7 @@ function read(isbnNum) {
     book.classList.toggle("read", checkbox.checked)
 }
 
+// 리스트 삭제
 function deleteBook(isbn) {
     // matchBookList에서 해당 도서의 인덱스를 찾습니다.
     const index = matchBookList.findIndex(book => book.EA_ISBN === isbn);
@@ -261,3 +265,47 @@ function deleteBook(isbn) {
         render();
     }
 }
+
+function popWindow(ISBN) {
+    let params = `
+          scrollbars=yes,
+          resizable=yes,
+          status=no,
+          location=no,
+          toolbar=no,
+          menubar=yes,
+          width=1000,
+          height=800,
+          left=(window.screen.width / 2) - (width/2),
+          top=(window.screen.height / 4)
+          `;
+    // Append the ISBN to the URL as a query parameter
+    let detailPageURL = `detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    window.open(detailPageURL, "a", params);
+    console.log("Sent to child window", ISBN)
+}
+
+
+// This event handler will listen for messages from the child
+window.addEventListener("message", (e) => {
+    //e.data hold the message from the child
+    // Check if the received message is the expected object
+    if (e.data && e.data.isbn && e.data.wishCondition) {
+        console.log("Received from child window:", e.data)
+    }
+})
+
+// 로컬 스토리지에서 데이터 읽어오기
+let storedData = localStorage.getItem('wishData');
+if (storedData) {
+    let allData = JSON.parse(storedData);
+
+    // 데이터를 JSON 문자열로 출력
+    console.log("Received data:", allData);
+
+    ISBNList = allData
+} else {
+    console.log("No data received.");
+}
+
+matchISBN();

@@ -18,7 +18,7 @@ let url = ""
 let url2 = ""
 let bookInfo = []
 
-let targetBookDetail = async()=>{
+let targetBookDetail = async () => {
     //ISBN = "9791196777050"
     //ISBN = "8984993727"
     //ISBN = "9788941241256"
@@ -26,9 +26,9 @@ let targetBookDetail = async()=>{
     const response = await fetch(url)
     const data = await response.json()
     bookInfo = data.docs[0]
-    console.log("ISBN check", bookInfo.EA_ISBN)  
+    console.log("ISBN check", bookInfo.EA_ISBN)
     console.log("data.docs[0]", bookInfo)
-    
+
     url2 = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&detailSearch=true&isbnOp=isbn&isbnCode=${ISBN}`)
     const response2 = await fetch(url2)
     const data2 = await response2.json()
@@ -39,7 +39,7 @@ let targetBookDetail = async()=>{
     console.log(localStorage.getItem("wishData"))
 }
 
-let loadTopSection = ()=>{
+let loadTopSection = () => {
     document.getElementById("book-title").innerHTML = bookInfo.TITLE
 }
 
@@ -70,7 +70,7 @@ function popWindow() {
         left=(window.screen.width / 2) - (width/2),
         top=(window.screen.height / 4)
         `;
-    window.open("detail_page.html", "a", params); 
+    window.open("detail_page.html", "a", params);
 }
 
 targetBookDetail()
@@ -78,18 +78,19 @@ targetBookDetail()
 let conditionValue = false
 
 //this will post a message to the parent
-let wishFunction = ()=>{
-     // 이전에 저장된 데이터 읽어오기
-    let storedData = localStorage.getItem('wishData');
-    let existingData = storedData ? JSON.parse(storedData) : [];
+let wishFunction = () => {
+    // 이전에 저장된 데이터 읽어오기
+    let storedData = localStorage.getItem('wishData');
+    let existingData = storedData ? JSON.parse(storedData) : [];
 
-    // 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
-    if (!Array.isArray(existingData)) {
-        existingData = [];
-    }
-    
-    
-    let wishISBN = ISBN;
+    // 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
+    if (!Array.isArray(existingData)) {
+        existingData = [];
+    }
+
+
+    // let wishISBN = ISBN;
+    let wishISBN = "8984993727";
     conditionValue = !conditionValue;
 
     // Package both values into an object
@@ -105,14 +106,14 @@ let wishFunction = ()=>{
     //window.opener.postMessage(newMessageObject, "*")
 
     // 누적된 데이터를 다시 저장
-    localStorage.setItem('wishData', JSON.stringify(existingData));
+    localStorage.setItem('wishData', JSON.stringify(existingData));
 
-    
+
     console.log(localStorage.getItem("wishData"));
-    console.log("send", newMessageObject);
+    console.log("send", newMessageObject);
 }
 
-let toLibFunction = ()=>{
-    window.open("https://www.naver.com","","")
+let toLibFunction = () => {
+    window.open("https://www.naver.com", "", "")
 }
 
