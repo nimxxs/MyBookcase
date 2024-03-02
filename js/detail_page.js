@@ -8,14 +8,14 @@ function getQueryParam(key) {
 
 // Use the function to get the ISBN value from the query string
 let ISBN = getQueryParam('isbn');
+//let ISBN = 9788941241256
 
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
 
 
-let url = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&detailSearch=true&isbnOp=isbn&isbnCode=8984993727`)
+let url = ""
 let url2 = ""
-//let ISBN = ""
 let bookInfo = []
 
 let targetBookDetail = async()=>{
@@ -35,7 +35,8 @@ let targetBookDetail = async()=>{
     console.log("data2", data2)
 
     loadTopSection()
-    
+    //localStorage.clear("wishData")
+    console.log(localStorage.getItem("wishData"))
 }
 
 let loadTopSection = ()=>{
@@ -74,8 +75,7 @@ function popWindow() {
 
 targetBookDetail()
 
-
-
+let conditionValue = false
 
 //this will post a message to the parent
 let wishFunction = ()=>{
@@ -90,7 +90,7 @@ let wishFunction = ()=>{
     
     
     let wishISBN = ISBN;
-    let conditionValue = true;
+    conditionValue = !conditionValue;
 
     // Package both values into an object
     let newMessageObject = {
@@ -102,13 +102,14 @@ let wishFunction = ()=>{
 
 
     // Send the object to the parent window
-    window.opener.postMessage(newMessageObject, "*")
+    //window.opener.postMessage(newMessageObject, "*")
 
     // 누적된 데이터를 다시 저장
     localStorage.setItem('wishData', JSON.stringify(existingData));
 
-    console.log(localStorage.setItem)
-    console.log("send");
+    
+    console.log(localStorage.getItem("wishData"));
+    console.log("send", newMessageObject);
 }
 
 let toLibFunction = ()=>{
