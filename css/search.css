@@ -1,0 +1,111 @@
+.modal {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 300;
+}
+.modal_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f7;
+  z-index: 400;
+  /* backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8); */
+}
+.modal_content {
+  position: relative;
+  padding: 50px 0;
+  width: 1325px;
+  height: 700px;
+  /* height: 100%; */
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.19),
+    0 6px 6px rgba(255, 255, 255, 0.23);
+  z-index: 500;
+  overflow: auto;
+  /* background-color: red; */
+}
+.modal_gird {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;
+  padding: 64px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  max-width: 1325px;
+  width: 100%;
+}
+.modal-item {
+  display: flex;
+}
+.modal_image {
+  justify-self: center;
+}
+.modal_book {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.modal_image {
+  width: 150px;
+  /* height: 180px; */
+  /* background-color: rgba(155, 95, 46, 0.486); */
+  /* aspect-ratio: 5/6; */
+  /* 이미지 비율 고정 */
+  display: flex;
+  align-items: end;
+}
+.modal_image img {
+  width: 100%;
+  /* 지울거 */
+  /* height: 100%; */
+}
+.modal_info {
+  /* background-color: green; */
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+.modal-descripiton {
+  color: #6e6e73;
+  font-size: 16px;
+}
+.modal-title {
+  font-size: 20px;
+  color: #1d1d1f;
+}
+
+#closeButton {
+  width: 30px;
+  height: 30px;
+  /* aspect-ratio: 1/1; */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #454545;
+  z-index: 999;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  background-color: #eaeaea;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+.page_item {
+  padding: 20px 10px;
+}
+.page_item:active {
+  color: brown;
+}

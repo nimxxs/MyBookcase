@@ -7,7 +7,6 @@
 .main {
   width: 100vw;
   background-color: #f5f5f7;
-  /* height: 6000px; */
   padding-bottom: 100px;
 }
 /* category */
@@ -20,7 +19,7 @@
   box-shadow: 0 2px 0 #00000016;
   position: sticky;
   top: 100px;
-  z-index: 10;
+  z-index: 100;
 }
 .category-list {
   max-width: 1325px;
@@ -60,36 +59,68 @@
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quote-title-box {
+  display: flex;
+  width: fit-content;
+  position: relative;
+}
+.quote-title {
+  font-size: 28px;
+  color: #4b4b4b;
+  margin-right: 10px;
+  font-weight: 900;
+  color: #5f5f5f;
+}
+.quote-bt {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -10px;
+  margin: auto;
+}
+.quote-bt:hover {
+  transform: scale(0.9);
+}
+.quote-bt:active {
+  opacity: 0.8;
 }
 .quote-randomizer-phrase {
   font-size: 30px;
   text-align: center;
-  color: #6e6e73;
-  line-height: 1.2;
+  font-size: 18px;
+  margin-top: 8px;
+  color: #a4a4a4;
   position: relative;
-  transition-property: 1000px;
 }
 .quote-randomizer-phrase::after {
   content: '"';
   position: absolute;
-  bottom: -12px;
-  right: -32px;
-  transform-style: preserve-3d;
-  transform: rotate3d(0, 0, 1, 180deg);
+  top: -2px;
+  right: -12px;
+  font-size: 16px;
 }
 .quote-randomizer-phrase::before {
   content: '"';
   position: absolute;
-  top: -12px;
-  left: -32px;
+  top: -2px;
+  left: -12px;
+  font-size: 16px;
 }
-.quote-randomizer-phrase span {
-  font-size: 22px;
-}
+
 /*  booklist */
 .booklist {
-  width: 1325px;
-  /* background-color: orange; */
+  max-width: 1325px;
+  width: 100%;
   gap: 27px;
   display: flex;
   flex-direction: column;
@@ -102,6 +133,8 @@
   padding: 45px 85px;
   box-sizing: border-box;
   position: relative;
+  min-height: 400px;
+  transition: all 0.3s ease;
 }
 .booklist-header {
   border-bottom: 1px solid #999;
@@ -111,6 +144,11 @@
   color: #6e6e73;
   cursor: pointer;
   margin-bottom: 3px;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+.booklist-headline:hover {
+  color: #1d1d1f;
 }
 .booklist-headline::after {
   content: ">";
@@ -124,12 +162,22 @@
   margin-left: 10px;
 }
 .booklist-list {
-  width: 100%;
-  display: flex;
-  gap: 76px;
+  width: calc(1325px - (85px * 2));
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
+
+.booklist-slider {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  gap: 77px;
+  transition: all 0.5s cubic-bezier(0.15, 0, 0.2, 1);
+}
+
 .booklist-item {
   width: 170px;
+  cursor: pointer;
 }
 .booklist-img-box {
   width: 100%;
@@ -141,17 +189,17 @@
   position: relative;
 }
 .booklist-sub-title {
-  font-size: 18px;
+  font-size: 17px;
   position: absolute;
   inset: 0;
   bottom: auto;
   top: 50px;
   margin: auto;
   color: #fff;
-  width: fit-content;
+  width: 170px;
   height: fit-content;
   text-align: center;
-  padding: 0 25px;
+  padding: 0 10px;
   box-sizing: border-box;
   opacity: 0.9;
   white-space: normal;
@@ -176,10 +224,11 @@
   width: 100%;
   transition: all 0.3s ease;
   border-radius: 3px;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
 }
 .booklist-item:hover .booklist-img {
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
-  transform: scale(1.01);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
 }
 .booklist-title {
   font-size: 16px;
@@ -193,12 +242,12 @@
 }
 .bookmark-icon {
   position: absolute;
-  left: 30px;
-  top: 30px;
+  left: 60px;
+  top: 50px;
 }
 
 .booklist-bts {
-  width: calc(100% - 35px);
+  width: calc(100% - 50px);
   margin: auto;
   position: absolute;
   /* background-color: red; */
@@ -212,7 +261,26 @@
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 99;
+  transition: transform 0.3s ease;
 }
 .booklist-bt:hover {
+  /* opacity: 0.8; */
+  transform: scale(0.9);
+}
+.booklist-bt:active {
   opacity: 0.8;
+}
+@media screen and (max-width: 1325px) {
+  /* .main {
+    background-color: rgb(212, 230, 185);
+  } */
+  .booklist {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  .booklist-list {
+    width: 100%;
+  }
 }

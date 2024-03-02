@@ -1,6 +1,3 @@
-a:hover{
-    cursor: pointer;
-}
 ul {
     list-style: none; /* 모든 ul 요소의 점 제거 */
     margin: 0;
@@ -30,50 +27,72 @@ ol {
 .list-border{
     border-top: 1px solid #bfbfbf;
 }
+.list-contents-border{
+    border-top: 2px solid #e8e8e8;
+    margin: 2.5% 0;
+}
 .list-books{    
     padding: 4%;
-    grid-template-columns: 18% 18% 18% 18% 18%; 
-    display: grid;
-    justify-content: space-between;
+}
+.list-books section{
+    display: flex;
 }
 .row{
     margin-bottom: 20px;
 }
 .list-books img{
     width: 100%;
-    height: 17vi;    
+    height: 12vi;    
+}
+@media all and (max-width:700px){
+    .list-books img{
+        width: 100%;
+        height: 25vi;
+        padding-right: 10px;  
+    }
 }
 .list-books div{
     padding: 0 1%;
 }
 .list-books ol{
     font-weight: 700;
-    font-size: clamp(0.8rem, 1.0vw, 1.1rem);
+    font-size: clamp(1.0rem,1.4vw, 1.4rem);
 }
 .list-books ul{
-    font-size: small;
+    font-size: clamp(0.8rem,1.0vw, 1.0rem);
     color: #828282;
 }
 
-.listPagination{
+.pagination{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.listPage-item {
+.page-item {
     display: inline-block;
     margin-right: 5px;
 }
-.listPage-item.active .listPage-link{
+.page-item.active .page-link{
     background-color: burlywood;
     color: white;
     border-color: burlywood;
 }
-.listPage-link{
+.page-link{
     color:#8c8c8c;
 }
-.listPage-item :hover{
+.page-item :hover{
     cursor: pointer;
     color: rgb(144, 132, 115);
     background-color: rgb(240, 238, 232);
+}
+.price-style{
+    font-weight: 700;
+    margin-top: 10px;
+    color: rgb(86, 82, 82);
+}
+.day-style{
+    font-weight: 700;
+    margin-top: 10px;
+    color: #1a75b7;
+    font-size: clamp(1.0rem, 1.0vw, 1.0rem);
 }
