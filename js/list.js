@@ -1,6 +1,6 @@
 const API_KEY_ISBN = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
 const API_KEY_SEARCH = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212';
-
+//git test
 let isbnList = [];
 let searchList = [];
 let totalResults = 0;
@@ -29,17 +29,20 @@ async function getLibrary() {
     listPaginationRender();
 }
 
-function render() {
-    const newsHTML = isbnList.map(news => `
-        <div class="row">
-            <img src=${news.TITLE_URL}>
-            <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
-            <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
-            <ul>${news.PRE_PRICE}</ul>
-        </div>`).join('');
+const render = () => {
+    const newsHTML = isbnList
+        .map(news => `
+            <div class="row">
+                <div class="booklist-img-box">
+                    <img class="booklist-img" src="${news.TITLE_URL || "../images/bookskin.png"}" alt="책 표지" />
+                </div>
+                <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
+                <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
+                <ul>${news.PRE_PRICE}</ul>
+            </div>`).join('');
 
     document.getElementById("news-board").innerHTML = newsHTML;
-}
+};
 
 function listPaginationRender() {
     const totalPages = Math.ceil(totalResults / pageSize);
