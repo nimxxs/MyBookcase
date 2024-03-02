@@ -2,7 +2,7 @@ const API_KEY = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee821
 let newsList=[];
 let totalResults = 0;
 let page = 1;
-const pageSize = 300;
+const pageSize = 10;
 const groupSize = 5;
 const category = 0;
 
@@ -18,9 +18,7 @@ const getLibrary = async () => {
 };
 
 const render = () => {
-    const filteredNewsList = newsList.filter(news => news.TITLE_URL && news.TITLE_URL !== ""); // 이미지가 있는 항목만 필터링
-
-    const newsHTML = filteredNewsList.slice(0, 20) // 이미지가 있는 항목 중에서 최대 20개까지만 출력
+    const newsHTML = newsList.slice(0, 20) // 최대 20개 항목까지만 출력
         .map(news => {
             // 입력된 문자열을 "YYYY.MM.DD" 형식으로 변환
             const dateString = news.PUBLISH_PREDATE.slice(0, 4) + '.' + news.PUBLISH_PREDATE.slice(4, 6) + '.' + news.PUBLISH_PREDATE.slice(6, 8);
