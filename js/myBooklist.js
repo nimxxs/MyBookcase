@@ -189,7 +189,7 @@ const render = () => {
                     </div>
                 </div>
                 <div class="bookInfo_${book.EA_ISBN} bookInfo">
-                    <div id="title">${book.TITLE}</div>
+                    <div id="title" onclick="popWindow(${book.EA_ISBN})">${book.TITLE}</div>
                     <div id="author">${book.AUTHOR}</div>
                     <div id="purchased_${book.EA_ISBN}" class="purchased_defult">구매 완료 <img src="../images/payments.svg"></div>
                 </div>
@@ -261,3 +261,24 @@ function deleteBook(isbn) {
         render();
     }
 }
+
+let ISBN = book.EA_ISBN
+// open new window for detailed info
+function popWindow(ISBN) {
+    let params = `
+        scrollbars=yes,
+        resizable=yes,
+        status=no,
+        location=no,
+        toolbar=no,
+        menubar=yes,
+        width=1000,
+        height=800,
+        left=(window.screen.width / 2) - (width/2),
+        top=(window.screen.height / 4)
+        `;
+    // Append the ISBN to the URL as a query parameter
+    let detailPageURL = `detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    window.open(detailPageURL, "a", params); 
+    console.log("Sent to child window", ISBN)
+    }
