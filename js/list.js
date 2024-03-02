@@ -29,17 +29,20 @@ async function getLibrary() {
     listPaginationRender();
 }
 
-function render() {
-    const newsHTML = isbnList.map(news => `
-        <div class="row">
-            <img src=${news.TITLE_URL}>
-            <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
-            <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
-            <ul>${news.PRE_PRICE}</ul>
-        </div>`).join('');
+const render = () => {
+    const newsHTML = isbnList
+        .map(news => `
+            <div class="row">
+                <div class="booklist-img-box">
+                    <img class="booklist-img" src="${news.TITLE_URL || "../images/bookskin.png"}" alt="책 표지" />
+                </div>
+                <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
+                <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
+                <ul>${news.PRE_PRICE}</ul>
+            </div>`).join('');
 
     document.getElementById("news-board").innerHTML = newsHTML;
-}
+};
 
 function listPaginationRender() {
     const totalPages = Math.ceil(totalResults / pageSize);
