@@ -16,15 +16,20 @@
             <!-- title, author, wishlist 추가 기능  -->
             <div class="top-info">
                 <div class="book-title" id="book-title">Title goes here</div>
-                <button class="fa-solid fa-heart wishbutton" onclick="wishFunction()" title="wish button"></button>
-                <button class="wishbutton" onclick="toLibFunction()" title="국립중앙도서관 링크">Link</button>
+                <button class="wishbutton" onclick="wishFunction()" title="wish button">
+                    <img width="20px" src="/images/heart-empty.svg"/>
+                </button>
+                <!-- <button class="fa-solid fa-heart wishbutton" onclick="wishFunction()" title="wish button"></button> -->
+                <button class="wishbutton" onclick="toLibFunction()" title="국립중앙도서관 링크">
+                    <img width="15px" text-align="center" src="/images/diagonal-arrow.svg" />
+                </button>
             </div>
         </section>
         <section class="container" id="">
             <!-- 표지그림, 간단한 정보-->
             <div class="main-info">
                 <div class="book-cover">
-                    <img src="https://www.nl.go.kr/seoji/fu/ecip/dbfiles/CIP_FILES_TBL/2021/01/26/9791196777050.jpg"/>
+                    <!-- <img src="/images/titlebookimg.svg" onload="this.onload=null; this.src=showBookCover();"/> -->
                 </div>
                 <div class="book-details"> 
                     <div>제목 (TITLE) </div>
@@ -43,9 +48,7 @@
                 기타 상세 정보
             </div>
         </section>
-        <div>
-            <input type="button" value="팝업창 호출" onclick="console.log(`pressed`);"/>
-        </div>
+       
         <div>help</div>
         <div>help</div>
         <div>help</div>

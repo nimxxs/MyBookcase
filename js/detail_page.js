@@ -7,8 +7,8 @@ function getQueryParam(key) {
 }
 
 // Use the function to get the ISBN value from the query string
-let ISBN = getQueryParam('isbn');
-//let ISBN = 9788941241256
+//let ISBN = getQueryParam('isbn');
+let ISBN = 9788941241256
 
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
@@ -35,6 +35,7 @@ let targetBookDetail = async()=>{
     console.log("data2", data2)
 
     loadTopSection()
+    showBookCover(bookInfo.TITLE_URL)
     //localStorage.clear("wishData")
     console.log(localStorage.getItem("wishData"))
 }
@@ -42,12 +43,6 @@ let targetBookDetail = async()=>{
 let loadTopSection = ()=>{
     document.getElementById("book-title").innerHTML = bookInfo.TITLE
 }
-
-// const renderBookInfo = () =>{
-//     const bookHTML = ``;
-
-//     bookHTML = bookInfo.map(info=>``)
-// }
 
 // // When the user clicks on <div>, open the popup
 // function popUp() {
@@ -73,7 +68,16 @@ function popWindow() {
     window.open("detail_page.html", "a", params); 
 }
 
+
+
 targetBookDetail()
+
+
+function showBookCover(book_title){
+    console.log("bookcover URL", book_title)
+    if (book_title == "") {document.querySelector(".book-cover").innerHTML = `<img src="/images/titlebookimg.svg"/>`}
+    else {document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>`}
+}
 
 let conditionValue = false
 
