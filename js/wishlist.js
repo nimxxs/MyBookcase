@@ -27,7 +27,7 @@ const render = () => {
             
             return `
                 <section>
-                    <div><img src=${news.TITLE_URL}></div>
+                    <div><img class="booklist-img" src="${news.imageUrl || "../images/bookskin.png"}" alt="책 표지" /></div>
                     <div>
                         <ol>${news.TITLE}</ol>
                         <ul>${news.AUTHOR}</ul>
