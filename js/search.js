@@ -7,7 +7,8 @@
 //      -> includes.js에서 initSearch가 매개변수 callback으로 작동함.
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
-const API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
+const API_KEY =
+  "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");
@@ -31,19 +32,19 @@ function initSearch() {
     // searchInput.value = "";
   });
 
-  // 
+  //
   const handleSearch = async () => {
     const currentSearchText = searchInput.value;
-    console.log("currentSearchText",currentSearchText)
+    console.log("currentSearchText", currentSearchText);
     await searchBook(currentSearchText);
-    const foundBook = recoList.filter(searchText => 
+    const foundBook = recoList.filter(
+      (searchText) =>
         searchText.item.recomauthor["#text"].includes(currentSearchText) ||
         searchText.item.recomtitle["#text"].includes(currentSearchText) ||
-        searchText.item.recompublisher["#text"].includes(currentSearchText) 
-        );
+        searchText.item.recompublisher["#text"].includes(currentSearchText)
+    );
     console.log("foundBook", foundBook);
-    modalRender(foundBook)
-
+    modalRender(foundBook);
   };
 
   // 모달창 띄우기
@@ -83,52 +84,13 @@ const modalRender = (recoList) => {
                 <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
             </div>
             <div class="modal_info">
-<<<<<<< HEAD
-                <h3 class="modal-title">${searchItem.titleInfo}</h3>
-                <p class="juja">저작자 : <span class="ahffk">${
-                  searchItem.authorInfo
-                }</span></p>
-                <p class="modal-descripiton" >
-                 출판사 : 
-                 <span class="ahffk">  ${
-                   // 출판사
-
-                   searchItem.pubInfo
-                 }</span>
-               
-                 - 발행년도 : <span class="ahffk">
-                 ${
-                   // 발행년도
-                   searchItem.pubYearInfo
-                 }
-                 </span>
-                 
-                </p>
-                <p class="giho">
-                분류기호 :
-              
-                ${
-                  // 분류기호
-                  searchItem.kdcCode1s
-                }
-
-               
-                -
-                ${
-                  // 분류기호
-                  searchItem.kdcName1s
-                }
-               
-                </p>
-=======
                 <h3 class="modal-title">${recoItem.item.recomtitle["#text"]}</h3>
                 <p>지은이 : ${recoItem.item.recomauthor["#text"]}</p>
                 <p>출판사 : ${recoItem.item.recompublisher["#text"]}</p>
->>>>>>> origin/develop
             </div>
         </article>`
     )
-    .join("");;
+    .join("");
   document.getElementById("modal_gird").innerHTML = modalHTML;
 };
 
@@ -211,9 +173,8 @@ const paginationRender = () => {
         </a>
     </li>`;
 
-    for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML +=
-        `<li class="page_item" onclick="moveToPage(${i})">
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page_item" onclick="moveToPage(${i})">
             <a class="page-link">${i}</a>
         </li>`;
   }
@@ -253,65 +214,69 @@ paginationRender();
 // searchBook (사서추천 api)
 let recoList = [];
 const searchBook = async (searchText) => {
-    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`);
-    const response = await fetch(url);
-    const textData = await response.text();
+  const url = new URL(
+    `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}`
+  );
+  const response = await fetch(url);
+  const textData = await response.text();
 
-    // XML을 JSON으로 변환
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(textData, "text/xml");
+  // XML을 JSON으로 변환
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(textData, "text/xml");
 
-    // JSON으로 변환
-    const jsonResult = xmlToJson(xmlDoc);
-    // console.log("jsonResult", jsonResult);
+  // JSON으로 변환
+  const jsonResult = xmlToJson(xmlDoc);
+  // console.log("jsonResult", jsonResult);
 
-    recoList = jsonResult.channel.list;
-    console.log("recoList", recoList);
+  recoList = jsonResult.channel.list;
+  console.log("recoList", recoList);
 
-    // 검색
-    // const bookTitle = searchInput.value;
-    // const foundBook = recoList.find(book => book.item.recomtitle["#text"] === searchText);
-    // console.log("foundBook", foundBook);
+  // 검색
+  // const bookTitle = searchInput.value;
+  // const foundBook = recoList.find(book => book.item.recomtitle["#text"] === searchText);
+  // console.log("foundBook", foundBook);
 
-    modalRender(recoList);
-    paginationRender();
-}
+  modalRender(recoList);
+  paginationRender();
+};
 searchBook(currentSearchText);
 
 // XML을 JSON으로 변환하는 함수
 function xmlToJson(xml) {
-// Create the return object
-var obj = {};
-if (xml.nodeType == 1) { // element node
+  // Create the return object
+  var obj = {};
+  if (xml.nodeType == 1) {
+    // element node
     // do attributes
     if (xml.attributes.length > 0) {
-        obj["@attributes"] = {};
-        for (var j = 0; j < xml.attributes.length; j++) {
-            var attribute = xml.attributes.item(j);
-            obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-        }
+      obj["@attributes"] = {};
+      for (var j = 0; j < xml.attributes.length; j++) {
+        var attribute = xml.attributes.item(j);
+        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+      }
     }
-} else if (xml.nodeType == 3) { // text node
+  } else if (xml.nodeType == 3) {
+    // text node
     obj = xml.nodeValue;
-}
-// do children
-if (xml.hasChildNodes()) {
+  }
+  // do children
+  if (xml.hasChildNodes()) {
     for (var i = 0; i < xml.childNodes.length; i++) {
-        var item = xml.childNodes.item(i);
-        var nodeName = item.nodeName;
-        if (typeof obj[nodeName] == "undefined") {
-            obj[nodeName] = xmlToJson(item);
-        } else {
-            if (typeof obj[nodeName].push == "undefined") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-            }
-            obj[nodeName].push(xmlToJson(item));
+      var item = xml.childNodes.item(i);
+      var nodeName = item.nodeName;
+      if (typeof obj[nodeName] == "undefined") {
+        obj[nodeName] = xmlToJson(item);
+      } else {
+        if (typeof obj[nodeName].push == "undefined") {
+          var old = obj[nodeName];
+          obj[nodeName] = [];
+          obj[nodeName].push(old);
         }
+        obj[nodeName].push(xmlToJson(item));
+      }
     }
-}
-return obj;
+  }
+  return obj;
 }
 
 // searchBook (isbn api)
@@ -327,7 +292,7 @@ return obj;
 
 //     const bookTitle = "성인행동치료 사례집";
 //     const foundBook = isbnList.find(book => book.TITLE === bookTitle);
-//     console.log("foundBook",foundBook); 
+//     console.log("foundBook",foundBook);
 
 //     modalRender();
 //     paginationRender();
