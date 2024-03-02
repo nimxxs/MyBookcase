@@ -109,3 +109,7 @@
 .page_item:active {
   color: brown;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
