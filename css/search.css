@@ -54,7 +54,9 @@
 }
 .modal-item {
   display: flex;
+  cursor: pointer;
 }
+
 .modal_image {
   justify-self: center;
 }
@@ -77,6 +79,14 @@
   width: 100%;
   /* 지울거 */
   /* height: 100%; */
+  transition: all 0.3s ease;
+}
+.modal-item:hover img {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+.modal_info p {
+  margin-bottom: 5px;
+  color: #6e6e73;
 }
 .modal_info {
   /* background-color: green; */
@@ -93,7 +103,7 @@
 .modal-title {
   font-size: 20px;
   color: #1d1d1f;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
 }
 .juja {
   color: #6e6e73;
@@ -113,19 +123,24 @@
   color: #1d1d1f;
 }
 #closeButton {
-  font-size: 22px;
+  font-size: 20px;
   background: none;
   border: none;
   color: #6e6e73;
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: all 0.3s ease;
   margin-bottom: 18px;
 }
 #closeButton::before {
   content: "<";
   font-size: 16px;
   margin-right: 6px;
+}
+
+#closeButton:hover {
+  color: #1d1d1f;
 }
 #closeButton:hover span {
   text-decoration: underline;

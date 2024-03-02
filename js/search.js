@@ -38,13 +38,13 @@ function initSearch() {
   });
   searchInput.addEventListener("keyup", async (event) => {
     if (event.key === "Enter") {
-        const foundBook = await handleSearch();
-        if (foundBook.length === 0) {
-            modal.classList.add("hidden");
-            alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
-        } else {
-            modal.classList.remove("hidden");
-        }
+      const foundBook = await handleSearch();
+      if (foundBook.length === 0) {
+        modal.classList.add("hidden");
+        alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
+      } else {
+        modal.classList.remove("hidden");
+      }
     }
   });
   closeButton.addEventListener("click", () => {
@@ -66,20 +66,20 @@ const groupSize = 5; // 총 페이지에서 몇 페이지씩 그룹을 묶을건
 
 // modalRender (사서추천 api)
 const modalRender = (recoList) => {
-    // 시작 인덱스
-    const startPage = (page - 1) * pageSize;
-    // 끝 인덱스
-    const endPage = startPage + pageSize;
-    // 현재 페이지
-    const currentPageList = recoList.slice(startPage, endPage);
-    console.log("startPage", startPage, endPage)
-    console.log("currentPageList", currentPageList)
-    console.log("currentPageList[0]", currentPageList[0])
-    console.log("currentPageList[9]", currentPageList[9])
+  // 시작 인덱스
+  const startPage = (page - 1) * pageSize;
+  // 끝 인덱스
+  const endPage = startPage + pageSize;
+  // 현재 페이지
+  const currentPageList = recoList.slice(startPage, endPage);
+  console.log("startPage", startPage, endPage);
+  console.log("currentPageList", currentPageList);
+  console.log("currentPageList[0]", currentPageList[0]);
+  console.log("currentPageList[9]", currentPageList[9]);
 
-    const modalHTML = currentPageList
+  const modalHTML = currentPageList
     .map(
-    (recoItem) =>
+      (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
                 <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
@@ -116,25 +116,27 @@ const modalRender = (recoList) => {
 let recoList = [];
 let totalPages;
 const searchBook = async (searchText) => {
-    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`);
-    const response = await fetch(url);
-    const textData = await response.text();
+  const url = new URL(
+    `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`
+  );
+  const response = await fetch(url);
+  const textData = await response.text();
 
-    // XML을 JSON으로 변환
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(textData, "text/xml");
+  // XML을 JSON으로 변환
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(textData, "text/xml");
 
-    // JSON으로 변환
-    const jsonResult = xmlToJson(xmlDoc);
-    totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
-    console.log("totalPages", totalPages);
+  // JSON으로 변환
+  const jsonResult = xmlToJson(xmlDoc);
+  totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
+  console.log("totalPages", totalPages);
 
-    recoList = jsonResult.channel.list;
-    // console.log("recoList", recoList);
+  recoList = jsonResult.channel.list;
+  // console.log("recoList", recoList);
 
-    modalRender(recoList);
-    paginationRender();
-}
+  modalRender(recoList);
+  paginationRender();
+};
 
 // modalRender (검색 api)
 // const modalRender = () => {
@@ -181,15 +183,16 @@ const searchBook = async (searchText) => {
 
 // 페이지네이션
 const paginationRender = () => {
-//   const totalPages = Math.ceil(recoList.length / pageSize);
+  //   const totalPages = Math.ceil(recoList.length / pageSize);
   const pageGroup = Math.ceil(page / groupSize);
   console.log("pageGroup", pageGroup);
   let lastPage = pageGroup * groupSize;
   if (lastPage > totalPages) {
     lastPage = totalPages;
   }
-  let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
-  console.log("firstPage", firstPage, lastPage)
+  let firstPage =
+    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  console.log("firstPage", firstPage, lastPage);
 
   let paginationHTML = ``;
   // 이전 버튼 추가
@@ -219,36 +222,37 @@ const paginationRender = () => {
 const moveToPage = (pageNum) => {
   console.log("moveToPage", pageNum);
   page = pageNum;
-  handleSearch()
+  handleSearch();
 };
 // 이전 페이지, 다음 페이지
 const preToPage = () => {
   if (page > 1) {
     page--;
-    handleSearch()
+    handleSearch();
   }
 };
 const nextToPage = () => {
   const totalPages = Math.ceil(totalPages);
   if (page < totalPages) {
     page++;
-    handleSearch()
+    handleSearch();
   }
 };
 paginationRender();
 
 const handleSearch = async () => {
-    const currentSearchText = searchInput.value;
-    console.log("currentSearchText",currentSearchText)
-    await searchBook(currentSearchText);
-    const foundBook = recoList.filter(searchText => 
-        searchText.item.recomauthor["#text"].includes(currentSearchText) ||
-        searchText.item.recomtitle["#text"].includes(currentSearchText) ||
-        searchText.item.recompublisher["#text"].includes(currentSearchText) 
-        );
-    console.log("foundBook", foundBook);
-    modalRender(foundBook);
-    return foundBook;
+  const currentSearchText = searchInput.value;
+  console.log("currentSearchText", currentSearchText);
+  await searchBook(currentSearchText);
+  const foundBook = recoList.filter(
+    (searchText) =>
+      searchText.item.recomauthor["#text"].includes(currentSearchText) ||
+      searchText.item.recomtitle["#text"].includes(currentSearchText) ||
+      searchText.item.recompublisher["#text"].includes(currentSearchText)
+  );
+  console.log("foundBook", foundBook);
+  modalRender(foundBook);
+  return foundBook;
 };
 
 // XML을 JSON으로 변환하는 함수
