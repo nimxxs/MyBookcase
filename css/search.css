@@ -77,6 +77,8 @@
 .page_item {
     padding: 20px 10px;
 }
-.page_item:active {
-    color: brown;
+.page_item:hover,
+.page_item:active,
+.page_item:visited {
+    background-color: rgb(255, 237, 72);
 }
