@@ -78,7 +78,7 @@ const nextToPage = () => {
 const getCategory = async (category) => {
     const encodedCategory = encodeURIComponent(category);
     const url = `https://www.nl.go.kr/NL/search/openApi/search.do?key=1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212&kwd=${encodedCategory}`;
-    window.open(url, '_blank');
+    window.open(url, '_self');
 };
 
 getLibrary();
