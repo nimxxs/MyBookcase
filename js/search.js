@@ -7,7 +7,8 @@
 //      -> includes.js에서 initSearch가 매개변수 callback으로 작동함.
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
-const API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
+const API_KEY =
+  "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");
@@ -31,19 +32,6 @@ function initSearch() {
     // searchInput.value = "";
   });
 
-//   const handleSearch = async () => {
-//     const currentSearchText = searchInput.value;
-//     console.log("currentSearchText",currentSearchText)
-//     await searchBook(currentSearchText);
-//     const foundBook = recoList.filter(searchText => 
-//         searchText.item.recomauthor["#text"].includes(currentSearchText) ||
-//         searchText.item.recomtitle["#text"].includes(currentSearchText) ||
-//         searchText.item.recompublisher["#text"].includes(currentSearchText) 
-//         );
-//     console.log("foundBook", foundBook);
-//     modalRender(foundBook)
-//   };
-
   // 모달창 띄우기
   searchContainer.addEventListener("submit", (event) => {
     event.preventDefault(); // 폼 제출 막기
@@ -58,11 +46,6 @@ function initSearch() {
             modal.classList.remove("hidden");
         }
     }
-        //     modalRender(foundBook);
-    // if (event.key === "Enter") {
-    //   modal.classList.remove("hidden");
-    //   handleSearch();
-    // }
   });
   closeButton.addEventListener("click", () => {
     modal.classList.add("hidden");
@@ -109,7 +92,7 @@ const modalRender = (recoList) => {
         </article>`
     )
     .join("");
-    document.getElementById("modal_gird").innerHTML = modalHTML;
+  document.getElementById("modal_gird").innerHTML = modalHTML;
 };
 
 // modalRender (isbn api)
@@ -216,9 +199,8 @@ const paginationRender = () => {
         </a>
     </li>`;
 
-    for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML +=
-        `<li class="page_item" onclick="moveToPage(${i})">
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page_item" onclick="moveToPage(${i})">
             <a class="page-link">${i}</a>
         </li>`;
   }
@@ -255,7 +237,6 @@ const nextToPage = () => {
 };
 paginationRender();
 
-// searchBook(currentSearchText);
 const handleSearch = async () => {
     const currentSearchText = searchInput.value;
     console.log("currentSearchText",currentSearchText)
@@ -272,38 +253,40 @@ const handleSearch = async () => {
 
 // XML을 JSON으로 변환하는 함수
 function xmlToJson(xml) {
-// Create the return object
-var obj = {};
-if (xml.nodeType == 1) { // element node
+  // Create the return object
+  var obj = {};
+  if (xml.nodeType == 1) {
+    // element node
     // do attributes
     if (xml.attributes.length > 0) {
-        obj["@attributes"] = {};
-        for (var j = 0; j < xml.attributes.length; j++) {
-            var attribute = xml.attributes.item(j);
-            obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-        }
+      obj["@attributes"] = {};
+      for (var j = 0; j < xml.attributes.length; j++) {
+        var attribute = xml.attributes.item(j);
+        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+      }
     }
-} else if (xml.nodeType == 3) { // text node
+  } else if (xml.nodeType == 3) {
+    // text node
     obj = xml.nodeValue;
-}
-// do children
-if (xml.hasChildNodes()) {
+  }
+  // do children
+  if (xml.hasChildNodes()) {
     for (var i = 0; i < xml.childNodes.length; i++) {
-        var item = xml.childNodes.item(i);
-        var nodeName = item.nodeName;
-        if (typeof obj[nodeName] == "undefined") {
-            obj[nodeName] = xmlToJson(item);
-        } else {
-            if (typeof obj[nodeName].push == "undefined") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-            }
-            obj[nodeName].push(xmlToJson(item));
+      var item = xml.childNodes.item(i);
+      var nodeName = item.nodeName;
+      if (typeof obj[nodeName] == "undefined") {
+        obj[nodeName] = xmlToJson(item);
+      } else {
+        if (typeof obj[nodeName].push == "undefined") {
+          var old = obj[nodeName];
+          obj[nodeName] = [];
+          obj[nodeName].push(old);
         }
+        obj[nodeName].push(xmlToJson(item));
+      }
     }
-}
-return obj;
+  }
+  return obj;
 }
 
 // searchBook (isbn api)
@@ -319,7 +302,7 @@ return obj;
 
 //     const bookTitle = "성인행동치료 사례집";
 //     const foundBook = isbnList.find(book => book.TITLE === bookTitle);
-//     console.log("foundBook",foundBook); 
+//     console.log("foundBook",foundBook);
 
 //     modalRender();
 //     paginationRender();

@@ -232,4 +232,20 @@ includeHTML(function () {
     quote.textContent = "오늘의 명언 찾는중.......";
     getSay();
   });
+
+  // 처음으로 돌아가기 버튼
+  let booklistFirst = document.querySelectorAll(".booklist-first");
+  booklistFirst.forEach((e) => {
+    e.addEventListener("click", () => {
+      if (e.id == "all-booklist") {
+        booklistSliderAll.style.transform = "translateX(0)";
+        pageSize = 6;
+        moverSlide = 0;
+      } else if (e.id == "td-booklist") {
+        booklistSliderToday.style.transform = "translateX(0)";
+        TmoverSlide = 0;
+        TpageSize = 6;
+      }
+    });
+  });
 });

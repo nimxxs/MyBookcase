@@ -272,6 +272,24 @@
 .booklist-bt:active {
   opacity: 0.8;
 }
+.booklist-first {
+  color: #0066cc;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.booklist-first::before {
+  content: "<";
+  margin-right: 6px;
+}
+.booklist-first:active {
+  opacity: 0.8;
+}
+.booklist-first:hover span {
+  text-decoration: underline;
+}
 @media screen and (max-width: 1325px) {
   /* .main {
     background-color: rgb(212, 230, 185);

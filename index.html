@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/Popy.png" />
     <title>My Bookcase</title>
     <link rel="stylesheet" href="../css/search.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -13,12 +13,16 @@
     <div class="modal hidden">
       <div class="modal_overlay"></div>
       <div class="modal_content">
-        <div class="modal_gird" id="modal_gird"></div>
-        <nav class="pagination_content">
-          <ul class="pagination" id="pagination"></ul>
-        </nav>
+        <header class="modal-header">
+          <button id="closeButton"><span>검색 결과</span></button>
+        </header>
+        <div class="modal-body">
+          <div class="modal_gird" id="modal_gird"></div>
+          <nav class="pagination_content">
+            <ul class="pagination" id="pagination"></ul>
+          </nav>
+        </div>
       </div>
-      <button id="closeButton">X</button>
     </div>
     <!-- <button id="modalButton">Open Modal</button>
     <div class="modal hidden">
