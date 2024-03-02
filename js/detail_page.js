@@ -90,7 +90,7 @@ let wishFunction = () => {
 
 
     // let wishISBN = ISBN;
-    let wishISBN = "8984993727";
+    let wishISBN = "9791196777050";
     conditionValue = !conditionValue;
 
     // Package both values into an object

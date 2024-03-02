@@ -263,8 +263,28 @@ function deleteBook(isbn) {
         matchBookList.splice(index, 1);
         // 변경된 matchBookList로 UI를 다시 렌더링합니다.
         render();
+
+        // localStorage에서 저장된 데이터 불러오기
+        let storedData = localStorage.getItem('wishData');
+        if (storedData) {
+            // 저장된 데이터를 객체 배열로 변환
+            let allData = JSON.parse(storedData);
+            console.log("삭제 예정 데이터셋: ", allData)
+
+            // 해당 ISBN 코드와 일치하는 객체를 찾아서 제거
+            let updatedData = allData.filter(book => book.isbn !== isbn);
+            console.log("updatedData", updatedData)
+
+            // 새로운 데이터를 localStorage에 저장
+            localStorage.setItem('wishData', JSON.stringify(updatedData));
+
+            console.log(`Book with ISBN ${isbn} deleted successfully from localStorage.`);
+        } else {
+            console.log("No data found in localStorage.");
+        }
     }
 }
+
 
 function popWindow(ISBN) {
     let params = `
