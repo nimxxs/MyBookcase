@@ -31,6 +31,7 @@ function initSearch() {
         // searchInput.value = "";
     });
 
+
     // 모달창 띄우기
     searchContainer.addEventListener("submit", (event) => {
         event.preventDefault(); // 폼 제출 막기
@@ -55,6 +56,7 @@ function initSearch() {
 };
 
 
+
 // 전역스코프
 // let totalResult = 0;
 let page = 1; // 1페이지 2페이지 3페이지..
@@ -66,6 +68,7 @@ let pageGroup = 1;
 
 // modalRender (사서추천 api)
 const modalRender = (recoList) => {
+
     // 시작 인덱스
     const startPage = (page - 1) * pageSize;
     // 끝 인덱스
@@ -75,9 +78,10 @@ const modalRender = (recoList) => {
     console.log("startPage", startPage, endPage)
     console.log("currentPageList", currentPageList)
 
-    const modalHTML = currentPageList
+
+  const modalHTML = currentPageList
     .map(
-    (recoItem) =>
+      (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
                 <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
@@ -113,25 +117,27 @@ const modalRender = (recoList) => {
 // searchBook (사서추천 api)
 
 const searchBook = async (searchText) => {
-    const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`);
-    const response = await fetch(url);
-    const textData = await response.text();
+  const url = new URL(
+    `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`
+  );
+  const response = await fetch(url);
+  const textData = await response.text();
 
-    // XML을 JSON으로 변환
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(textData, "text/xml");
+  // XML을 JSON으로 변환
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(textData, "text/xml");
 
-    // JSON으로 변환
-    const jsonResult = xmlToJson(xmlDoc);
-    totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
-    console.log("totalPages", totalPages);
+  // JSON으로 변환
+  const jsonResult = xmlToJson(xmlDoc);
+  totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
+  console.log("totalPages", totalPages);
 
-    recoList = jsonResult.channel.list;
-    // console.log("recoList", recoList);
+  recoList = jsonResult.channel.list;
+  // console.log("recoList", recoList);
 
-    modalRender(recoList);
-    paginationRender();
-}
+  modalRender(recoList);
+  paginationRender();
+};
 
 // modalRender (검색 api)
 // const modalRender = () => {
@@ -177,6 +183,7 @@ const searchBook = async (searchText) => {
 // };
 
 // 페이지네이션
+
 const paginationRender = (totalItems = recoList.length) => {
     const totalPages = Math.ceil(totalItems / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
@@ -184,6 +191,7 @@ const paginationRender = (totalItems = recoList.length) => {
     let lastPage = Math.min(pageGroup * groupSize, totalPages);
     let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
     console.log("firstPage", firstPage, lastPage)
+
 
     let paginationHTML = ``;
     // 이전 버튼 추가
@@ -198,6 +206,7 @@ const paginationRender = (totalItems = recoList.length) => {
                 <a class="page-link">${i}</a>
             </li>`;
     }
+
 
     // 다음 버튼 추가
     if (page < totalPages) {
@@ -215,9 +224,11 @@ const paginationRender = (totalItems = recoList.length) => {
     if (nextPageElement) {
         nextPageElement.addEventListener("click", nextToPage);
     }
+
 };
 
 const handleSearch = async () => {
+
     page = 1;
     const currentSearchText = searchInput.value;
     console.log("currentSearchText",currentSearchText)
@@ -268,6 +279,7 @@ const setActivePage = (pageNum) => {
             pageItem.classList.add("active");
         }
     });
+
 };
 
 paginationRender();

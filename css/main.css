@@ -294,6 +294,63 @@
 .booklist-first:hover span {
   text-decoration: underline;
 }
+/* intro */
+.intro {
+  height: 250px;
+  perspective: 2000px;
+  background: linear-gradient(to bottom, #ffffff, #00000000);
+}
+.intro-img-box {
+  margin: auto;
+  width: fit-content;
+  transition: all 2s ease;
+  /* transform: rotate3d(1, 0, 0, -60deg) translateY(-174px); */
+  /* transform: rotate3d(1, 0, 0, -60deg) translateY(-700px); */
+  /* transform: rotate3d(1, 0, 0, -60deg) translate3d(0, -174px, -100px); */
+
+  /* box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2); */
+  position: relative;
+  animation-name: intro;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.intro-img-box:hover {
+  animation-play-state: running;
+}
+.intro-img-box::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 80px;
+  bottom: -20px;
+
+  background-color: rgb(133, 133, 133);
+  filter: blur(30px);
+}
+.intro-img {
+  width: 500px;
+  border: 10px solid #b46836;
+  box-sizing: content-box;
+  border-radius: 4px;
+}
+@keyframes intro {
+  0% {
+    transform: rotate3d(1, 0, 0, -60deg) translate3d(0, 0px, -500px);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, -60deg) translate3d(0, 0px, -115px);
+  }
+}
+/* @keyframes intro {
+  0% {
+    transform: rotate3d(1, 0, 0, -60deg) translate3d(0, 0px, -500px);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, -60deg) translate3d(0, 0px, -115px);
+  }
+} */
 @media screen and (max-width: 1325px) {
   /* .main {
     background-color: rgb(212, 230, 185);
