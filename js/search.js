@@ -29,7 +29,7 @@ function initSearch() {
     searchInput.style.border = "none";
     searchInput.style.boxShadow = "none";
     searchInput.style.backgroundColor = "#ffffff6c";
-    searchInput.value = "";
+    // searchInput.value = "";
   });
 
   const handleSearch = () => {
@@ -82,35 +82,30 @@ const modalRender = () => {
                  출판사 : ${
                    // 출판사
                    searchItem.pubInfo
-                 }  
+                 }
                  발행년도 :
                  ${
                    // 발행년도
                    searchItem.pubYearInfo
-                 }  
+                 }
                 </p>
                 <p>
                 분류기호 :
                 ${
                   // 분류기호
                   searchItem.kdcCode1s
-                }    
+                }
                 -
                 ${
                   // 분류기호
                   searchItem.kdcName1s
-                }    
-            
+                }
                 </p>
-                
-      
-
             </div>
         </article>
        `
     )
     .join("");
-
   document.getElementById("modal_gird").innerHTML = modalHTML;
 };
 
