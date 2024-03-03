@@ -64,12 +64,12 @@ ol {
     display: inline-block;
     margin-right: 5px;
 }
-.listPage-item.active .listPage-link{
+.listPage-item.active .page-link{
     background-color: burlywood;
     color: white;
     border-color: burlywood;
 }
-.listPage-link{
+.page-link{
     color:#8c8c8c;
 }
 .listPage-item :hover{
