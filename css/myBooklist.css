@@ -225,6 +225,10 @@ body {
   .booklist_explain #first div:last-child {
     margin-left: 7px;
   }
+
+  #loading_text {
+    font-size: 2em;
+  }
 }
 
 @media (max-width: 768px) {
@@ -244,5 +248,9 @@ body {
     justify-content: center;
     align-items: center;
     margin-right: 0;
+  }
+
+  #loading_text {
+    font-size: 2.5em;
   }
 }
