@@ -258,6 +258,15 @@ function deleteBook(isbn) {
             let updatedData = allData.filter(book => book.isbn !== isbn);
             console.log("updatedData", updatedData)
 
+            if (updatedData.length == 0) {
+                const nobookHTML = `
+                <div class="booksArea">
+                    <div id="loading_text">찜한 책이 없어요!</div>
+                </div>
+                `
+                document.querySelector(".booksArea").innerHTML = nobookHTML
+            }
+
             // 새로운 데이터를 localStorage에 저장
             localStorage.setItem('wishData', JSON.stringify(updatedData));
 
@@ -268,7 +277,7 @@ function deleteBook(isbn) {
     }
 }
 
-let ISBN = book.EA_ISBN
+// let ISBN = book.EA_ISBN
 
 function popWindow(ISBN) {
     let params = `
@@ -297,7 +306,7 @@ window.addEventListener("message", (e) => {
     if (e.data && e.data.isbn && e.data.wishCondition) {
         console.log("Received from child window:", e.data)
     }
-}
+})
 
 // 로컬 스토리지에서 데이터 읽어오기
 let storedData = localStorage.getItem('wishData');
