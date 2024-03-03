@@ -1,4 +1,4 @@
-const API_KEY = 'ddad4259b659af428252ec826266babcb91d3bedc9d03f0dc7c703a28c0100b3';
+const API_KEY = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
 
 let isbnList = [];
 let totalResults = 0;
@@ -14,7 +14,7 @@ const getLibrary = async () => {
     isbnList = data.docs;
     totalResults = data.TOTAL_COUNT; // TOTAL_COUNT 필드 값을 totalResults로 사용
     render();
-    paginationRender();
+    listPaginationRender();
     console.log("totalResults:", totalResults); // totalResults 출력
 };
 
@@ -22,10 +22,8 @@ const render = () => {
     const newsHTML = isbnList
         .map(news => `
             <div class="row">
-                <div class="booklist-img-box">
-                    <img class="booklist-img" src="${news.TITLE_URL || "../images/bookskin.png" onclick="popWindow()"}" alt="책 표지" />
-                </div>
-                <ol onclick="popWindow()">${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
+                <img class="booklist-img" src="${news.TITLE_URL || "../images/bookskin.png"}" alt="책 표지" />
+                <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
                 <ul>${news.PRE_PRICE}</ul>
             </div>`).join('');
@@ -33,7 +31,7 @@ const render = () => {
     document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-const paginationRender = () => {
+const listPaginationRender = () => {
     const totalPages = Math.ceil(totalResults / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
     let lastPage = pageGroup * groupSize;
@@ -42,19 +40,19 @@ const paginationRender = () => {
     }
     const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
 
-    let paginationHTML = `
-        <li class="page-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
-        <li class="page-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
+    let listPaginationHTML = `
+        <li class="listPage-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
+        <li class="listPage-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
 
     for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+        listPaginationHTML += `<li class="listPage-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
     }
 
-    paginationHTML += `
-        <li class="page-item" onclick="nextToPage()"><a class="page-link">&gt;</a></li>
-        <li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link">&gt;&gt;</a></li>`;
+    listPaginationHTML += `
+        <li class="listPage-item" onclick="nextToPage()"><a class="page-link">&gt;</a></li>
+        <li class="listPage-item" onclick="moveToPage(${totalPages})"><a class="page-link">&gt;&gt;</a></li>`;
 
-    document.querySelector(".pagination").innerHTML = paginationHTML;
+    document.querySelector(".listPagination").innerHTML = listPaginationHTML;
 };
 
 const moveToPage = (pageNum) => {
