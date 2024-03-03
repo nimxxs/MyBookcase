@@ -8,7 +8,7 @@ function getQueryParam(key) {
 
 // Use the function to get the ISBN value from the query string
 let ISBN = getQueryParam('isbn');
-ISBN = "9788996586043"
+// ISBN = "9788996586043"
 
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
