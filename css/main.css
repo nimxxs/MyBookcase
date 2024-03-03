@@ -4,11 +4,13 @@
   list-style-type: none;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .main {
   width: 100vw;
   background-color: #f5f5f7;
   padding-bottom: 100px;
 }
+
 /* category */
 .category {
   height: 45px;
@@ -21,6 +23,7 @@
   top: 100px;
   z-index: 100;
 }
+
 .category-list {
   max-width: 1325px;
 
@@ -31,8 +34,9 @@
   width: fit-content;
   align-items: center;
 }
+
 /* sojin 추가부분 */
-.category-item a{
+.category-item a {
   text-decoration: none;
   color: #6e6e73;
 }
@@ -49,6 +53,7 @@
   color: #6e6e73;
   transition: color 0.3s ease;
 }
+
 .category-item:nth-child(n + 2)::before {
   content: "";
   position: absolute;
@@ -59,10 +64,12 @@
   right: auto;
   margin: auto;
 }
+
 .category-item:hover {
   text-decoration: underline;
   color: #1d1d1f;
 }
+
 /* qoute-randomizer */
 .quote-randomizer {
   width: fit-content;
@@ -73,11 +80,13 @@
   flex-direction: column;
   align-items: center;
 }
+
 .quote-title-box {
   display: flex;
   width: fit-content;
   position: relative;
 }
+
 .quote-title {
   font-size: 28px;
   font-size: 40px;
@@ -87,6 +96,7 @@
   color: #1d1d1f;
   margin-bottom: 10px;
 }
+
 .quote-bt {
   background: none;
   border: none;
@@ -101,6 +111,7 @@
   margin: auto;
   height: 20px;
 }
+
 .quote-bt img {
   width: 16px;
 }
@@ -108,9 +119,11 @@
 .quote-bt:hover {
   transform: rotate(180deg);
 }
+
 .quote-bt:active {
   opacity: 0.8;
 }
+
 .quote-randomizer-phrase {
   text-align: center;
   margin-top: 8px;
@@ -118,6 +131,7 @@
   font-size: 22px;
   position: relative;
 }
+
 .quote-randomizer-phrase::after {
   content: '"';
   position: absolute;
@@ -125,6 +139,7 @@
   right: -12px;
   font-size: 16px;
 }
+
 .quote-randomizer-phrase::before {
   content: '"';
   position: absolute;
@@ -142,6 +157,7 @@
   flex-direction: column;
   margin: auto;
 }
+
 .booklist-article {
   width: 100%;
   background-color: #fff;
@@ -152,9 +168,11 @@
   min-height: 400px;
   transition: all 0.3s ease;
 }
+
 .booklist-header {
   border-bottom: 1px solid #999;
 }
+
 .booklist-headline {
   font-size: 22px;
   color: #6e6e73;
@@ -163,9 +181,11 @@
   width: fit-content;
   transition: all 0.3s ease;
 }
+
 .booklist-headline:hover {
   color: #1d1d1f;
 }
+
 .booklist-headline::after {
   content: ">";
   font-weight: normal;
@@ -174,9 +194,11 @@
   transition: margin 0.3s ease;
   font-size: 18px;
 }
+
 .booklist-headline:hover::after {
   margin-left: 10px;
 }
+
 .booklist-list {
   width: calc(1325px - (85px * 2));
   overflow: hidden;
@@ -195,6 +217,7 @@
   width: 170px;
   cursor: pointer;
 }
+
 .booklist-img-box {
   width: 100%;
   height: 270px;
@@ -204,6 +227,7 @@
   margin-top: 10px;
   position: relative;
 }
+
 .booklist-sub-title {
   font-size: 16px;
   position: absolute;
@@ -220,6 +244,7 @@
   /* white-space: normal;
   word-break: keep-all; */
 }
+
 .booklist-sub-author {
   font-size: 14px;
   position: absolute;
@@ -234,26 +259,31 @@
   padding: 0 25px;
   box-sizing: border-box;
 }
+
 .booklist-img {
   width: 100%;
   transition: all 0.3s ease;
   border-radius: 3px;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .booklist-item:hover .booklist-img {
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
 }
+
 .booklist-title {
   font-size: 16px;
   color: #1d1d1f;
   margin-bottom: 2px;
   font-weight: normal;
 }
+
 .booklist-author {
   font-size: 13px;
   color: #6e6e73;
 }
+
 .bookmark-icon {
   position: absolute;
   left: 60px;
@@ -271,6 +301,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .booklist-bt {
   background: none;
   border: none;
@@ -279,13 +310,16 @@
   z-index: 99;
   transition: transform 0.3s ease;
 }
+
 .booklist-bt:hover {
   /* opacity: 0.8; */
   transform: scale(0.9);
 }
+
 .booklist-bt:active {
   opacity: 0.8;
 }
+
 .booklist-first {
   color: #0066cc;
   background: none;
@@ -294,16 +328,20 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
 .booklist-first::before {
   content: "<";
   margin-right: 6px;
 }
+
 .booklist-first:active {
   opacity: 0.8;
 }
+
 .booklist-first:hover span {
   text-decoration: underline;
 }
+
 /* intro */
 .intro {
   height: 250px;
@@ -311,6 +349,7 @@
   background: linear-gradient(to bottom, #ffffff, #00000000);
   /* background-color: orange; */
 }
+
 .intro-img-box {
   margin: auto;
   width: fit-content;
@@ -321,18 +360,21 @@
 }
 
 .intro-img {
-  width: 1400px;
+  width: 90vw;
 }
+
 @keyframes intro {
   0% {
     transform: translate3d(0, -220px, 30px) scale(1);
   }
+
   100% {
     transform: translate3d(0, 0px, 30px) scale(1);
   }
 }
 
 @media screen and (max-width: 1325px) {
+
   /* .main {
     background-color: rgb(212, 230, 185);
   } */
@@ -340,6 +382,7 @@
     padding: 0 20px;
     box-sizing: border-box;
   }
+
   .booklist-list {
     width: 100%;
   }
