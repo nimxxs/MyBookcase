@@ -12,7 +12,11 @@ body {
 .header {
   width: 100vw;
   height: 100px;
-  background-color: #7e5539;
+  background-color: #78959e;
+  background-color: #789e90;
+  background-color: #7e9e78;
+  background-color: #6ba361;
+
   position: fixed;
   top: 0;
   z-index: 101;
@@ -70,7 +74,8 @@ body {
 .footer {
   width: 100vw;
   height: 144px;
-  background-color: #7e5539;
+  background-color: #6ba361;
+  /* background-color: #1d1d1f; */
   border-top: 1px solid #dadada;
 }
 

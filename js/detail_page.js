@@ -19,7 +19,7 @@ let url2 = ""
 let bookInfo = []
 let detailURL = ""
 
-let targetBookDetail = async()=>{
+let targetBookDetail = async () => {
     //ISBN = "9791196777050"
     //ISBN = "8984993727"
     //ISBN = "9788941241256"
@@ -45,7 +45,7 @@ let targetBookDetail = async()=>{
 
 }
 
-let loadTopSection = ()=>{
+let loadTopSection = () => {
     document.getElementById("book-title").innerHTML = bookInfo.TITLE
 }
 
@@ -70,7 +70,7 @@ function popWindow() {
         left=(window.screen.width / 2) - (width/2),
         top=(window.screen.height / 4)
         `;
-    window.open("detail_page.html", "a", params); 
+    window.open("detail_page.html", "a", params);
 }
 
 
@@ -119,7 +119,7 @@ let wishFunction = ()=>{
     }
 
     // 누적된 데이터를 다시 저장
-    localStorage.setItem('wishData', JSON.stringify(existingData));
+    localStorage.setItem('wishData', JSON.stringify(existingData));
 
     // Log action based on conditionValue
     if (conditionValue) {
