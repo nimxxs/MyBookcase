@@ -171,8 +171,8 @@ includeHTML(function () {
     const TbooklistItems = document.querySelectorAll(".tbooklist-item");
     TbooklistItems.forEach((item, index) => {
       item.addEventListener("click", () => {
-        // console.log(todyBookList);
-        popWindow(todyBookList[index].item.recomisbn["#text"]);
+        console.log(todyBookList);
+        popWindow(todyBookList[index].itetm.recomisbn["#text"]);
         console.log(112131323113133113231, todyBookList[index].item);
       });
     });
