@@ -5,9 +5,10 @@
 /* TOP */
 
 .top-info{
-    background-color: red;
+    background-color: none;
     padding: 15px;
     border-left-width: 3px;
+    border-bottom: 1px solid black;
     display: flex;
 }
 
@@ -27,7 +28,7 @@
 /* MIDDLE */
 
 .main-info{
-    background-color: green;
+    background-color: none;
     display: flex;
     
 }
@@ -43,6 +44,7 @@
 .book-details{
     background-color: bisque;
     margin: 1em;
+    text-indent: 1em;
     width: 600px
 
 }

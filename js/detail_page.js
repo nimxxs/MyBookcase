@@ -39,6 +39,8 @@ let targetBookDetail = async () => {
     console.log("ddd", detailURL)
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
+    showBookDetails(bookInfo)
+
     //localStorage.clear("wishData")
     console.log("localStorage(wishData):", JSON.parse(localStorage.getItem("wishData")));
 }
@@ -82,6 +84,17 @@ function showBookCover(book_title) {
     else { document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>` }
 }
 
+function showBookDetails (bookInfo){
+    document.querySelector(".book-details").innerHTML = `
+    <div>제목: ${bookInfo.TITLE} </div>
+    <div>저자: ${bookInfo.AUTHOR} </div>
+    <div>출판사: ${bookInfo.PUBLISHER} <button onclick="toPublisherURL()" title="국립중앙도서관 링크"><img width="15px" text-align="center" src="/images/diagonal-arrow.svg" /></button></div>
+    <div>출시일: ${bookInfo.REAL_PUBLISH_DATE} </div>
+    <div>쪽 수: ${bookInfo.PAGE} </div>
+    <div>ISBN: ${bookInfo.EA_ISBN} </div>
+    `
+}
+
 let conditionValue = false
 
 // 이전에 저장된 데이터 읽어오기
@@ -93,7 +106,13 @@ if (!Array.isArray(existingData)) {
     existingData = [];
 }
 
+<<<<<<< HEAD
+
+
+let wishFunction = ()=>{
+=======
 let wishFunction = () => {
+>>>>>>> 0884f96f6783222232702d6fd23648c705014a0a
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
@@ -133,3 +152,6 @@ let toLibFunction = () => {
     window.open(`https://www.nl.go.kr${detailURL}`, "", "")
 }
 
+let toPublisherURL = ()=>{
+    window.open(`https://${bookInfo.PUBLISHER_URL}`)
+}
