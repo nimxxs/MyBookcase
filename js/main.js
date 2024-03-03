@@ -114,16 +114,13 @@ includeHTML(function () {
         (i) => `
     <li class="booklist-item rbooklist-item ">
         <div class="booklist-img-box">
-            <img class="booklist-img" src="${
-              i.TITLE_URL || "../images/bookskin.png"
-            }" alt="책 표지" />
+            <img class="booklist-img" src="${i.TITLE_URL || "../images/bookskin.png"
+          }" alt="책 표지" />
             
-            <span class="booklist-sub-title">${
-              i.TITLE_URL == "" ? i.TITLE : ""
-            }</span>
-            <span class="booklist-sub-author"> ${
-              i.TITLE_URL == "" ? i.AUTHOR : ""
-            }</span>
+            <span class="booklist-sub-title">${i.TITLE_URL == "" ? i.TITLE : ""
+          }</span>
+            <span class="booklist-sub-author"> ${i.TITLE_URL == "" ? i.AUTHOR : ""
+          }</span>
         </div>
         <h3 class="booklist-title">${i.TITLE}</h3>
         <span class="booklist-author">${i.AUTHOR} 지음</span>
@@ -150,25 +147,21 @@ includeHTML(function () {
         return `
           <li class="booklist-item tbooklist-item">
               <div class="booklist-img-box">
-                  <img class="booklist-img"  src="${
-                    i.item.recomfilepath["#text"] || "../images/bookskin.png"
-                  }" alt="책 표지" />
+                  <img class="booklist-img"  src="${i.item.recomfilepath["#text"] || "../images/bookskin.png"
+          }" alt="책 표지" />
                   
-                  <span class="booklist-sub-title">${
-                    i.item.mokchFilePath["#text"] == ""
-                      ? i.item.recomtitle[".text"]
-                      : ""
-                  }</span>
-                  <span class="booklist-sub-author"> ${
-                    i.item.mokchFilePath["#text"] == ""
-                      ? i.item.recomauthor["#text"]
-                      : ""
-                  }</span>
+                  <span class="booklist-sub-title">${i.item.mokchFilePath["#text"] == ""
+            ? i.item.recomtitle[".text"]
+            : ""
+          }</span>
+                  <span class="booklist-sub-author"> ${i.item.mokchFilePath["#text"] == ""
+            ? i.item.recomauthor["#text"]
+            : ""
+          }</span>
               </div>
               <h3 class="booklist-title">${i.item.recomtitle["#text"]}</h3>
-              <span class="booklist-author">${
-                i.item.recomauthor["#text"]
-              } 지음</span>
+              <span class="booklist-author">${i.item.recomauthor["#text"]
+          } 지음</span>
           </li>
         `;
       })
@@ -178,8 +171,8 @@ includeHTML(function () {
     const TbooklistItems = document.querySelectorAll(".tbooklist-item");
     TbooklistItems.forEach((item, index) => {
       item.addEventListener("click", () => {
-        // console.log(todyBookList);
-        popWindow(todyBookList[index].item.recomisbn["#text"]);
+        console.log(todyBookList);
+        popWindow(todyBookList[index].itetm.recomisbn["#text"]);
         console.log(112131323113133113231, todyBookList[index].item);
       });
     });
