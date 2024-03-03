@@ -268,7 +268,7 @@ function deleteBook(isbn) {
     }
 }
 
-let ISBN = book.EA_ISBN
+// let ISBN = book.EA_ISBN
 
 function popWindow(ISBN) {
     let params = `
@@ -297,7 +297,7 @@ window.addEventListener("message", (e) => {
     if (e.data && e.data.isbn && e.data.wishCondition) {
         console.log("Received from child window:", e.data)
     }
-}
+})
 
 // 로컬 스토리지에서 데이터 읽어오기
 let storedData = localStorage.getItem('wishData');
