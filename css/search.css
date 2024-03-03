@@ -201,7 +201,7 @@
 .page_item.active a {
   color: white;
 }
-.page_item:hover{
+.page_item:hover {
   cursor: pointer;
   color: white;
   background-color: #6ba361a1;
