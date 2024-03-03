@@ -17,6 +17,7 @@ console.log("ISBN from parent", ISBN);
 let url = ""
 let url2 = ""
 let bookInfo = []
+let detailURL = ""
 
 let targetBookDetail = async()=>{
     //ISBN = "9791196777050"
@@ -34,6 +35,8 @@ let targetBookDetail = async()=>{
     const data2 = await response2.json()
     console.log("소장자료API (data2)", data2)
 
+    detailURL = data2.result[0].detailLink
+    console.log("ddd", detailURL)
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
     //localStorage.clear("wishData")
@@ -129,6 +132,6 @@ let wishFunction = ()=>{
 }
 
 let toLibFunction = ()=>{
-    window.open("https://www.naver.com","","")
+    window.open(`https://www.nl.go.kr${detailURL}`,"","")
 }
 
