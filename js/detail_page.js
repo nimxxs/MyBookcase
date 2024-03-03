@@ -2,8 +2,8 @@ const API_KEY = `bbaa351bbf88c6e2f61f5d9f2e71fbdf67c4e01b279c7fe537b1c97a2417e58
 
 // Function to parse query string and return value for specified key
 function getQueryParam(key) {
-  let queryParams = new URLSearchParams(window.location.search);
-  return queryParams.get(key);
+    let queryParams = new URLSearchParams(window.location.search);
+    return queryParams.get(key);
 }
 
 // Use the function to get the ISBN value from the query string
@@ -27,7 +27,7 @@ let existingData = storedData ? JSON.parse(storedData) : [];
 
 // 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
 if (!Array.isArray(existingData)) {
-  existingData = [];
+    existingData = [];
 }
 
 let targetBookDetail = async () => {
@@ -52,14 +52,14 @@ let targetBookDetail = async () => {
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
     showBookDetails(bookInfo)
-    renderHeart(ISBN)
+    //renderHeart(ISBN)
     //localStorage.clear("wishData")
     console.log("localStorage(wishData):", JSON.parse(localStorage.getItem("wishData")));
 }
 
 
 let loadTopSection = () => {
-  document.getElementById("book-title").innerHTML = bookInfo.TITLE;
+    document.getElementById("book-title").innerHTML = bookInfo.TITLE;
 };
 
 // // When the user clicks on <div>, open the popup
@@ -70,7 +70,7 @@ let loadTopSection = () => {
 
 // open new window for detailed info
 function popWindow() {
-  let params = `
+    let params = `
         popup=no,
         scrollbars=yes,
         resizable=yes,
@@ -83,52 +83,42 @@ function popWindow() {
         left=(window.screen.width / 2) - (width/2),
         top=(window.screen.height / 4)
         `;
-  window.open("detail_page.html", "a", params);
+    window.open("detail_page.html", "a", params);
 }
 
 targetBookDetail();
 
 function showBookCover(book_title) {
-  console.log("ISBN API bookcover URL", book_title);
-  if (book_title == "") {
-    document.querySelector(
-      ".book-cover"
-    ).innerHTML = `<img src="../images/bookskin.png"/>`;
-  } else {
-    document.querySelector(
-      ".book-cover"
-    ).innerHTML = `<img src="${book_title}"/>`;
-  }
+    console.log("ISBN API bookcover URL", book_title);
+    if (book_title == "") {
+        document.querySelector(
+            ".book-cover"
+        ).innerHTML = `<img src="../images/bookskin.png"/>`;
+    } else {
+        document.querySelector(
+            ".book-cover"
+        ).innerHTML = `<img src="${book_title}"/>`;
+    }
 }
 
 function showBookDetails(bookInfo) {
-  document.querySelector(".book-details").innerHTML = `
+    document.querySelector(".book-details").innerHTML = `
     <div class="details-texts details-texts-title">제목: ${bookInfo.TITLE} 
-    <button
-    class="wishbutton"
-    onclick="toLibFunction()"
-    title="국립중앙도서관 링크"
-  >
+    <button class="wishbutton" onclick="toLibFunction()" title="국립중앙도서관 링크">
     <img width="15px" text-align="center" src="../images/link.svg" />
   </button>
     </div>
-    <div class="details-texts details-texts-author">저자: ${
-      bookInfo.AUTHOR
-    } </div>
-    <div class="details-texts details-texts-publisher">출판사: ${
-      bookInfo.PUBLISHER
-    } <button onclick="toPublisherURL()" title="국립중앙도서관 링크"><img width="15px" text-align="center" src="../images/link.svg"" /></button></div>
-    <div class="details-texts details-texts-date">출시일: ${publishDate(
-      bookInfo
-    )} </div>
-    <div class="details-texts details-texts-pages">쪽 수: ${findPage(
-      bookInfo
-    )} </div>
-    <div class="details-texts details-texts-isbn">ISBN: ${
-      bookInfo.EA_ISBN
-    } </div>
-    
-    
+    <div class="details-texts details-texts-author">저자: ${bookInfo.AUTHOR
+        } </div>
+    <div class="details-texts details-texts-publisher">출판사: ${bookInfo.PUBLISHER
+        } <button onclick="toPublisherURL()" title="국립중앙도서관 링크"><img width="15px" text-align="center" src="../images/link.svg"" /></button></div>
+    <div class="details-texts details-texts-date">출시일: ${publishDate(bookInfo)} </div>
+    <div class="details-texts details-texts-pages">쪽 수: ${findPage(bookInfo)} </div>
+    <div class="details-texts details-texts-isbn">ISBN: ${bookInfo.EA_ISBN} </div>
+    <div>  </div>
+    <button class="wishbutton_heart" onclick="wishFunction()" title="wish button">
+        <div class="details-texts details-texts-heart"> ${renderHeart(bookInfo.EA_ISBN)} </div>
+    </button>
     `;
 }
 
@@ -142,23 +132,24 @@ function renderHeart(ISBN) {
 
 
         if (conditionValue === false) {
-            document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-empty.svg"/>`;
+            return `<img width="20px" src="/images/heart-empty.svg"/>`;
         } else if (conditionValue === true) {
-            document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-filled.svg"/>`;
+            return `<img width="20px" src="/images/heart-filled.svg"/>`;
         }
     } else {
         // Handle the case where no matching entry is found
-        document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-empty.svg"/>`;
         console.log("No entry found for ISBN", ISBN);
+        return `<img width="20px" src="/images/heart-empty.svg"/>`;
+        
 
     }
-  } else {
-    // Handle the case where no matching entry is found
-    document.querySelector(
-      ".wishbutton"
-    ).innerHTML = `<img width="20px" src="../images/heart.fill.svg"/>`;
-    console.log("No entry found for ISBN", ISBN);
-  }
+    //   } else {
+    //     // Handle the case where no matching entry is found
+    //     document.querySelector(
+    //       ".wishbutton"
+    //     ).innerHTML = `<img width="20px" src="../images/heart.fill.svg"/>`;
+    //     console.log("No entry found for ISBN", ISBN);
+    //   }
 }
 
 let wishFunction = () => {
@@ -199,12 +190,12 @@ let wishFunction = () => {
 
     // If an entry exists, set conditionValue to false, otherwise true
     conditionValue = existingEntry ? false : true;
-    renderHeart(ISBN)
+    showBookDetails(bookInfo)
 }
 
 
 let toLibFunction = () => {
-  window.open(`https://www.nl.go.kr${detailURL}`, "", "");
+    window.open(`https://www.nl.go.kr${detailURL}`, "", "");
 };
 
 let toPublisherURL = () => {
@@ -219,8 +210,8 @@ function publishDate(bookInfo) {
         else { return "" }
 
     }
-  }
 }
+
 
 function findPage(bookInfo) {
 

@@ -22,7 +22,7 @@ body {
   border-bottom: 1px solid black;
   display: flex;
   /* display: none; */
-  background-color: red;
+  background-color: none;
   /* display: none; */
 }
 button {
@@ -32,7 +32,7 @@ button {
 .book-title {
   background-color: none;
   width: 90%;
-  background-color: orange;
+  background-color: none;
 }
 
 .wishbutton {
@@ -102,6 +102,10 @@ button {
   font-size: 18px;
   color: #6e6e73;
   color: #6e6e73;
+}
+.details-texts-heart{
+  margin-top: 1em;
+  text-indent: 1em;
 }
 
 /* BOTTOM */
