@@ -32,7 +32,6 @@ function initSearch() {
     // searchInput.value = "";
   });
 
-
   // 모달창 띄우기
   searchContainer.addEventListener("submit", (event) => {
     event.preventDefault(); // 폼 제출 막기
@@ -81,7 +80,6 @@ const modalRender = (recoList) => {
   const currentPageList = recoList.slice(startPage, endPage);
   console.log("startPage", startPage, endPage)
   console.log("currentPageList", currentPageList)
-
 
   const modalHTML = currentPageList
     .map(
