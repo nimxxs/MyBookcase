@@ -55,24 +55,24 @@ ol {
     color: #828282;
 }
 
-.listPagination{
+.pagination{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.listPage-item {
+.page-item {
     display: inline-block;
     margin-right: 5px;
 }
-.listPage-item.active .listPage-link{
+.page-item.active .page-link{
     background-color: burlywood;
     color: white;
     border-color: burlywood;
 }
-.listPage-link{
+.page-link{
     color:#8c8c8c;
 }
-.listPage-item :hover{
+.page-item :hover{
     cursor: pointer;
     color: rgb(144, 132, 115);
     background-color: rgb(240, 238, 232);

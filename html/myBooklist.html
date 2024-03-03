@@ -12,6 +12,21 @@
 
 <body>
   <header include-html="../index/header.html"></header>
+  <div class="modal hidden">
+    <div class="modal_overlay"></div>
+    <div class="modal_content">
+      <header class="modal-header">
+        <button id="closeButton"><span>검색 결과</span></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <div class="modal_gird" id="modal_gird"></div>
+        <nav class="pagination_content">
+          <ul class="pagination_diy" id="pagination"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <div class="booklist_explain">
       <div id="first">
