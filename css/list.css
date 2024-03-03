@@ -1,4 +1,4 @@
-a:hover{
+a:hover {
     cursor: pointer;
 }
 
@@ -99,8 +99,9 @@ ol {
     color: white;
     border-color: #6ba361;
 }
-.page-link{
-    color:#8c8c8c;
+
+.page-link {
+    color: #8c8c8c;
 }
 .page-item :hover{
     cursor: pointer;
