@@ -44,17 +44,21 @@ function initSearch() {
         alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
       } else {
         modal.classList.remove("hidden");
+        document.body.style.overflow = 'hidden';
       }
     }
   });
   closeButton.addEventListener("click", () => {
     modal.classList.add("hidden");
+    document.body.style.overflow = 'auto';
   });
-  document.querySelector(".btn-close").addEventListener("click", () => {
+  document.querySelector(".btnClose").addEventListener("click", () => {
     modal.classList.add("hidden");
+    document.body.style.overflow = 'auto';
   })
   modal_overlay.addEventListener("click", () => {
     modal.classList.add("hidden");
+    document.body.style.overflow = 'auto';
   });
 };
 
