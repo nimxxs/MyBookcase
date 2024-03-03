@@ -23,6 +23,9 @@ const render = () => {
         .map(news => `
             <div class="row">
                 <img class="booklist-img" src="${news.TITLE_URL || "../images/bookskin.png"}" alt="책 표지" />
+                <div id="noImg_info">
+                    <div class="bookimg_title">${news.TITLE_URL == "" ? news.TITLE : ""}</div>
+                </div>
                 <ol>${news.TITLE.length > 20 ? news.TITLE.slice(0, 20) + '...' : news.TITLE}</ol>
                 <ul>${news.AUTHOR.length > 20 ? news.AUTHOR.slice(0, 20) + '...' : news.AUTHOR}</ul>
                 <ul>${news.PRE_PRICE}</ul>
