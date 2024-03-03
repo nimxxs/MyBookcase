@@ -47,7 +47,7 @@ let targetBookDetail = async () => {
     const data2 = await response2.json()
     console.log("소장자료API (data2)", data2)
 
-    if (data2.result != null) {detailURL = data2.result[0].detailLink}
+    if (data2.result != null) { detailURL = data2.result[0].detailLink }
     console.log("ddd", detailURL)
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
@@ -113,8 +113,8 @@ function renderHeart(ISBN) {
     console.log("condition", conditionValue);
 
     if (existingEntry) {
-        
-        
+
+
         if (conditionValue === false) {
             document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-empty.svg"/>`;
         } else if (conditionValue === true) {
@@ -127,7 +127,7 @@ function renderHeart(ISBN) {
     }
 }
 
-let wishFunction = ()=>{
+let wishFunction = () => {
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
@@ -161,7 +161,7 @@ let wishFunction = ()=>{
     }
 
     console.log("updated wishData:", JSON.parse(localStorage.getItem("wishData")));
-    
+
     // If an entry exists, set conditionValue to false, otherwise true
     conditionValue = existingEntry ? false : true;
     renderHeart(ISBN)
@@ -175,15 +175,15 @@ let toPublisherURL = () => {
     window.open(`${bookInfo.PUBLISHER_URL}`)
 }
 
-function publishDate(bookInfo){
-    if (bookInfo.REAL_PUBLISH_DATE !== "") {return bookInfo.REAL_PUBLISH_DATE}
+function publishDate(bookInfo) {
+    if (bookInfo.REAL_PUBLISH_DATE !== "") { return bookInfo.REAL_PUBLISH_DATE }
     if (bookInfo.REAL_PUBLISH_DATE == "") {
-        if (bookInfo.PUBLISH_PREDATE !== "") {return bookInfo.PUBLISH_PREDATE}
-        else {return ""}
+        if (bookInfo.PUBLISH_PREDATE !== "") { return bookInfo.PUBLISH_PREDATE }
+        else { return "" }
     }
 }
 
-function findPage(bookInfo){
-    if (bookInfo.PAGE != "") {return bookInfo.PAGE}
+function findPage(bookInfo) {
+    if (bookInfo.PAGE != "") { return bookInfo.PAGE }
     else return "(정보가 없습니다)"
 }
