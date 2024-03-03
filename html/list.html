@@ -11,8 +11,24 @@
   <body>
     <header include-html="../index/header.html"></header>    
     <section include-html="../index/category.html"></section>
-    
-    
+    <!-- search.html 시작 -->
+    <div class="modal hidden">
+      <div class="modal_overlay"></div>
+      <div class="modal_content">
+        <header class="modal-header">
+          <button id="closeButton"><span>검색 결과</span></button>
+          <button type="button" class="btn-close" aria-label="Close"></button>
+        </header>
+        <div class="modal-body">
+          <div class="modal_gird" id="modal_gird"></div>
+          <nav class="pagination_content">
+            <ul class="pagination_diy" id="pagination"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- search.html 끝 -->
+
     <section class="list">
       <div class="list-container">
         <h3>전체리스트</h3>
@@ -41,6 +57,7 @@
       
     
     <script src="../js/list.js"></script>
+    <script src="../js/search.js"></script>
     <script src="../js/includes.js"></script>
     <script>
       includeHTML();

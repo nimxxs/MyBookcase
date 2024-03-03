@@ -1,20 +1,21 @@
-const API_KEY = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212';
+let API_KEY2 = '1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212';
+// import { API_KEY } from '../js/apiKey.js';
 let newsList=[];
 let totalResults = 0;
-let page = 1;
-const pageSize = 10;
-const groupSize = 5;
+let page2 = 1;
+const pageSize2 = 10;
+const groupSize2 = 5;
 const category = 0;
 
 const getLibrary = async () => {
-    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`); //isbn    
+    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY2}&result_style=json&page_no=${page2}&page_size=${pageSize2}`); //isbn    
     
     const response = await fetch(url);    
     const data = await response.json();
     newsList = data.docs;
     totalResults = data.TOTAL_COUNT; // TOTAL_COUNT 필드 값을 totalResults로 사용   
     render();
-    paginationRender();
+    paginationRender2();
 };
 
 const render = () => {
@@ -40,21 +41,21 @@ const render = () => {
     document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-const paginationRender = () => {
-    const totalPages = Math.ceil(totalResults / pageSize);
-    const pageGroup = Math.ceil(page / groupSize);
-    let lastPage = pageGroup * groupSize;
+const paginationRender2 = () => {
+    const totalPages = Math.ceil(totalResults / pageSize2);
+    const pageGroup = Math.ceil(page2 / groupSize2);
+    let lastPage = pageGroup * groupSize2;
     if (lastPage > totalPages) {
         lastPage = totalPages;
     }
-    const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+    const firstPage = lastPage - (groupSize2 - 1) <= 0 ? 1 : lastPage - (groupSize2 - 1);
 
     let paginationHTML = `
         <li class="page-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
         <li class="page-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
 
     for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+        paginationHTML += `<li class="page-item ${i === page2 ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
     }
 
     paginationHTML += `
@@ -64,22 +65,22 @@ const paginationRender = () => {
     document.querySelector(".pagination").innerHTML = paginationHTML;
 };
 
-const moveToPage = (pageNum) => {
-    page = pageNum;
+const moveToPage2 = (pageNum) => {
+    page2 = pageNum;
     getLibrary();
 };
 
-const preToPage = () => {
-    if (page > 1) {
-        page--;
+const preToPage2 = () => {
+    if (page2 > 1) {
+        page2--;
         getLibrary();
     }
 };
 
-const nextToPage = () => {
-    const totalPages = Math.ceil(totalResults / pageSize);
-    if (page < totalPages) {
-        page++;
+const nextToPage2 = () => {
+    const totalPages = Math.ceil(totalResults / pageSize2);
+    if (page2 < totalPages) {
+        page2++;
         getLibrary();
     }
 };
