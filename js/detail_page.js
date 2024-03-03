@@ -160,6 +160,9 @@ let wishFunction = ()=>{
     }
 
     console.log("updated wishData:", JSON.parse(localStorage.getItem("wishData")));
+    
+    // If an entry exists, set conditionValue to false, otherwise true
+    conditionValue = existingEntry ? false : true;
     renderHeart(ISBN)
 }
 
