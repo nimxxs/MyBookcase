@@ -137,12 +137,11 @@ includeHTML(function () {
   const Trander = () => {
     let TbookListAllHTML = ``;
     TbookListAllHTML = todyBookList
-      .map(
-        (i) =>
-          `
+      .map((i) => {
+        return `
           <li class="booklist-item">
               <div class="booklist-img-box">
-                  <img class="booklist-img" src="${
+                  <img class="booklist-img"  src="${
                     i.item.recomfilepath["#text"] || "../images/bookskin.png"
                   }" alt="책 표지" />
                   
@@ -162,12 +161,18 @@ includeHTML(function () {
                 i.item.recomauthor["#text"]
               } 지음</span>
           </li>
-        `
-      )
+        `;
+      })
       .join("");
-
     booklistToday.innerHTML = TbookListAllHTML;
   };
+
+  // // popWindow(i.item.recomisbn);
+  // let booklistItem = document.querySelectorAll(".booklist-item");
+  // console.log(booklistItem);
+  // booklistItem.forEach((e)=>{
+  //   e.addEventListener("click")
+  // })
 
   // 버튼 클릭시 북리스트 다음페이지로 넘김
   let slideNum = 170 + 77;
@@ -248,4 +253,23 @@ includeHTML(function () {
       }
     });
   });
+  //
+  function popWindow(ISBN) {
+    let params = `
+          scrollbars=yes,
+          resizable=yes,
+          status=no,
+          location=no,
+          toolbar=no,
+          menubar=yes,
+          width=1000,
+          height=800,
+          left=(window.screen.width / 2) - (width/2),
+          top=(window.screen.height / 4)
+          `;
+    // Append the ISBN to the URL as a query parameter
+    let detailPageURL = `detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    window.open(detailPageURL, "a", params);
+    console.log("Sent to child window", ISBN);
+  }
 });
