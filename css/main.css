@@ -466,3 +466,9 @@ a {
     color: #1d1d1f;
   }
 }
+#tleft {
+  opacity: 0;
+}
+#left {
+  opacity: 0;
+}

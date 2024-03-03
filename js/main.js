@@ -114,13 +114,16 @@ includeHTML(function () {
         (i) => `
     <li class="booklist-item rbooklist-item ">
         <div class="booklist-img-box">
-            <img class="booklist-img" src="${i.TITLE_URL || "../images/bookskin.png"
-          }" alt="책 표지" />
+            <img class="booklist-img" src="${
+              i.TITLE_URL || "../images/bookskin.png"
+            }" alt="책 표지" />
             
-            <span class="booklist-sub-title">${i.TITLE_URL == "" ? i.TITLE : ""
-          }</span>
-            <span class="booklist-sub-author"> ${i.TITLE_URL == "" ? i.AUTHOR : ""
-          }</span>
+            <span class="booklist-sub-title">${
+              i.TITLE_URL == "" ? i.TITLE : ""
+            }</span>
+            <span class="booklist-sub-author"> ${
+              i.TITLE_URL == "" ? i.AUTHOR : ""
+            }</span>
         </div>
         <h3 class="booklist-title">${i.TITLE}</h3>
         <span class="booklist-author">${i.AUTHOR} 지음</span>
@@ -148,21 +151,25 @@ includeHTML(function () {
         return `
           <li class="booklist-item tbooklist-item">
               <div class="booklist-img-box">
-                  <img class="booklist-img"  src="${i.item.recomfilepath["#text"] || "../images/bookskin.png"
-          }" alt="책 표지" />
+                  <img class="booklist-img"  src="${
+                    i.item.recomfilepath["#text"] || "../images/bookskin.png"
+                  }" alt="책 표지" />
                   
-                  <span class="booklist-sub-title">${i.item.mokchFilePath["#text"] == ""
-            ? i.item.recomtitle[".text"]
-            : ""
-          }</span>
-                  <span class="booklist-sub-author"> ${i.item.mokchFilePath["#text"] == ""
-            ? i.item.recomauthor["#text"]
-            : ""
-          }</span>
+                  <span class="booklist-sub-title">${
+                    i.item.mokchFilePath["#text"] == ""
+                      ? i.item.recomtitle[".text"]
+                      : ""
+                  }</span>
+                  <span class="booklist-sub-author"> ${
+                    i.item.mokchFilePath["#text"] == ""
+                      ? i.item.recomauthor["#text"]
+                      : ""
+                  }</span>
               </div>
               <h3 class="booklist-title">${i.item.recomtitle["#text"]}</h3>
-              <span class="booklist-author">${i.item.recomauthor["#text"]
-          } 지음</span>
+              <span class="booklist-author">${
+                i.item.recomauthor["#text"]
+              } 지음</span>
           </li>
         `;
       })
@@ -197,12 +204,22 @@ includeHTML(function () {
     e.addEventListener("click", () => {
       if (e.id == "left" && pageSize > 6) {
         pageSize -= 1;
+        if (pageSize == 6) {
+          document.getElementById("left").style.opacity = "0";
+        } else {
+          document.getElementById("left").style.opacity = "1";
+        }
         getAPI();
         booklistSliderAll.style.transform = `translateX(${(moverSlide +=
           slideNum)}px)`;
       } else if (e.id == "right" && pageSize < pageTotalCount) {
         pageSize += 1;
         getAPI();
+        if (pageSize == 6) {
+          document.getElementById("left").style.opacity = "0";
+        } else {
+          document.getElementById("left").style.opacity = "1";
+        }
         booklistSliderAll.style.transform = `translateX(${(moverSlide -=
           slideNum)}px)`;
       }
@@ -212,12 +229,22 @@ includeHTML(function () {
         TpageSize -= 1;
         // TpageNo -= 1;
         recommend();
+        if (TpageSize == 6) {
+          document.getElementById("tleft").style.opacity = "0";
+        } else if (TpageSize != 30) {
+          document.getElementById("tright").style.opacity = "1";
+        }
         booklistSliderToday.style.transform = `translateX(${(TmoverSlide +=
           slideNum)}px)`;
       } else if (e.id == "tright" && TpageSize <= 30) {
         TpageSize += 1;
         // TpageNo += 1;
         recommend();
+        if (TpageSize == 30) {
+          document.getElementById("tright").style.opacity = "0";
+        } else if (TpageSize != 30) {
+          document.getElementById("tleft").style.opacity = "1";
+        }
         booklistSliderToday.style.transform = `translateX(${(TmoverSlide -=
           slideNum)}px)`;
       }
