@@ -1,3 +1,6 @@
+h3 {
+    font-weight: bold;
+}
 a:hover{
     cursor: pointer;
 }
@@ -76,4 +79,28 @@ ol {
     cursor: pointer;
     color: rgb(144, 132, 115);
     background-color: rgb(240, 238, 232);
+}
+
+/* pagination css */
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-item {
+    display: inline-block;
+    margin-right: 5px;
+}
+.page-item.active .page-link{
+    background-color: #6ba361;
+    color: white;
+    border-color: #6ba361;
+}
+.page-link{
+    color:#8c8c8c;
+}
+.page-item:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #6ba361a1;
 }

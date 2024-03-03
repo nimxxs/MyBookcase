@@ -41,18 +41,18 @@ const listPaginationRender = () => {
     const firstPage = lastPage - (groupSize3 - 1) <= 0 ? 1 : lastPage - (groupSize3 - 1);
 
     let listPaginationHTML = `
-        <li class="listPage-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
-        <li class="listPage-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
+        <li class="page-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
+        <li class="page-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
 
     for (let i = firstPage; i <= lastPage; i++) {
-        listPaginationHTML += `<li class="listPage-item ${i === page3 ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+        listPaginationHTML += `<li class="page-item ${i === page3 ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
     }
 
     listPaginationHTML += `
-        <li class="listPage-item" onclick="nextToPage()"><a class="page-link">&gt;</a></li>
-        <li class="listPage-item" onclick="moveToPage(${totalPages})"><a class="page-link">&gt;&gt;</a></li>`;
+        <li class="page-item" onclick="nextToPage()"><a class="page-link">&gt;</a></li>
+        <li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link">&gt;&gt;</a></li>`;
 
-    document.querySelector(".listPagination").innerHTML = listPaginationHTML;
+    document.querySelector(".pagination").innerHTML = listPaginationHTML;
 };
 
 const moveToPage3 = (pageNum) => {
