@@ -401,4 +401,62 @@ a {
   .intro {
     height: calc(80px + 10vw);
   }
+  /* category */
+  .category {
+    height: 45px;
+    width: 100vw;
+    background-color: #f5f5f7d6;
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    box-shadow: 0 2px 0 #00000016;
+    position: sticky;
+    top: 100px;
+    z-index: 100;
+  }
+
+  .category-list {
+    max-width: 1325px;
+
+    margin: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    align-items: center;
+  }
+
+  /* sojin 추가부분 */
+  .category-item a {
+    text-decoration: none;
+    color: #6e6e73;
+  }
+
+  .category-item a:hover {
+    color: #1d1d1f;
+  }
+
+  .category-item {
+    padding: 0 15px;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    color: #6e6e73;
+    transition: color 0.3s ease;
+  }
+
+  .category-item:nth-child(n + 2)::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 8px;
+    background-color: #bfbfbf;
+    inset: 0;
+    right: auto;
+    margin: auto;
+  }
+
+  .category-item:hover {
+    text-decoration: underline;
+    color: #1d1d1f;
+  }
 }
