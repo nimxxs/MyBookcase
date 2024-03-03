@@ -9,7 +9,7 @@ function getQueryParam(key) {
 // Use the function to get the ISBN value from the query string
 let ISBN = getQueryParam('isbn');
 //let ISBN = 9788941241256
-ISBN = "9791185035154"
+
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
 
@@ -84,7 +84,7 @@ function showBookCover(book_title) {
     else { document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>` }
 }
 
-function showBookDetails (bookInfo){
+function showBookDetails(bookInfo) {
     document.querySelector(".book-details").innerHTML = `
     <div>제목: ${bookInfo.TITLE} </div>
     <div>저자: ${bookInfo.AUTHOR} </div>
@@ -106,13 +106,7 @@ if (!Array.isArray(existingData)) {
     existingData = [];
 }
 
-<<<<<<< HEAD
-
-
-let wishFunction = ()=>{
-=======
 let wishFunction = () => {
->>>>>>> 0884f96f6783222232702d6fd23648c705014a0a
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
@@ -152,6 +146,6 @@ let toLibFunction = () => {
     window.open(`https://www.nl.go.kr${detailURL}`, "", "")
 }
 
-let toPublisherURL = ()=>{
+let toPublisherURL = () => {
     window.open(`https://${bookInfo.PUBLISHER_URL}`)
 }
