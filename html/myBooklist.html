@@ -10,14 +10,34 @@
   <link rel="stylesheet" href="../css/myBooklist.css" />
 </head>
 
-<body>
-  <header include-html="../index/header.html"></header>
-  <div class="container">
-    <div class="booklist_explain">
-      <div id="first">
-        <div>구매완료</div>
-        <div id="line"></div>
-        <div>읽음</div>
+  <body>
+    <header include-html="../index/header.html"></header>
+    <div class="modal hidden">
+      <div class="modal_overlay"></div>
+      <div class="modal_content">
+        <header class="modal-header">
+          <button id="closeButton"><span>검색 결과</span></button>
+        </header>
+        <div class="modal-body">
+          <div class="modal_gird" id="modal_gird"></div>
+          <nav class="pagination_content">
+            <ul class="pagination" id="pagination"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="booklist_explain">
+        <div id="first">
+          <div>구매완료</div>
+          <div>읽음</div>
+        </div>
+        <div>상품</div>
+        <div>삭제</div>
+      </div>
+      <div class="booksArea">
+        <div id="loading_text">로딩중..</div>
       </div>
       <div id="mid">상품</div>
       <div id="last">삭제</div>
