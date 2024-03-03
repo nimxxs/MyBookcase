@@ -174,8 +174,8 @@ const render = () => {
                     </div>
                 </div>
                 <div class="bookInfo" id="bookInfo_${book.EA_ISBN}">
-                    <div onclick="popWindow(${book.EA_ISBN})" id="title">${book.TITLE}</div>
-                    <div id="author">${book.AUTHOR}</div>
+                    <div id="title" onclick="popWindow(${book.EA_ISBN})">${book.TITLE}</div>
+                    <div id="author" onclick="popWindow(${book.EA_ISBN})">${book.AUTHOR}</div>
                     <div id="purchased_${book.EA_ISBN}" class="purchased_defult">구매 완료 <img src="../images/payments.svg"></div>
                 </div>
                 </div>
@@ -293,7 +293,7 @@ function popWindow(ISBN) {
           top=(window.screen.height / 4)
           `;
     // Append the ISBN to the URL as a query parameter
-    let detailPageURL = `detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    let detailPageURL = `/html/detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
     window.open(detailPageURL, "a", params);
     console.log("Sent to child window", ISBN)
 }
