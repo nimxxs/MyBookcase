@@ -180,6 +180,7 @@
   height: 2.5em;
   font-size: 1em;
   background: none;
+  cursor: pointer;
 }
 
 /* 페이지네이션 */
