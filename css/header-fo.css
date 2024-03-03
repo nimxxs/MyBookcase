@@ -129,7 +129,6 @@ input::placeholder {
     width: clamp(120px, 13vw, 170px);
     /* width: 80px; */
   }
-
   .logo img {
     width: 100%;
   }
