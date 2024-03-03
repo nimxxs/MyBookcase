@@ -50,7 +50,7 @@ function initSearch() {
   closeButton.addEventListener("click", () => {
     modal.classList.add("hidden");
   });
-  document.querySelector(".btn-close").addEventListener("click", () => {
+  document.querySelector(".btnClose").addEventListener("click", () => {
     modal.classList.add("hidden");
   })
   modal_overlay.addEventListener("click", () => {
