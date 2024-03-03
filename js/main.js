@@ -132,12 +132,19 @@ includeHTML(function () {
       .join("");
 
     booklistSlider.innerHTML = bookListAllHTML;
+    const booklistItems = document.querySelectorAll(".booklist-item");
+    booklistItems.forEach((item, index) => {
+      item.addEventListener("click", () =>
+        popWindow(todyBookList[index].item.recomisbn["#text"])
+      );
+    });
   };
   // 사서 추천 render
   const Trander = () => {
     let TbookListAllHTML = ``;
     TbookListAllHTML = todyBookList
       .map((i) => {
+        console.log(i);
         return `
           <li class="booklist-item">
               <div class="booklist-img-box">
@@ -165,6 +172,13 @@ includeHTML(function () {
       })
       .join("");
     booklistToday.innerHTML = TbookListAllHTML;
+    // 모든 booklist-item 요소를 선택하고 클릭 이벤트 리스너를 추가합니다.
+    const booklistItems = document.querySelectorAll(".booklist-item");
+    booklistItems.forEach((item, index) => {
+      item.addEventListener("click", () =>
+        popWindow(todyBookList[index].item.recomisbn["#text"])
+      );
+    });
   };
 
   // // popWindow(i.item.recomisbn);
