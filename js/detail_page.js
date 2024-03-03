@@ -100,8 +100,8 @@ function showBookDetails(bookInfo) {
     <div>제목: ${bookInfo.TITLE} </div>
     <div>저자: ${bookInfo.AUTHOR} </div>
     <div>출판사: ${bookInfo.PUBLISHER} <button onclick="toPublisherURL()" title="국립중앙도서관 링크"><img width="15px" text-align="center" src="/images/diagonal-arrow.svg" /></button></div>
-    <div>출시일: ${bookInfo.REAL_PUBLISH_DATE} </div>
-    <div>쪽 수: ${bookInfo.PAGE} </div>
+    <div>출시일: ${publishDate(bookInfo)} </div>
+    <div>쪽 수: ${findPage(bookInfo)} </div>
     <div>ISBN: ${bookInfo.EA_ISBN} </div>
     `
 }
@@ -168,5 +168,18 @@ let toLibFunction = () => {
 }
 
 let toPublisherURL = () => {
-    window.open(`https://${bookInfo.PUBLISHER_URL}`)
+    window.open(`${bookInfo.PUBLISHER_URL}`)
+}
+
+function publishDate(bookInfo){
+    if (bookInfo.REAL_PUBLISH_DATE !== "") {return bookInfo.REAL_PUBLISH_DATE}
+    if (bookInfo.REAL_PUBLISH_DATE == "") {
+        if (bookInfo.PUBLISH_PREDATE !== "") {return bookInfo.PUBLISH_PREDATE}
+        else {return ""}
+    }
+}
+
+function findPage(bookInfo){
+    if (bookInfo.PAGE != "") {return bookInfo.PAGE}
+    else return "(정보가 없습니다)"
 }

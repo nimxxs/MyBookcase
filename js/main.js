@@ -108,10 +108,11 @@ includeHTML(function () {
   // render
   const rander = () => {
     let bookListAllHTML = ``;
+    console.log(booklistAll);
     bookListAllHTML = booklistAll
       .map(
         (i) => `
-    <li class="booklist-item">
+    <li class="booklist-item rbooklist-item ">
         <div class="booklist-img-box">
             <img class="booklist-img" src="${i.TITLE_URL || "../images/bookskin.png"
           }" alt="책 표지" />
@@ -129,13 +130,14 @@ includeHTML(function () {
       .join("");
 
     booklistSlider.innerHTML = bookListAllHTML;
-    const booklistItems = document.querySelectorAll(".booklist-item");
+    const booklistItems = document.querySelectorAll(".rbooklist-item");
     booklistItems.forEach((item, index) => {
-      item.addEventListener("click", () =>
-        popWindow(todyBookList[index].item.recomisbn["#text"])
-      );
+      item.addEventListener("click", () => {
+        popWindow(booklistAll[index].EA_ISBN);
+      });
     });
   };
+
   // 사서 추천 render
   const Trander = () => {
     let TbookListAllHTML = ``;
@@ -143,7 +145,7 @@ includeHTML(function () {
       .map((i) => {
         console.log(i);
         return `
-          <li class="booklist-item">
+          <li class="booklist-item tbooklist-item">
               <div class="booklist-img-box">
                   <img class="booklist-img"  src="${i.item.recomfilepath["#text"] || "../images/bookskin.png"
           }" alt="책 표지" />
@@ -166,11 +168,13 @@ includeHTML(function () {
       .join("");
     booklistToday.innerHTML = TbookListAllHTML;
     // 모든 booklist-item 요소를 선택하고 클릭 이벤트 리스너를 추가합니다.
-    const booklistItems = document.querySelectorAll(".booklist-item");
-    booklistItems.forEach((item, index) => {
-      item.addEventListener("click", () =>
-        popWindow(todyBookList[index].item.recomisbn["#text"])
-      );
+    const TbooklistItems = document.querySelectorAll(".tbooklist-item");
+    TbooklistItems.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        // console.log(todyBookList);
+        popWindow(todyBookList[index].item.recomisbn["#text"]);
+        console.log(112131323113133113231, todyBookList[index].item);
+      });
     });
   };
 
@@ -275,7 +279,9 @@ includeHTML(function () {
           top=(window.screen.height / 4)
           `;
     // Append the ISBN to the URL as a query parameter
-    let detailPageURL = `/html/detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+    let detailPageURL = `/html/detail_page.html?isbn=${encodeURIComponent(
+      ISBN
+    )}`;
     window.open(detailPageURL, "a", params);
     console.log("Sent to child window", ISBN);
   }
