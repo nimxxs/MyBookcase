@@ -90,7 +90,7 @@ const modalRender = (recoList) => {
       (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
-                <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
+                <img onclick="popWindow(${recoItem.item.recomisbn["#text"]})" src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
             </div>
             <div class="modal_info">
                 <h3 class="modal-title">${recoItem.item.recomtitle["#text"]}</h3>
