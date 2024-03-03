@@ -363,6 +363,10 @@
   max-width: 1400px;
   width: 100%;
 }
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
 
 @keyframes intro {
   0% {
