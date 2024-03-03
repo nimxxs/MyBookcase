@@ -50,7 +50,7 @@ ol {
 @media all and (max-width:700px){
     .list-books img{
         width: 100%;
-        height: 25vi;
+        height: 100%;
         padding-right: 10px;  
     }
 }
