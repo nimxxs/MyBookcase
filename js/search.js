@@ -90,7 +90,7 @@ const modalRender = (recoList) => {
       (recoItem) =>
         `<article class="modal-item">
             <div class="modal_image">
-                <img src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
+                <img onclick="popWindow(${recoItem.item.recomisbn["#text"]})" src="${recoItem.item.recomfilepath["#text"]}" alt="이미지"></img>
             </div>
             <div class="modal_info">
                 <h3 class="modal-title">${recoItem.item.recomtitle["#text"]}</h3>
@@ -369,3 +369,22 @@ document.addEventListener("DOMContentLoaded", function () {
 //   paginationRender();
 // };
 // searchBook(searchInput.value);
+
+function popWindow(ISBN) {
+  let params = `
+        scrollbars=yes,
+        resizable=yes,
+        status=no,
+        location=no,
+        toolbar=no,
+        menubar=yes,
+        width=1000,
+        height=800,
+        left=(window.screen.width / 2) - (width/2),
+        top=(window.screen.height / 4)
+        `;
+  // Append the ISBN to the URL as a query parameter
+  let detailPageURL = `/html/detail_page.html?isbn=${encodeURIComponent(ISBN)}`;
+  window.open(detailPageURL, "a", params);
+  console.log("Sent to child window", ISBN)
+}
