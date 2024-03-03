@@ -8,6 +8,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/detail_page.css" />
     <script src="https://kit.fontawesome.com/880727b07a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/header-fo.css" />
 </head>
 <body>
     <section class="container">
@@ -15,15 +16,19 @@
             <!-- title, author, wishlist 추가 기능  -->
             <div class="top-info">
                 <div class="book-title" id="book-title">Title goes here</div>
-                <button class="fa-solid fa-heart wishbutton" onclick="wishFunction()" title="wish button"></button>
-                <button class="wishbutton" onclick="toLibFunction()" title="국립중앙도서관 링크">Link</button>
+                <button class="wishbutton" onclick="wishFunction()" title="wish button">
+                    <img width="20px" src="/images/heart-empty.svg"/>
+                </button>
+                <button class="wishbutton" onclick="toLibFunction()" title="국립중앙도서관 링크">
+                    <img width="15px" text-align="center" src="/images/diagonal-arrow.svg" />
+                </button>
             </div>
         </section>
         <section class="container" id="">
             <!-- 표지그림, 간단한 정보-->
             <div class="main-info">
                 <div class="book-cover">
-                    <img src="https://www.nl.go.kr/seoji/fu/ecip/dbfiles/CIP_FILES_TBL/2021/01/26/9791196777050.jpg"/>
+                    <!-- showBookCover(book_title) -->
                 </div>
                 <div class="book-details"> 
                     <div>제목 (TITLE) </div>
@@ -42,9 +47,7 @@
                 기타 상세 정보
             </div>
         </section>
-        <div>
-            <input type="button" value="팝업창 호출" onclick="console.log(`pressed`);"/>
-        </div>
+       
         <div>help</div>
         <div>help</div>
         <div>help</div>
@@ -66,7 +69,7 @@
     </section>
 
 
-
+    <footer include-html="../index/footer.html"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

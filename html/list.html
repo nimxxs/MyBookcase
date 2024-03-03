@@ -11,26 +11,30 @@
   <body>
     <header include-html="../index/header.html"></header>    
     <section include-html="../index/category.html"></section>
-
-      <section class="list">
-        <div class="list-container">
-            <h3>전체리스트</h3>
-            <div class="list-border"></div>     
-            <div class="list-books" id="news-board">
-              <div>
-                <img src="../images/book.jpg">
-                <ol>조선이 만난 아인슈타인</ol>
-                <ul>지은이: 민태기 지음</ul>
-                <ul>12,500원</ul>
-              </div>                       
-            </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                
-              </ul>
-            </nav> 
-        </div>               
-      </section>      
+    
+    <section class="list">
+      <div class="list-container">
+        <h3>전체리스트</h3>
+        <div class="list-border"></div>
+        <div class="list-books" id="news-board">
+          <div>
+            <img src="../images/book.jpg onclick="popWindow()"" />
+            <ol>
+              조선이 만난 아인슈타인
+            </ol>
+            <ul>
+              지은이: 민태기 지음
+            </ul>
+            <ul>
+              12,500원
+            </ul>
+          </div>
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="listPagination"></ul>
+        </nav>
+      </div>
+    </section>
 
       <footer include-html="../index/footer.html"></footer>          
       
