@@ -137,6 +137,7 @@ includeHTML(function () {
     booklistItems.forEach((item, index) => {
       item.addEventListener("click", () => {
         popWindow(booklistAll[index].EA_ISBN);
+        console.log(booklistAll[index]);
       });
     });
   };

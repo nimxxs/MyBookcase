@@ -1,84 +1,139 @@
-.container{
-    background-color: beige;
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: #f5f5f7;
+  display: flex;
+  align-items: end;
+}
+.container {
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 /* TOP */
 
-.top-info{
-    background-color: none;
-    padding: 15px;
-    border-left-width: 3px;
-    border-bottom: 1px solid black;
-    display: flex;
+.top-info {
+  background-color: none;
+  padding: 15px;
+  border-left-width: 3px;
+  border-bottom: 1px solid black;
+  display: flex;
+  /* display: none; */
+  background-color: red;
+  /* display: none; */
+}
+button {
+  background: none;
+  border: none;
+}
+.book-title {
+  background-color: none;
+  width: 90%;
+  background-color: orange;
 }
 
-.book-title{
-    background-color: none;
-    width: 90%;
-}
-
-.wishbutton{
-    width: 30px;
-    padding-bottom: 5px;
-    vertical-align: middle;
-    text-align: center;
-    
+.wishbutton {
+  width: 30px;
+  padding-bottom: 5px;
+  vertical-align: middle;
+  text-align: center;
 }
 
 /* MIDDLE */
 
-.main-info{
-    background-color: none;
-    display: flex;
-    
+.main-info {
+  background-color: none;
+  display: flex;
 }
 
-.book-cover{
-    margin: 1em
+.book-cover {
+  margin: 1em;
+  background-color: saddlebrown;
 }
 
-.book-cover img{
-    width: 200px
+.book-cover img {
+  width: 200px;
+  background-color: orange;
 }
 
-.book-details{
-    background-color: bisque;
-    margin: 1em;
-    text-indent: 1em;
-    width: 600px
-
+.book-details {
+  margin: 1em;
+  text-indent: 1em;
+  width: 600px;
+}
+/* texttt */
+.details-texts {
+}
+.details-texts-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1d1d1f;
+  margin-bottom: 18px;
+}
+.details-texts-author {
+  margin-bottom: 1px;
+  font-size: 18px;
+  color: #6e6e73;
+  color: #1d1d1f;
+}
+.details-texts-publisher {
+  margin-bottom: 1px;
+  font-size: 18px;
+  color: #6e6e73;
+  color: #1d1d1f;
+}
+.details-texts-date {
+  margin-bottom: 1px;
+  font-size: 18px;
+  color: #6e6e73;
+  color: #1d1d1f;
+}
+.details-texts-pages {
+  margin-bottom: 1px;
+  font-size: 18px;
+  color: #6e6e73;
+  color: #1d1d1f;
+}
+.details-texts-isbn {
+  margin-bottom: 1px;
+  font-size: 18px;
+  color: #6e6e73;
+  color: #6e6e73;
 }
 
 /* BOTTOM */
 
-.other-info{
-    background-color: cyan;
-    margin-top: 1em
+.other-info {
+  background-color: cyan;
+  margin-top: 1em;
 }
 
 /* OTHERS */
 
 /* Popup container */
 .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background-color: yellow;
 }
 /* The actual popup (appears on top) */
 .popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: brown;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
+  visibility: hidden;
+  width: 160px;
+  background-color: brown;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+}
 
-  }
-  
-  /* Popup arrow 
+/* Popup arrow 
   .popup .popuptext::after {
     content: "";
     position: absolute;
@@ -89,16 +144,16 @@
     border-style: solid;
     border-color: #555 transparent transparent transparent;
   } */
-  
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
-  .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-  }
-  
 
-  /* Add animation (fade in the popup) 
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  background-color: aqua;
+}
+
+/* Add animation (fade in the popup) 
   @-webkit-keyframes fadeIn {
     from {opacity: 0;} 
     to {opacity: 1;}
