@@ -10,6 +10,7 @@ function getQueryParam(key) {
 let ISBN = getQueryParam('isbn');
 //let ISBN = 9788941241256
 //ISBN = "9791185035154"
+
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
 
@@ -84,7 +85,7 @@ function showBookCover(book_title) {
     else { document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>` }
 }
 
-function showBookDetails (bookInfo){
+function showBookDetails(bookInfo) {
     document.querySelector(".book-details").innerHTML = `
     <div>제목: ${bookInfo.TITLE} </div>
     <div>저자: ${bookInfo.AUTHOR} </div>
@@ -148,6 +149,6 @@ let toLibFunction = () => {
     window.open(`https://www.nl.go.kr${detailURL}`, "", "")
 }
 
-let toPublisherURL = ()=>{
+let toPublisherURL = () => {
     window.open(`https://${bookInfo.PUBLISHER_URL}`)
 }
