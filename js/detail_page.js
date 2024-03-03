@@ -39,6 +39,8 @@ let targetBookDetail = async () => {
     console.log("ddd", detailURL)
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
+    showBookDetails(bookInfo)
+
     //localStorage.clear("wishData")
     console.log("localStorage(wishData):", JSON.parse(localStorage.getItem("wishData")));
 
@@ -84,6 +86,17 @@ function showBookCover(book_title){
     else {document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>`}
 }
 
+function showBookDetails (bookInfo){
+    document.querySelector(".book-details").innerHTML = `
+    <div>제목: ${bookInfo.TITLE} </div>
+    <div>저자: ${bookInfo.AUTHOR} </div>
+    <div>출판사: ${bookInfo.PUBLISHER} </div>
+    <div>출시일: ${bookInfo.REAL_PUBLISH_DATE} </div>
+    <div>쪽 수: ${bookInfo.PAGE} </div>
+    <div>ISBN: ${bookInfo.EA_ISBN} </div>
+    `
+}
+
 let conditionValue = false
 
 // 이전에 저장된 데이터 읽어오기
@@ -94,6 +107,8 @@ let existingData = storedData ? JSON.parse(storedData) : [];
 if (!Array.isArray(existingData)) {
     existingData = [];
 }
+
+
 
 let wishFunction = ()=>{
     // Check if there is an existing entry with the same ISBN
