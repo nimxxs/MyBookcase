@@ -1,13 +1,13 @@
-const API_KEY = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
+const API_KEY3 = '5d12e5c309d9bdd31723451426dd447ed0cbce865049e425024e78c4092146f2';
 
 let isbnList = [];
 let totalResults = 0;
-let page = 1;
-const pageSize = 10;
-const groupSize = 5;
+let page3 = 1;
+const pageSize3 = 10;
+const groupSize3 = 5;
 
 const getLibrary = async () => {
-    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`);
+    const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY3}&result_style=json&page_no=${page3}&page_size=${pageSize3}`);
 
     const response = await fetch(url);
     const data = await response.json();
@@ -32,20 +32,20 @@ const render = () => {
 };
 
 const listPaginationRender = () => {
-    const totalPages = Math.ceil(totalResults / pageSize);
-    const pageGroup = Math.ceil(page / groupSize);
-    let lastPage = pageGroup * groupSize;
+    const totalPages = Math.ceil(totalResults / pageSize3);
+    const pageGroup = Math.ceil(page3 / groupSize3);
+    let lastPage = pageGroup * groupSize3;
     if (lastPage > totalPages) {
         lastPage = totalPages;
     }
-    const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+    const firstPage = lastPage - (groupSize3 - 1) <= 0 ? 1 : lastPage - (groupSize3 - 1);
 
     let listPaginationHTML = `
         <li class="listPage-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li>
         <li class="listPage-item" onclick="preToPage()"><a class="page-link">&lt;</a></li>`;
 
     for (let i = firstPage; i <= lastPage; i++) {
-        listPaginationHTML += `<li class="listPage-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+        listPaginationHTML += `<li class="listPage-item ${i === page3 ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
     }
 
     listPaginationHTML += `
@@ -55,22 +55,22 @@ const listPaginationRender = () => {
     document.querySelector(".listPagination").innerHTML = listPaginationHTML;
 };
 
-const moveToPage = (pageNum) => {
-    page = pageNum;
+const moveToPage3 = (pageNum) => {
+    page3 = pageNum;
     getLibrary();
 };
 
-const preToPage = () => {
-    if (page > 1) {
-        page--;
+const preToPage3 = () => {
+    if (page3 > 1) {
+        page3--;
         getLibrary();
     }
 };
 
-const nextToPage = () => {
-    const totalPages = Math.ceil(totalResults / pageSize);
-    if (page < totalPages) {
-        page++;
+const nextToPage3 = () => {
+    const totalPages = Math.ceil(totalResults / pageSize3);
+    if (page3 < totalPages) {
+        page3++;
         getLibrary();
     }
 };
