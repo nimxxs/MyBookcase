@@ -167,7 +167,7 @@ const render = () => {
                 </div>
                 <div class="book_midDiv">
                 <div id="noBookImg">
-                    <img src="${book.TITLE_URL || '../images/bookskin.png'}" alt="책 이미지 위치">
+                    <img onclick="popWindow(${book.EA_ISBN})" src="${book.TITLE_URL || '../images/bookskin.png'}" alt="책 이미지 위치">
                     <div id="noImg_info">
                         <div class="bookimg_title">${book.TITLE_URL == "" ? book.TITLE : ""}</div>
                         <div class="bookimg_author"> ${book.TITLE_URL == "" ? book.AUTHOR : ""}</div>
