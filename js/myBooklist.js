@@ -258,6 +258,15 @@ function deleteBook(isbn) {
             let updatedData = allData.filter(book => book.isbn !== isbn);
             console.log("updatedData", updatedData)
 
+            if (updatedData.length == 0) {
+                const nobookHTML = `
+                <div class="booksArea">
+                    <div id="loading_text">찜한 책이 없어요!</div>
+                </div>
+                `
+                document.querySelector(".booksArea").innerHTML = nobookHTML
+            }
+
             // 새로운 데이터를 localStorage에 저장
             localStorage.setItem('wishData', JSON.stringify(updatedData));
 
