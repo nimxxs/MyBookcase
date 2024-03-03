@@ -90,7 +90,7 @@ function showBookDetails (bookInfo){
     document.querySelector(".book-details").innerHTML = `
     <div>제목: ${bookInfo.TITLE} </div>
     <div>저자: ${bookInfo.AUTHOR} </div>
-    <div>출판사: ${bookInfo.PUBLISHER} </div>
+    <div>출판사: ${bookInfo.PUBLISHER} <button onclick="toPublisherURL()" title="국립중앙도서관 링크"><img width="15px" text-align="center" src="/images/diagonal-arrow.svg" /></button></div>
     <div>출시일: ${bookInfo.REAL_PUBLISH_DATE} </div>
     <div>쪽 수: ${bookInfo.PAGE} </div>
     <div>ISBN: ${bookInfo.EA_ISBN} </div>
@@ -150,3 +150,6 @@ let toLibFunction = ()=>{
     window.open(`https://www.nl.go.kr${detailURL}`,"","")
 }
 
+let toPublisherURL = ()=>{
+    window.open(`https://${bookInfo.PUBLISHER_URL}`)
+}
