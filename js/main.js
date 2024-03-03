@@ -172,7 +172,7 @@ includeHTML(function () {
     TbooklistItems.forEach((item, index) => {
       item.addEventListener("click", () => {
         // console.log(todyBookList);
-        popWindow(TbooklistItems[index].item.recomisbn["#text"]);
+        popWindow(todyBookList[index].item.recomisbn["#text"]);
         console.log(112131323113133113231, todyBookList[index].item);
       });
     });
