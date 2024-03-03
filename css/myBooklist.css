@@ -63,7 +63,7 @@ body {
 .booksArea {
   /* border: solid 1px red; */
   text-align: center;
-  min-height: 67vh;
+  min-height: 70vh;
 }
 
 #loading_text {
