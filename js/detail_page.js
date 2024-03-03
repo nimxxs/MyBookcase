@@ -106,13 +106,9 @@ if (!Array.isArray(existingData)) {
     existingData = [];
 }
 
-<<<<<<< HEAD
 
 
 let wishFunction = ()=>{
-=======
-let wishFunction = () => {
->>>>>>> 0884f96f6783222232702d6fd23648c705014a0a
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
