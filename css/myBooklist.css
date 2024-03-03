@@ -195,7 +195,7 @@ body {
 /*검색 창 css 조절*/
 
 .modal_content {
-  margin-top: 1vh !important;
+  margin-top: 4vh !important;
 }
 
 @media (max-width: 430px) {
