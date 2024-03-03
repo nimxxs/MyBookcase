@@ -176,6 +176,10 @@
 .booklist-headline:hover::after {
   margin-left: 10px;
 }
+.booklist-headline a{
+  text-decoration: none;
+  color: #6e6e73;
+}
 .booklist-list {
   width: calc(1325px - (85px * 2));
   overflow: hidden;
