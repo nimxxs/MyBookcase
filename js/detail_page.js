@@ -9,7 +9,7 @@ function getQueryParam(key) {
 // Use the function to get the ISBN value from the query string
 let ISBN = getQueryParam('isbn');
 //let ISBN = 9788941241256
-
+ISBN = "9791185035154"
 // Now, you can use the ISBN value as needed
 console.log("ISBN from parent", ISBN);
 
@@ -27,9 +27,9 @@ let targetBookDetail = async () => {
     const response = await fetch(url)
     const data = await response.json()
     bookInfo = data.docs[0]
-    console.log("ISBN check", bookInfo.EA_ISBN)  
+    console.log("ISBN check", bookInfo.EA_ISBN)
     console.log("ISBN api (data.docs[0])", bookInfo)
-    
+
     url2 = new URL(`https://www.nl.go.kr/NL/search/openApi/search.do?apiType=json&key=${API_KEY}&detailSearch=true&isbnOp=isbn&isbnCode=${ISBN}`)
     const response2 = await fetch(url2)
     const data2 = await response2.json()
@@ -41,8 +41,6 @@ let targetBookDetail = async () => {
     showBookCover(bookInfo.TITLE_URL)
     //localStorage.clear("wishData")
     console.log("localStorage(wishData):", JSON.parse(localStorage.getItem("wishData")));
-
-
 }
 
 let loadTopSection = () => {
@@ -78,10 +76,10 @@ function popWindow() {
 targetBookDetail()
 
 
-function showBookCover(book_title){
+function showBookCover(book_title) {
     console.log("ISBN API bookcover URL", book_title)
-    if (book_title == "") {document.querySelector(".book-cover").innerHTML = `<img src="/images/titlebookimg.svg"/>`}
-    else {document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>`}
+    if (book_title == "") { document.querySelector(".book-cover").innerHTML = `<img src="/images/titlebookimg.svg"/>` }
+    else { document.querySelector(".book-cover").innerHTML = `<img src="${book_title}"/>` }
 }
 
 let conditionValue = false
@@ -89,20 +87,20 @@ let conditionValue = false
 // 이전에 저장된 데이터 읽어오기
 let storedData = localStorage.getItem('wishData');
 let existingData = storedData ? JSON.parse(storedData) : [];
-    
+
 // 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
 if (!Array.isArray(existingData)) {
     existingData = [];
 }
 
-let wishFunction = ()=>{
+let wishFunction = () => {
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
     // If an entry exists, set conditionValue to false, otherwise true
     conditionValue = existingEntry ? false : true;
 
-    if (conditionValue){
+    if (conditionValue) {
         // If conditionValue is true, package the data and add to existingData
         let newMessageObject = {
             isbn: ISBN, //ISBN is already defined somewhere above in the code
@@ -113,9 +111,9 @@ let wishFunction = ()=>{
 
         // Send the object to the parent window
         //window.opener.postMessage(newMessageObject, "*")
-    } else{
+    } else {
         // If conditionValue is false, remove all objects with the matching ISBN
-        existingData = existingData.filter(entry => entry.isbn !==ISBN);
+        existingData = existingData.filter(entry => entry.isbn !== ISBN);
     }
 
     // 누적된 데이터를 다시 저장
@@ -123,7 +121,7 @@ let wishFunction = ()=>{
 
     // Log action based on conditionValue
     if (conditionValue) {
-        console.log("Added new entry:", {isbn: ISBN, url: bookInfo.TITLE_URL});
+        console.log("Added new entry:", { isbn: ISBN, url: bookInfo.TITLE_URL });
     } else {
         console.log("Removed entries with ISBN", ISBN);
     }
@@ -131,7 +129,7 @@ let wishFunction = ()=>{
     console.log("updated wishData:", JSON.parse(localStorage.getItem("wishData")));
 }
 
-let toLibFunction = ()=>{
-    window.open(`https://www.nl.go.kr${detailURL}`,"","")
+let toLibFunction = () => {
+    window.open(`https://www.nl.go.kr${detailURL}`, "", "")
 }
 
