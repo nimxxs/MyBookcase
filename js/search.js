@@ -7,7 +7,8 @@
 //      -> includes.js에서 initSearch가 매개변수 callback으로 작동함.
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
-const API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
+let API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
+// import { API_KEY } from '../js/apiKey.js';
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");

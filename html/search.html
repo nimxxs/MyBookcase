@@ -9,7 +9,8 @@
 <header include-html="../index/header.html"></header>
 <main include-html="../html/main.html"></main>
 
-  <!-- <div class="modal hidden">
+  <!-- 수정 전 코드 
+     <div class="modal hidden">
     <div class="modal_overlay"></div>
     <div class="modal_content">
       <div class="modal_gird" id="modal_gird">
@@ -27,8 +28,25 @@
     <button id="closeButton">X</button>
   </div> -->
 
+    <!-- 수정 후 코드
+  <div class="modal hidden">
+    <div class="modal_overlay"></div>
+    <div class="modal_content">
+      <header class="modal-header">
+        <button id="closeButton"><span>검색 결과</span></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <div class="modal_gird" id="modal_gird"></div>
+        <nav class="pagination_content">
+          <ul class="pagination_diy" id="pagination"></ul>
+        </nav>
+      </div>
+    </div>
+  </div> -->
+
 <footer include-html="../index/footer.html"></footer>
-<script src="../js/apiKey.js"></script>
-<script src="../js/includes.js"></script>
+<script src="../js/wishlist.js"></script>
 <script src="../js/search.js"></script>
+<script src="../js/includes.js"></script>
 </body>
