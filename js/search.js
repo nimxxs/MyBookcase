@@ -14,45 +14,48 @@ const modal = document.querySelector(".modal");
 const modal_overlay = modal.querySelector(".modal_overlay");
 
 function initSearch() {
-    searchInput = document.querySelector("#search-input");
-    let searchContainer = document.querySelector("#search-container");
+  searchInput = document.querySelector("#search-input");
+  let searchContainer = document.querySelector("#search-container");
 
-    // 검색창 스타일
-    searchInput.addEventListener("click", () => {
-        searchInput.style.border = "2px solid #fff";
-        searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
-        // searchInput.style.backgroundColor = "#ffffff40";
-        searchInput.value = "";
-    });
-    searchInput.addEventListener("blur", () => {
-        searchInput.style.border = "none";
-        searchInput.style.boxShadow = "none";
-        // searchInput.style.backgroundColor = "#ffffff6c";
-        // searchInput.value = "";
-    });
+  // 검색창 스타일
+  searchInput.addEventListener("click", () => {
+    searchInput.style.border = "2px solid #fff";
+    searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
+    // searchInput.style.backgroundColor = "#ffffff40";
+    searchInput.value = "";
+  });
+  searchInput.addEventListener("blur", () => {
+    searchInput.style.border = "none";
+    searchInput.style.boxShadow = "none";
+    // searchInput.style.backgroundColor = "#ffffff6c";
+    // searchInput.value = "";
+  });
 
 
-    // 모달창 띄우기
-    searchContainer.addEventListener("submit", (event) => {
-        event.preventDefault(); // 폼 제출 막기
-    });
-    searchInput.addEventListener("keyup", async (event) => {
-        if (event.key === "Enter") {
-            const foundBookLength = await handleSearch();
-            if (foundBookLength === 0) {
-                modal.classList.add("hidden");
-                alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
-            } else {
-                modal.classList.remove("hidden");
-            }
-        }
-    });
-    closeButton.addEventListener("click", () => {
+  // 모달창 띄우기
+  searchContainer.addEventListener("submit", (event) => {
+    event.preventDefault(); // 폼 제출 막기
+  });
+  searchInput.addEventListener("keyup", async (event) => {
+    if (event.key === "Enter") {
+      const foundBookLength = await handleSearch();
+      if (foundBookLength === 0) {
         modal.classList.add("hidden");
-    });
-    modal_overlay.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    });
+        alert("검색 결과가 없습니다. 검색어를 다시 입력해 주세요.");
+      } else {
+        modal.classList.remove("hidden");
+      }
+    }
+  });
+  closeButton.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+  document.querySelector(".btn-close").addEventListener("click", () => {
+    modal.classList.add("hidden");
+  })
+  modal_overlay.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 };
 
 
@@ -69,14 +72,14 @@ let pageGroup = 1;
 // modalRender (사서추천 api)
 const modalRender = (recoList) => {
 
-    // 시작 인덱스
-    const startPage = (page - 1) * pageSize;
-    // 끝 인덱스
-    const endPage = startPage + pageSize;
-    // 현재 페이지
-    const currentPageList = recoList.slice(startPage, endPage);
-    console.log("startPage", startPage, endPage)
-    console.log("currentPageList", currentPageList)
+  // 시작 인덱스
+  const startPage = (page - 1) * pageSize;
+  // 끝 인덱스
+  const endPage = startPage + pageSize;
+  // 현재 페이지
+  const currentPageList = recoList.slice(startPage, endPage);
+  console.log("startPage", startPage, endPage)
+  console.log("currentPageList", currentPageList)
 
 
   const modalHTML = currentPageList
@@ -185,72 +188,72 @@ const searchBook = async (searchText) => {
 // 페이지네이션
 
 const paginationRender = (totalItems = recoList.length) => {
-    const totalPages = Math.ceil(totalItems / pageSize);
-    const pageGroup = Math.ceil(page / groupSize);
-    console.log("pageGroup", pageGroup);
-    let lastPage = Math.min(pageGroup * groupSize, totalPages);
-    let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
-    console.log("firstPage", firstPage, lastPage)
+  const totalPages = Math.ceil(totalItems / pageSize);
+  const pageGroup = Math.ceil(page / groupSize);
+  console.log("pageGroup", pageGroup);
+  let lastPage = Math.min(pageGroup * groupSize, totalPages);
+  let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  console.log("firstPage", firstPage, lastPage)
 
 
-    let paginationHTML = ``;
-    // 이전 버튼 추가
-    paginationHTML += `<li class="page_item preToPage">
+  let paginationHTML = ``;
+  // 이전 버튼 추가
+  paginationHTML += `<li class="page_item preToPage">
             <a class="page-link" aria-label="Previous">
                 <span aria-hidden="true">«</span>
             </a>
         </li>`;
 
-    for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML += `<li class="page_item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})">
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page_item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})">
                 <a class="page-link">${i}</a>
             </li>`;
-    }
+  }
 
 
-    // 다음 버튼 추가
-    if (page < totalPages) {
-        paginationHTML += `<li class="page_item nextToPage">
+  // 다음 버튼 추가
+  if (page < totalPages) {
+    paginationHTML += `<li class="page_item nextToPage">
                 <a class="page-link" aria-label="Next">
                     <span aria-hidden="true">»</span>
                 </a>
             </li>`;
-    };
+  };
 
-    document.querySelector(".pagination").innerHTML = paginationHTML;
-    document.querySelector(".preToPage").addEventListener("click", preToPage);
-    // document.querySelector(".nextToPage").addEventListener("click", nextToPage);
-    const nextPageElement = document.querySelector(".nextToPage");
-    if (nextPageElement) {
-        nextPageElement.addEventListener("click", nextToPage);
-    }
+  document.querySelector(".pagination_diy").innerHTML = paginationHTML;
+  document.querySelector(".preToPage").addEventListener("click", preToPage);
+  // document.querySelector(".nextToPage").addEventListener("click", nextToPage);
+  const nextPageElement = document.querySelector(".nextToPage");
+  if (nextPageElement) {
+    nextPageElement.addEventListener("click", nextToPage);
+  }
 
 };
 
 const handleSearch = async () => {
 
-    page = 1;
-    const currentSearchText = searchInput.value;
-    console.log("currentSearchText",currentSearchText)
-    await searchBook(currentSearchText);
-    const foundBook = recoList.filter(searchText => 
-        searchText.item.recomauthor["#text"].includes(currentSearchText) ||
-        searchText.item.recomtitle["#text"].includes(currentSearchText) ||
-        searchText.item.recompublisher["#text"].includes(currentSearchText) 
-        );
-    console.log("foundBook", foundBook);
-    searchResult = foundBook;
-    modalRender(searchResult);
-    const totalItems = searchResult.length;
-    paginationRender(totalItems);
-    return totalItems;
+  page = 1;
+  const currentSearchText = searchInput.value;
+  console.log("currentSearchText", currentSearchText)
+  await searchBook(currentSearchText);
+  const foundBook = recoList.filter(searchText =>
+    searchText.item.recomauthor["#text"].includes(currentSearchText) ||
+    searchText.item.recomtitle["#text"].includes(currentSearchText) ||
+    searchText.item.recompublisher["#text"].includes(currentSearchText)
+  );
+  console.log("foundBook", foundBook);
+  searchResult = foundBook;
+  modalRender(searchResult);
+  const totalItems = searchResult.length;
+  paginationRender(totalItems);
+  return totalItems;
 };
 
 const moveToPage = async (pageNum) => {
-    console.log("moveToPage", pageNum);
-    page = pageNum;
-    modalRender(searchResult);
-    paginationRender(searchResult.length);
+  console.log("moveToPage", pageNum);
+  page = pageNum;
+  modalRender(searchResult);
+  paginationRender(searchResult.length);
 };
 
 const preToPage = async () => {
@@ -262,23 +265,23 @@ const preToPage = async () => {
 };
 
 const nextToPage = async () => {
-    if (page < totalPages) {
-      page++;
-      modalRender(searchResult);
-      paginationRender(searchResult.length);
-    }
+  if (page < totalPages) {
+    page++;
+    modalRender(searchResult);
+    paginationRender(searchResult.length);
+  }
 }
 const setActivePage = (pageNum) => {
-    const pageItems = document.querySelectorAll(".page_item");
-    pageItems.forEach((pageItem, index) => {
-        if (pageItem.classList.contains("preToPage") || pageItem.classList.contains("nextToPage")) {
-            return;
-        }
-        pageItem.classList.remove("active");
-        if ((index + 1) === pageNum) {
-            pageItem.classList.add("active");
-        }
-    });
+  const pageItems = document.querySelectorAll(".page_item");
+  pageItems.forEach((pageItem, index) => {
+    if (pageItem.classList.contains("preToPage") || pageItem.classList.contains("nextToPage")) {
+      return;
+    }
+    pageItem.classList.remove("active");
+    if ((index + 1) === pageNum) {
+      pageItem.classList.add("active");
+    }
+  });
 
 };
 
@@ -322,7 +325,7 @@ function xmlToJson(xml) {
   return obj;
 }
 document.addEventListener("DOMContentLoaded", function () {
-    includeHTML(initSearch);
+  includeHTML(initSearch);
 });
 // searchBook (isbn api)
 // let isbnList = [];

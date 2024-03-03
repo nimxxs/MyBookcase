@@ -1,3 +1,12 @@
+// 사전정보
+
+// ISBN
+// https://www.nl.go.kr/seoji/SearchApi.do?cert_key=[발급된키값]&result_style=json&page_no=1&page_size=10
+
+// 사서 추천도서
+// https://nl.go.kr/NL/search/openApi/saseoApi.do?key=[발급된 인증키]
+
+
 const myAPI =
     "7a328df4e2e5bc6c3dd52d51251e3469a5d0910058d86c71204180d55a9afce2";
 let ISBNUrl = new URL(
@@ -9,6 +18,7 @@ let RecommendUrl = new URL(
 let bookList = [];
 let matchArray = [];
 let matchBookList = [];
+let ISBNList = []
 
 // let ISBNList = [
 //     {
@@ -33,15 +43,7 @@ let matchBookList = [];
 //     },
 // ];
 
-let ISBNList = []
-
 // let ISBNList = ["9791185035154", "9788961961844", "9791167373618", '9788983717054', '9788996586043']
-
-// ISBN 저자정보
-// https://www.nl.go.kr/seoji/SearchApi.do?cert_key=[발급된키값]&result_style=json&page_no=1&page_size=10
-
-// 사서 추천도서
-// https://nl.go.kr/NL/search/openApi/saseoApi.do?key=[발급된 인증키]
 
 // const recommend = async () => {
 //     const response = await fetch(RecommendUrl)
@@ -68,31 +70,6 @@ let ISBNList = []
 //     render()
 // }
 
-// const recommend = async () => {
-
-//     for (const isbn of ISBNList) {
-//         //         ISBNUrl.searchParams.set('isbn', i)
-//         const url = new URL(`https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${myAPI}&isbn=${isbn}`);
-//         const response = await fetch(url);
-//         const responseData = await response.text();
-
-//         const parser = new DOMParser();
-//         const XMLData = parser.parseFromString(responseData, "text/xml");
-//         const jsonData = xmlToJson(XMLData);
-
-//         const bookList = jsonData.channel.list;
-
-//         // ISBN 목록에 해당하는 도서 정보만 필터링하여 matchBookList에 추가
-//         const matchingBooks = bookList.filter(book => book.item.recomisbn['#text'] === isbn);
-//         matchBookList.push(...matchingBooks);
-//     }
-
-//     console.log("matchBookList: ", matchBookList);
-
-//     render();
-// }
-
-// recommend()
 
 // xml json으로 변환 함수
 function xmlToJson(xml) {
@@ -168,6 +145,12 @@ function xmlToJson(xml) {
 
 // isbn만 넘겨 받을 때 (객체 형태 { })
 const render = () => {
+    if (matchArray.length == 0) {
+        document.querySelector("#loading_text").innerHTML = "찜한 책이 없어요!"
+        document.querySelector(".booklist_explain").style.display = "none";
+        return
+    }
+    document.querySelector(".booklist_explain").style.display = "flex";
     const bookHTML = matchBookList
         .map((book) => {
             // ISBNList에서 해당 도서의 ISBN에 해당하는 URL을 찾습니다.
@@ -190,8 +173,8 @@ const render = () => {
                         <div class="bookimg_author"> ${book.TITLE_URL == "" ? book.AUTHOR : ""}</div>
                     </div>
                 </div>
-                <div class="bookInfo_${book.EA_ISBN} bookInfo">
-                    <div id="title">${book.TITLE}</div>
+                <div class="bookInfo" id="bookInfo_${book.EA_ISBN}">
+                    <div onclick="popWindow(${book.EA_ISBN})" id="title">${book.TITLE}</div>
                     <div id="author">${book.AUTHOR}</div>
                     <div id="purchased_${book.EA_ISBN}" class="purchased_defult">구매 완료 <img src="../images/payments.svg"></div>
                 </div>
@@ -237,8 +220,8 @@ async function matchISBN() {
 
 // 구매완료 효과
 function purchased(isbnNum) {
-    const bookInfo_title = document.querySelector(`.bookInfo_${isbnNum} #title`)
-    const bookInfo_author = document.querySelector(`.bookInfo_${isbnNum} #author`)
+    const bookInfo_title = document.querySelector(`#bookInfo_${isbnNum} #title`)
+    const bookInfo_author = document.querySelector(`#bookInfo_${isbnNum} #author`)
     const checkbox = document.getElementById(`pur_${isbnNum}`);
     const purchased_ment = document.getElementById(`purchased_${isbnNum}`);
     bookInfo_title.classList.toggle("purchased", checkbox.checked)
