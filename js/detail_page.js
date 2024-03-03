@@ -19,6 +19,17 @@ let url2 = ""
 let bookInfo = []
 let detailURL = ""
 
+let conditionValue = false
+
+// 이전에 저장된 데이터 읽어오기
+let storedData = localStorage.getItem('wishData');
+let existingData = storedData ? JSON.parse(storedData) : [];
+
+// 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
+if (!Array.isArray(existingData)) {
+    existingData = [];
+}
+
 let targetBookDetail = async () => {
     //ISBN = "9791196777050"
     //ISBN = "8984993727"
@@ -40,7 +51,7 @@ let targetBookDetail = async () => {
     loadTopSection()
     showBookCover(bookInfo.TITLE_URL)
     showBookDetails(bookInfo)
-
+    renderHeart(ISBN)
     //localStorage.clear("wishData")
     console.log("localStorage(wishData):", JSON.parse(localStorage.getItem("wishData")));
 }
@@ -95,18 +106,27 @@ function showBookDetails(bookInfo) {
     `
 }
 
-let conditionValue = false
+function renderHeart(ISBN) {
+    let existingEntry = existingData.find(entry => entry.isbn === ISBN);
+    console.log("existingEntry", existingEntry);
+    console.log("condition", conditionValue);
 
-// 이전에 저장된 데이터 읽어오기
-let storedData = localStorage.getItem('wishData');
-let existingData = storedData ? JSON.parse(storedData) : [];
-
-// 만약 이전에 저장된 데이터가 배열이 아니라면 빈 배열로 초기화
-if (!Array.isArray(existingData)) {
-    existingData = [];
+    if (existingEntry) {
+        
+        
+        if (conditionValue === false) {
+            document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-empty.svg"/>`;
+        } else if (conditionValue === true) {
+            document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-filled.svg"/>`;
+        }
+    } else {
+        // Handle the case where no matching entry is found
+        document.querySelector(".wishbutton").innerHTML = `<img width="20px" src="/images/heart-empty.svg"/>`;
+        console.log("No entry found for ISBN", ISBN);
+    }
 }
 
-let wishFunction = () => {
+let wishFunction = ()=>{
     // Check if there is an existing entry with the same ISBN
     let existingEntry = existingData.find(entry => entry.isbn === ISBN);
 
@@ -140,6 +160,7 @@ let wishFunction = () => {
     }
 
     console.log("updated wishData:", JSON.parse(localStorage.getItem("wishData")));
+    renderHeart(ISBN)
 }
 
 let toLibFunction = () => {
