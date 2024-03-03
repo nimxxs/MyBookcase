@@ -368,6 +368,12 @@ a {
   color: inherit;
 }
 
+/* a 태그 스타일 */
+a {
+  text-decoration: none;
+  color: black;
+}
+
 @keyframes intro {
   0% {
     transform: translate3d(0, -220px, 30px) scale(1);
