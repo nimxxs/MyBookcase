@@ -28,7 +28,7 @@
 |--------|--------|
 | MY 서재 페이지 출력결과 | ISBN 정보를 이용하여 찾은 정보|
 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/b73acc43-79be-4e16-afe8-746b61a6fcf2" width="200"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/fe0cfb65-5acd-4427-84a3-5e9589f33b0d" width="200"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/e81edc99-7830-4321-b3db-419823c472c1" width="200">|
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/b73acc43-79be-4e16-afe8-746b61a6fcf2" width="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/fe0cfb65-5acd-4427-84a3-5e9589f33b0d" width="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/e81edc99-7830-4321-b3db-419823c472c1" width="300">|
 |--------|--------|--------|
 | 구매 완료 |읽음|구매완료 및 읽음|
 
