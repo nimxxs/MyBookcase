@@ -19,3 +19,4 @@
   width="40%"
   alt = "책 상세 페이지(관심등록 후)"
 />
+<figcaption>책 상세 페이지(관심등록 후)</figcaption>
