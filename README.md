@@ -16,5 +16,5 @@
 
 <img
   src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4"
-  width="30%"
+  width="40%"
 />
