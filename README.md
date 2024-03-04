@@ -8,7 +8,7 @@
 <br>
 <br>
 
-## 📖 MyBookList 담당 : 정예진
+## 📖 🧾 MyBookList 담당 : 정예진
 
 ### 진행 과정과 진행 flow
 * 국립중앙도서관의 ISBN api와 사서추천 api를 사용하여 진행.
