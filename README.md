@@ -19,5 +19,10 @@
     <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" width="40%" alt="책 상세 페이지(관심등록 후)"/>
     <div>책 상세 페이지(관심등록 후)</div>
   </div>
+
+    <div>
+    <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" width="40%" alt="책 상세 페이지(관심등록 후)"/>
+    <div>책 상세 페이지(관심등록 후)</div>
+  </div>
 </div>
 
