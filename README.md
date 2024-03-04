@@ -20,11 +20,11 @@
 * 구매완료와 읽음의 효과를 다르게 적용하여 사용자의 시각적 인지를 돕는다.
 
 ### 📷 이미지 자료 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" height="200"> | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8" height="200">|
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" height="300"> | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8" height="300">|
 |--------|--------|
 | 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/1a828473-a784-4d21-91ab-5b1d8966cca4" height="200"> | ![이미지 4](https://github.com/nimxxs/MyBookcase/assets/112992178/e2e6c67d-51b4-4a0e-9fe0-7108f605b5a6)|
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/1a828473-a784-4d21-91ab-5b1d8966cca4" height="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/e2e6c67d-51b4-4a0e-9fe0-7108f605b5a6" height="300">|
 |--------|--------|
 | MY 서재 페이지 출력결과 | ISBN 정보를 이용하여 찾은 정보|
 
