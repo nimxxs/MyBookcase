@@ -14,9 +14,10 @@
 * ISBN 정보를 api에 ISBN 요청 변수를 이용하여 해당 ISBN의 책 정보(저자, 책 제목 등)을 받는다.
 * 구매완료와 읽음의 효과를 다르게 적용하여 사용자의 시각적 인지를 돕는다.
 
-\| ![이미지 1](https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4) | ![이미지 2](https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4) |
+| ![이미지 1](https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4) | ![이미지 2](https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8)
+) |
 |--------|--------|
-| 책 상세 페이지(관심등록 전) | 책 상세 페이지(관심등록 후)|
+| 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
 
 
 
