@@ -5,6 +5,11 @@
 👨‍👩‍👧‍👦 개발 인원 : 최소진(P.O), 최수민(S.M), 정예진, 이동천, 안종성
 
 
+
+
+
+
+
 ## MyBookList 담당 : 정예진
 
 ### 진행 과정과 진행 flow
@@ -18,6 +23,17 @@
 | ![이미지 1](https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4) | ![이미지 2](https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8)|
 |--------|--------|
 | 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
+|--------|--------|
+
+| ![이미지 3](https://github.com/nimxxs/MyBookcase/assets/112992178/1a828473-a784-4d21-91ab-5b1d8966cca4) | ![이미지 4](https://github.com/nimxxs/MyBookcase/assets/112992178/e2e6c67d-51b4-4a0e-9fe0-7108f605b5a6)|
+|--------|--------|
+| 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
+
+
+![image](https://github.com/nimxxs/MyBookcase/assets/112992178/1a828473-a784-4d21-91ab-5b1d8966cca4)
+
+![image](https://github.com/nimxxs/MyBookcase/assets/112992178/e2e6c67d-51b4-4a0e-9fe0-7108f605b5a6)
+
 
 
 
