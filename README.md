@@ -16,9 +16,11 @@
 
 <figure style="display: flex; flex-direction: column; align-items: center;">
   <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" width="40%" alt="책 상세 페이지(관심등록 후)">
-  <figcaption>책 상세 페이지(관심등록 후)</figcaption>
 </figure>
 
+<figure>
+  <figcaption>책 상세 페이지(관심등록 후)</figcaption>
+</figure>
 
 <figure style="display: flex; flex-direction: column; align-items: center;">
   <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" width="40%" alt="책 상세 페이지(관심등록 후)">
