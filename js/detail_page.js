@@ -128,7 +128,7 @@ function renderHeart(ISBN) {
     console.log("existingEntry", existingEntry);
     console.log("condition", conditionValue);
 
-    // If an entry exists, set conditionValue to false, otherwise true
+    // If an entry exists, set conditionValue to true, otherwise false
     conditionValue = existingEntry ? true : false;
 
     if (existingEntry) {
