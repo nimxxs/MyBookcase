@@ -29,10 +29,4 @@
 | 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
 
 
-![image](https://github.com/nimxxs/MyBookcase/assets/112992178/1a828473-a784-4d21-91ab-5b1d8966cca4)
-
-![image](https://github.com/nimxxs/MyBookcase/assets/112992178/e2e6c67d-51b4-4a0e-9fe0-7108f605b5a6)
-
-
-
 
