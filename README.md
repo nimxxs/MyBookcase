@@ -33,7 +33,7 @@
 |--------|--------|--------|
 | 구매 완료 |읽음|구매완료 및 읽음|
 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/abf8cf38-4bac-4b60-a67f-c13d58b52ab0" height="300" width="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/0df88f01-3a94-4a93-b2ac-457cda3657e1" height="300" width="300">|
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/abf8cf38-4bac-4b60-a67f-c13d58b52ab0" height="300" width="400"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/0df88f01-3a94-4a93-b2ac-457cda3657e1" height="300" width="400">|
 |--------|--------|
 | 책 삭제 후 다른 책이 없을 경우 (MY서재) | 데이터 삭제 시 localStorage updateData와 삭제 대상 ISBN 출력|
 
