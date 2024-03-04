@@ -18,6 +18,7 @@
 * My서재 페이지에서 localStorage에 저장된 데이터를 페이지가 로드 될때마다 받아온다.
 * ISBN 정보를 api에 ISBN 요청 변수를 이용하여 해당 ISBN의 책 정보(저자, 책 제목 등)을 받는다.
 * 구매완료와 읽음의 효과를 다르게 적용하여 사용자의 시각적 인지를 돕는다.
+* 삭제시에는 삭제를 윈하는 대상 ISBN을 이용하여 해당 localStorage 정보 삭제
 
 ### 📷 이미지 자료 
 | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" height="300"> | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8" height="300">|
@@ -31,6 +32,12 @@
 | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/b73acc43-79be-4e16-afe8-746b61a6fcf2" width="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/fe0cfb65-5acd-4427-84a3-5e9589f33b0d" width="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/e81edc99-7830-4321-b3db-419823c472c1" width="300">|
 |--------|--------|--------|
 | 구매 완료 |읽음|구매완료 및 읽음|
+
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/abf8cf38-4bac-4b60-a67f-c13d58b52ab0" height="300"> | <img src = "https://github.com/nimxxs/MyBookcase/assets/112992178/0df88f01-3a94-4a93-b2ac-457cda3657e1" height="300">|
+|--------|--------|
+| 책 삭제 후 다른 책이 없을 경우 (MY서재) | 데이터 삭제 시 localStorage updateData와 삭제 대상 ISBN 출력|
+
+
 
 
 
