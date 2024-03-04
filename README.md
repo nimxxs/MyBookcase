@@ -20,7 +20,7 @@
 * 구매완료와 읽음의 효과를 다르게 적용하여 사용자의 시각적 인지를 돕는다.
 
 ### 📷 이미지 자료 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" height="200"> | ![이미지 2](https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8)|
+| <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/a20effcb-70bf-4f3c-98b6-3c16449f69c4" height="200"> | <img src="https://github.com/nimxxs/MyBookcase/assets/112992178/da410dbe-a5d0-4ffc-b359-e0628c353ce8" height="200"|
 |--------|--------|
 | 책 상세 페이지(관심등록 후) | localStorage에 데이터 저장 상황|
 
