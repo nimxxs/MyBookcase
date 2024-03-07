@@ -6,11 +6,10 @@
 📖 개발 목표 : 사용자가 책을 검색하고, 구매 or 관심 있는 책을 찜할 수 있다. 
 
 <br>
-<br>
-<br>
+
 <h2>🔍 search 담당 : 최수민</h2> 
 ---
-### 진행 과정과 진행 flow
+<h3> 진행 과정과 진행 flow </h3>
 * 검색창을 모달창으로 구현함.
 * 국립중앙도서관의 사서추천 api를 사용하여 진행.
 * 사서추천 api가 xml만 지원 해주기에 json으로 변환.
@@ -20,7 +19,7 @@
 * 사서추천 api가 검색 기능을 지원 안하기 때문에 검색창의 value 값을 받아와 포함되어 있는 검색어를 찾음.
 * pagination을 만들어 검색한 모든 책들이 나와야함.
 
-### 📷 이미지 자료 
+<h3> 📷 이미지 자료 </h3>
 | <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/e8427132-38c7-449f-9678-84d97ed86c33" height="200"> | <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/b8041f46-2aa9-4aae-bf11-994953e963de" height="200"> |
 |--------|--------|
 | 메인페이지에서 검색하기 | 검색어가 없을시 alert 창 |
