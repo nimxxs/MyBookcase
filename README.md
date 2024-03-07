@@ -3,10 +3,31 @@
 ---
 🕓 개발 기간 : 2024년 2월 26일 ~ 2024년 3월 3일 (7일)  
 👨‍👩‍👧‍👦 개발 인원 : 최소진(P.O), 최수민(S.M), 정예진, 이동천, 안종성
+📖 개발 목표 : 사용자가 책을 검색하고, 구매 or 관심 있는 책을 찜할 수 있다. 
 
 <br>
 <br>
 <br>
+## 🔍 search 담당 : 최수민
+---
+### 진행 과정과 진행 flow
+* 검색창을 모달창으로 구현함.
+* 국립중앙도서관의 사서추천 api를 사용하여 진행.
+* 사서추천 api가 xml만 지원 해주기에 json으로 변환.
+* header.html을 search.html과 연결하기 위해 includs.js를 만들어 html끼리 연결.
+* 그래서 search.js에서 전역스코프와 initSearch함수의 흐름이 중요함.
+* header.html에 있는 검색창을 이용하여 검색창 구현 -> 모든 페이지에서 검색이 가능해야함. -> 연결 완료.
+* 사서추천 api가 검색 기능을 지원 안하기 때문에 검색창의 value 값을 받아와 포함되어 있는 검색어를 찾음.
+* pagination을 만들어 검색한 모든 책들이 나와야함.
+
+### 📷 이미지 자료 
+| <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/e8427132-38c7-449f-9678-84d97ed86c33" height="200"> | <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/b8041f46-2aa9-4aae-bf11-994953e963de" height="200"> |
+|--------|--------|
+| 메인페이지에서 검색하기 | 검색어가 없을시 alert 창 |
+
+| <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/df8910c1-1f5d-4425-ab7d-a4c1ac0bfe14" height="200"> |
+|--------|--------|
+| pagination |
 
 ## 📖 🧾 MyBookList 담당 : 정예진
 ---
