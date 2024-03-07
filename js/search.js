@@ -8,7 +8,6 @@
 // 이렇게 하면 includes.js가 완전히 실행 된 후 search.js가 실행된다.
 
 let API_KEY = "1fcc678ac940549cb24a61ded5ec9453a2924d7475da7cb94de1d5ad53ee8212";
-// import { API_KEY } from '../js/apiKey.js';
 let searchInput;
 const closeButton = document.getElementById("closeButton");
 const modal = document.querySelector(".modal");
@@ -22,14 +21,11 @@ function initSearch() {
   searchInput.addEventListener("click", () => {
     searchInput.style.border = "2px solid #fff";
     searchInput.style.boxShadow = "0px 0px 12px rgba(255, 255, 255, 0.2)";
-    // searchInput.style.backgroundColor = "#ffffff40";
     searchInput.value = "";
   });
   searchInput.addEventListener("blur", () => {
     searchInput.style.border = "none";
     searchInput.style.boxShadow = "none";
-    // searchInput.style.backgroundColor = "#ffffff6c";
-    // searchInput.value = "";
   });
 
   // 모달창 띄우기
@@ -65,7 +61,6 @@ function initSearch() {
 
 
 // 전역스코프
-// let totalResult = 0;
 let page = 1; // 1페이지 2페이지 3페이지..
 const pageSize = 10; // 1페이지에 게시글 수
 const groupSize = 5; // 총 페이지에서 몇 페이지씩 그룹을 묶을건지
@@ -82,8 +77,6 @@ const modalRender = (recoList) => {
   const endPage = startPage + pageSize;
   // 현재 페이지
   const currentPageList = recoList.slice(startPage, endPage);
-  console.log("startPage", startPage, endPage)
-  console.log("currentPageList", currentPageList)
 
   const modalHTML = currentPageList
     .map(
@@ -103,25 +96,7 @@ const modalRender = (recoList) => {
   document.getElementById("modal_gird").innerHTML = modalHTML;
 };
 
-// modalRender (isbn api)
-// const modalRender = () => {
-//     const modalHTML = isbnList
-//     .map(isbnItem =>
-//         `<div class="modal_image">
-//             <img src="${isbnItem.TITLE_URL}" alt="이미지"></img>
-//         </div>
-//         <div class="modal_info">
-//             <h3>${isbnItem.SERIES_TITLE ? isbnItem.SERIES_TITLE : isbnItem.TITLE}</h3>
-//             <p>${isbnItem.AUTHOR}</p>
-//             <p>가격 : ${isbnItem.PRE_PRICE}</p>
-//             <p>줄거리 : ${isbnItem.BOOK_INTRODUCTION_URL}</p>
-//         </div>`).join('');
-
-//     document.getElementById('modal_gird').innerHTML = modalHTML;
-// }
-
 // searchBook (사서추천 api)
-
 const searchBook = async (searchText) => {
   const url = new URL(
     `https://corsproxy.io/?https://nl.go.kr/NL/search/openApi/saseoApi.do?key=${API_KEY}&startRowNumApi=1&endRowNumApi=1325`
@@ -136,68 +111,19 @@ const searchBook = async (searchText) => {
   // JSON으로 변환
   const jsonResult = xmlToJson(xmlDoc);
   totalPages = parseInt(jsonResult.channel.totalCount["#text"]);
-  console.log("totalPages", totalPages);
 
   recoList = jsonResult.channel.list;
-  // console.log("recoList", recoList);
 
   modalRender(recoList);
   paginationRender();
 };
 
-// modalRender (검색 api)
-// const modalRender = () => {
-//   const modalHTML = searchList
-//     .map(
-//       (searchItem) =>
-//         `<article class="modal-item">
-//             <div class="modal_image">
-//                 <img src="${"../images/bookskin.png"}" alt="이미지"></img>
-//             </div>
-//             <div class="modal_info">
-//                 <h3 class="modal-title">${searchItem.titleInfo}</h3>
-//                 <p>저작자 : ${searchItem.authorInfo}</p>
-//                 <p class="modal-descripiton" >
-//                  출판사 : ${
-//                    // 출판사
-//                    searchItem.pubInfo
-//                  }
-//                  발행년도 :
-//                  ${
-//                    // 발행년도
-//                    searchItem.pubYearInfo
-//                  }
-//                 </p>
-//                 <p>
-//                 분류기호 :
-//                 ${
-//                   // 분류기호
-//                   searchItem.kdcCode1s
-//                 }
-//                 -
-//                 ${
-//                   // 분류기호
-//                   searchItem.kdcName1s
-//                 }
-//                 </p>
-//             </div>
-//         </article>
-//        `
-//     )
-//     .join("");
-//   document.getElementById("modal_gird").innerHTML = modalHTML;
-// };
-
 // 페이지네이션
-
 const paginationRender = (totalItems = recoList.length) => {
   const totalPages = Math.ceil(totalItems / pageSize);
   const pageGroup = Math.ceil(page / groupSize);
-  console.log("pageGroup", pageGroup);
   let lastPage = Math.min(pageGroup * groupSize, totalPages);
   let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
-  console.log("firstPage", firstPage, lastPage)
-
 
   let paginationHTML = ``;
   // 이전 버튼 추가
@@ -213,19 +139,17 @@ const paginationRender = (totalItems = recoList.length) => {
             </li>`;
   }
 
-
   // 다음 버튼 추가
   if (page < totalPages) {
     paginationHTML += `<li class="page_item nextToPage">
-                <a class="page-link" aria-label="Next">
-                    <span aria-hidden="true">»</span>
-                </a>
-            </li>`;
+              <a class="page-link" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+              </a>
+          </li>`;
   };
 
   document.querySelector(".pagination_diy").innerHTML = paginationHTML;
   document.querySelector(".preToPage").addEventListener("click", preToPage);
-  // document.querySelector(".nextToPage").addEventListener("click", nextToPage);
   const nextPageElement = document.querySelector(".nextToPage");
   if (nextPageElement) {
     nextPageElement.addEventListener("click", nextToPage);
@@ -237,14 +161,12 @@ const handleSearch = async () => {
 
   page = 1;
   const currentSearchText = searchInput.value;
-  console.log("currentSearchText", currentSearchText)
   await searchBook(currentSearchText);
   const foundBook = recoList.filter(searchText =>
     searchText.item.recomauthor["#text"].includes(currentSearchText) ||
     searchText.item.recomtitle["#text"].includes(currentSearchText) ||
     searchText.item.recompublisher["#text"].includes(currentSearchText)
   );
-  console.log("foundBook", foundBook);
   searchResult = foundBook;
   modalRender(searchResult);
   const totalItems = searchResult.length;
@@ -330,45 +252,6 @@ function xmlToJson(xml) {
 document.addEventListener("DOMContentLoaded", function () {
   includeHTML(initSearch);
 });
-// searchBook (isbn api)
-// let isbnList = [];
-// const isbn = async () => {
-//     const url = new URL(`https://www.nl.go.kr/seoji/SearchApi.do?cert_key=${API_KEY}&result_style=json&page_no=${page}&page_size=${pageSize}`)
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     console.log("data", data);
-//     isbnList = data.docs;
-//     // totalResult = data.TOTAL_COUNT;
-//     console.log("isbn", isbnList);
-
-//     const bookTitle = "성인행동치료 사례집";
-//     const foundBook = isbnList.find(book => book.TITLE === bookTitle);
-//     console.log("foundBook",foundBook);
-
-//     modalRender();
-//     paginationRender();
-// }
-// isbn(searchInput.value);
-
-// searchBook (검색 api)
-// const searchBook = async (searchText) => {
-//   // 한글 인코딩을 위한 함수 -> encodeURIComponent
-//   const encodedText = encodeURIComponent(searchText);
-//   console.log("searchText", encodedText);
-//   const url = new URL(
-//     `https://www.nl.go.kr/NL/search/openApi/search.do?key=${API_KEY}&apiType=json&category=%EB%8F%84%EC%84%9C&srchTarget=title&kwd=${encodedText}&pageNum=${page}&pageSize=${pageSize}`
-//   );
-//   const response = await fetch(url);
-//   const data = await response.json();
-//   console.log("data", data);
-//   searchList = data.result;
-//   totalResult = data.total;
-//   console.log("search", searchList);
-//   console.log("total", totalResult);
-//   modalRender();
-//   paginationRender();
-// };
-// searchBook(searchInput.value);
 
 function popWindow(ISBN) {
   let params = `
