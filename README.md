@@ -1,16 +1,19 @@
 # MyBookcase
-## 팀명
+## 팀명: 6조
 ---
 🕓 개발 기간 : 2024년 2월 26일 ~ 2024년 3월 3일 (7일)  
-👨‍👩‍👧‍👦 개발 인원 : 최소진(P.O), 최수민(S.M), 정예진, 이동천, 안종성
-📖 개발 목표 : 사용자가 책을 검색하고, 구매 or 관심 있는 책을 찜할 수 있다. 
+👨‍👩‍👧‍👦 개발 인원 : 최소진(P.O), 최수민(S.M), 정예진, 이동천, 안종성 <br>
+📖 개발 목표 : 
+1. 사용자가 책을 검색하고, 구매 or 관심 있는 책을 찜할 수 있다. <br>
+2. 찜한 책이 내 서재에 옮겨지고, 구매완료/읽음완료로 사용자만의 Bookcase를 만들 수 있다.
 
 <br>
 
-<h2>🔍 search 담당 : 최수민</h2> 
+## 🔍 search 담당 : 최수민
 ---
-<h3> 진행 과정과 진행 flow </h3>
-* 검색창을 모달창으로 구현함.
+
+### 진행 과정과 진행 flow
+* 검색창을 모달창으로 구현함. (닫기 or 창 밖 범위 클릭시 창 닫힘)
 * 국립중앙도서관의 사서추천 api를 사용하여 진행.
 * 사서추천 api가 xml만 지원 해주기에 json으로 변환.
 * header.html을 search.html과 연결하기 위해 includs.js를 만들어 html끼리 연결.
@@ -19,14 +22,21 @@
 * 사서추천 api가 검색 기능을 지원 안하기 때문에 검색창의 value 값을 받아와 포함되어 있는 검색어를 찾음.
 * pagination을 만들어 검색한 모든 책들이 나와야함.
 
-<h3> 📷 이미지 자료 </h3>
+### 📷 이미지 자료 
 | <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/e8427132-38c7-449f-9678-84d97ed86c33" height="200"> | <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/b8041f46-2aa9-4aae-bf11-994953e963de" height="200"> |
 |--------|--------|
 | 메인페이지에서 검색하기 | 검색어가 없을시 alert 창 |
+| <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/9f126115-fe6b-4610-a28e-5e48269f796e" height="200"> 
+| pagination 
 
-| <img src="https://github.com/nimxxs/MyBookcase/assets/132239456/df8910c1-1f5d-4425-ab7d-a4c1ac0bfe14" height="200"> |
-|--------|--------|
-| pagination |
+
+### 아쉬운 부분
+* 국립중앙도서관의 사서추천 api가 검색을 지원 안해주는 점이 힘들었다. -> 검색 기능은 js로 만들어서 대체
+* 국립중앙도서관의 사서추천 api와 ISBN api를 매칭시켜 서로의 정보를 합치고 싶었는데 해내지 못한 점이 아쉬웠다.
+
+### 문제해결
+* api 데이터를 받아오는 과정에서 보안상의 이유로 cors에러가 발생했다.
+* includes.js로 인해 header.html의 class나 id를 가져오지 못하였다. -> DOM 완전 로드 후 initSearch 함수 실행.
 
 ## 📖 🧾 MyBookList 담당 : 정예진
 ---
